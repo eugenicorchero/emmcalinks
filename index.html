@@ -5,149 +5,97 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMMCA LINKS | Recursos Musicals Interactius</title>
     
-    <!-- Framework CSS: Bulma -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Carrega de Tailwind CSS CDN per a estils ràpids i responsius -->
+    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Iconografia: Font Awesome (Free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
-    <!-- Tipografia: Inter (Google Fonts) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Estil personalitzat (CSS intern) -->
+    <!-- Configuració de la font Inter i colors base -->
     <style>
-        /* NOVA PALETA DE COLORS: BLAU/GRIS */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+        /* NOVA PALETA DE COLORS (Tailwind Custom) */
         :root {
-            /* Mode Clar (per defecte) */
-            --emca-primary: #3498db; /* Blau Fort */
-            --emca-secondary: #2980b9; /* Blau Fosc (per hover) */
-            --emca-dark: #2c3e50; /* Negre/Gris molt fosc */
-            --emca-light: #ffffff; /* Blanc pur */
-            --emca-link-bg: #f5f7fa; /* Gris molt clar */
-            --emca-text-color: var(--emca-dark);
-            --emca-container-bg: var(--emca-light);
-            --emca-border-color: #e4e6eb; /* Gris clar per vores */
+            --color-primary: #3498db; /* Blau Fort */
+            --color-secondary: #2980b9; /* Blau Fosc (per hover) */
+            --color-dark: #2c3e50; /* Negre/Gris molt fosc */
+            --color-light: #ffffff; /* Blanc pur */
+            --color-link-bg: #f5f7fa; /* Gris molt clar */
+            --color-border: #e4e6eb; /* Gris clar per vores */
             
-            /* Nova variable per ombres i arrodoniment */
-            --emca-radius: 10px; /* Arrodoniment general */
-            --emca-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Ombra suau */
+            --emca-text-color: var(--color-dark);
+            --emca-container-bg: var(--color-light);
         }
 
         /* --- Mode Fosc --- */
         .dark-mode {
-            --emca-primary: #5dade2; /* Blau més clar per fons fosc */
-            --emca-secondary: #3498db;
-            --emca-dark: #f0f0f0; /* Blanc trencat */
-            --emca-light: #121212; /* Fons Negre */
-            --emca-link-bg: #1e1e1e; /* Gris fosc per targetes */
-            --emca-text-color: var(--emca-dark);
+            --color-primary: #5dade2; 
+            --color-secondary: #3498db;
+            --color-dark: #f0f0f0; 
+            --color-light: #121212; 
+            --color-link-bg: #1e1e1e; 
+            --color-border: #333;
+            
+            --emca-text-color: var(--color-dark);
             --emca-container-bg: #121212;
-            --emca-border-color: #333;
-            --emca-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Ombra més visible en fons fosc */
         }
 
         /* Estil Global & Tipografia Inter */
         body {
-            background-color: var(--emca-light);
-            color: var(--emca-text-color);
             font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            padding-bottom: 50px;
+            background-color: var(--emca-container-bg);
+            color: var(--emca-text-color);
             transition: background-color 0.3s, color 0.3s;
         }
         
+        /* Ajustos Bulma (Recreats amb Tailwind) */
         .links-container {
-            width: 100%;
-            max-width: 1000px; 
-            margin: 0 auto;
             padding: 30px 25px 60px 25px; 
         }
 
-        /* Títols de Secció */
-        .section-title {
-            color: var(--emca-primary);
-            padding-bottom: 8px; 
-            margin-top: 3.5rem; 
-            margin-bottom: 2rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Ajust per a Pestanyes */
-        .tabs:not(:last-child) {
-            margin-bottom: 1.5rem; /* Ajustem l'espai entre les tabs i el contingut */
-        }
-        
-        .tabs ul {
-            border-bottom-color: var(--emca-border-color);
-        }
-        
-        .tabs a {
-            color: var(--emca-text-color);
-            padding-bottom: 10px;
-            transition: color 0.3s;
-        }
-        
-        .tabs li.is-active a {
-            border-bottom-color: var(--emca-primary);
-            color: var(--emca-primary) !important;
-            font-weight: 600;
-        }
-
-        /* --- Estil Destacats (Targetes) --- */
-        .highlight-card {
-            border: 1px solid var(--emca-border-color); 
-            background-color: var(--emca-link-bg);
+        /* Hero Card Styling - Adaptació per a Hero Cards */
+        .hero-card {
+            border: 1px solid var(--color-border);
+            background-color: var(--color-link-bg);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s, border-color 0.3s;
-            border-radius: var(--emca-radius); 
-            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
             height: 100%;
-            display: block;
-            box-shadow: var(--emca-shadow); 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .highlight-card:hover {
+        .hero-card:hover {
             transform: translateY(-5px); 
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-            background-color: var(--emca-secondary);
-            border-color: var(--emca-secondary);
-            color: var(--emca-light) !important; 
+            background-color: var(--color-secondary);
+            border-color: var(--color-secondary);
+            color: var(--color-light) !important; 
         }
         
-        .highlight-card:hover .card-title, 
-        .highlight-card:hover .card-icon {
-            color: var(--emca-light) !important;
+        .hero-card:hover h2, 
+        .hero-card:hover .icon-symbol {
+            color: var(--color-light) !important;
         }
 
-        .highlight-card .card-title {
-            color: var(--emca-primary);
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            transition: color 0.3s;
-            font-size: 1.2rem !important;
-        }
-
-        .highlight-card .card-subtitle {
-            font-size: 0.95rem;
-            color: var(--emca-text-color);
-            line-height: 1.4; 
-            transition: color 0.3s, opacity 0.3s;
-        }
-        
-        .highlight-card:hover .card-subtitle {
-            color: var(--emca-link-bg); 
-        }
-
-        .highlight-card .card-icon {
-            color: var(--emca-primary);
-            font-size: 1.6rem;
-            margin-right: 1.25rem;
+        .hero-card h2 {
+            color: var(--color-primary);
             transition: color 0.3s;
         }
-        
-        /* --- Estil Enllaços Estàndard (Botons) --- */
+
+        .hero-card:hover p {
+            color: #f0f0f0; /* Gris clar en hover */
+        }
+
+        .icon-symbol {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+
+        /* Estil per als botons estàndard (fora del Hero) */
         .link-button {
-            background-color: var(--emca-link-bg);
+            background-color: var(--color-link-bg);
             color: var(--emca-text-color) !important;
             border: none;
             font-weight: 600;
@@ -159,90 +107,102 @@
             white-space: normal;
             display: flex;
             align-items: center;
-            border-radius: var(--emca-radius); 
-            box-shadow: var(--emca-shadow); 
+            border-radius: 0.625rem; /* 10px */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
         }
         
-        /* Estil específic per al botó de DESCARREGAR (PDF) */
-        .link-button.is-download {
-            background-color: var(--emca-primary);
-            color: var(--emca-light) !important;
+        .link-button:hover, .link-button:focus {
+            background-color: var(--color-primary);
+            color: var(--color-light) !important;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
+            transform: translateY(-2px);
         }
-        .link-button.is-download .icon {
-            color: var(--emca-light) !important;
-        }
-        .link-button.is-download:hover {
-            background-color: var(--emca-secondary);
-            transform: scale(1.02);
-        }
-
 
         .link-button .icon {
             margin-right: 1.2rem;
             font-size: 1.3rem;
-            color: var(--emca-primary);
+            color: var(--color-primary);
             transition: color 0.2s;
         }
 
-        .link-button:hover, .link-button:focus {
-            background-color: var(--emca-primary);
-            color: var(--emca-light) !important;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
-            transform: translateY(-2px);
+        .link-button:hover .icon, .link-button:focus .icon {
+            color: var(--color-light);
+        }
+
+        /* Controls de Capçalera (Fixed) */
+        .header-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 50;
+        }
+
+        .header-controls button {
+            margin-left: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--color-border);
+        }
+        .dark-mode .header-controls button {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: 1px solid #333;
+        }
+
+        /* Estil Pestanyes (Tabs - Recreant Bulma amb Tailwind) */
+        .tabs-container ul {
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid var(--color-border);
+            margin-bottom: 1.5rem;
+        }
+
+        .tabs-container li {
+            padding: 0 1rem;
+            margin-bottom: -2px; /* Superposició sobre la línia */
+            cursor: pointer;
+        }
+
+        .tabs-container li a {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 0;
+            color: var(--emca-text-color);
+            transition: color 0.3s;
+        }
+
+        .tabs-container li.is-active a {
+            border-bottom: 2px solid var(--color-primary);
+            color: var(--color-primary) !important;
+            font-weight: 600;
         }
         
-        .link-button.is-download:hover {
-            transform: scale(1.02) translateY(0); 
-        }
-
-        .link-button:hover .icon, .link-button:focus .icon {
-            color: var(--emca-light);
-        }
-
-        /* Estil per als links de les Apps (Mòbil) */
-        .app-links {
-            display: flex;
-            justify-content: flex-start;
-            gap: 15px; 
-            margin-top: 15px; 
-        }
+        /* Utilitats i Materials App Links Styling */
         .app-links a {
             color: var(--emca-text-color);
             opacity: 0.8;
             transition: opacity 0.2s;
         }
-        .app-links a:hover {
-            opacity: 1;
-        }
-        .app-links .icon {
-            font-size: 1.8rem; 
-            margin-right: 0 !important;
-            color: var(--emca-dark); 
-            transition: color 0.2s;
-        }
-        .dark-mode .app-links .icon {
-            color: var(--emca-dark); 
-        }
         .link-button:hover .app-links .icon {
-             color: var(--emca-light); 
+             color: var(--color-light); 
         }
-
-        /* --- Collapsible/Accordion Header (Per als llistats llargs de YT i Podcasts) --- */
+        
+        /* Collapsible Styling */
         .collapsible-header {
-            background-color: var(--emca-container-bg);
-            border-bottom: 1px solid var(--emca-border-color);
-            padding: 12px 0; 
             cursor: pointer;
+            padding: 12px 0; 
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-weight: 700;
-            color: var(--emca-dark); 
+            color: var(--color-dark); 
             transition: color 0.3s;
-            margin-top: 1rem; 
+            border-bottom: 1px solid var(--color-border);
+        }
+        .dark-mode .collapsible-header {
+            color: var(--color-dark); 
         }
         .collapsible-header:hover {
-            color: var(--emca-primary);
+            color: var(--color-primary);
         }
         .collapsible-content {
             max-height: 0;
@@ -261,805 +221,830 @@
         .collapsible-header.is-expanded .icon i {
             transform: rotate(180deg);
         }
-        
-        /* Títol de les columnes de directoris */
+
+        /* --- Modal Styling --- */
+        .search-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .search-modal-content {
+            background-color: var(--emca-container-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 90%;
+            width: 700px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
         .link-item-title {
-            color: var(--emca-primary); 
+            color: var(--color-primary); 
             font-weight: 700;
             font-size: 1.35rem !important; 
             padding-bottom: 5px;
             margin-bottom: 1.5rem !important;
-            border-bottom: 1px solid var(--emca-border-color);
+            border-bottom: 1px solid var(--color-border);
         }
-
-        /* Peça clau: Ocultar el link-item per la vista compacta */
-        .hidden-item {
+        
+        /* Compact View Styling (Recreat) */
+        .compact-view-active .hero-card h2 { margin-bottom: 0 !important; }
+        .compact-view-active .hero-card p { display: none !important; }
+        
+        .link-button.is-download {
+            background-color: var(--color-primary);
+            color: var(--color-light) !important;
+        }
+        .link-button.is-download .icon {
+            color: var(--color-light) !important;
+        }
+        .link-button.is-download:hover {
+            background-color: var(--color-secondary);
+            transform: scale(1.02);
+        }
+        
+        /* Utilitats App Links: Ocultar subtítols en vista compacta */
+        .compact-view-active .link-button .is-size-7 {
             display: none !important;
         }
-
-        /* --- Estils per a Modal i Vista Compacta (sense canvis) --- */
-
-        /* Media Queries (Mobile) */
+        .compact-view-active .link-button .app-links {
+            margin-top: 0 !important;
+        }
+        
+        /* Mòbil */
         @media (max-width: 768px) {
-            .column { 
-                padding-left: 0.5rem; 
-                padding-right: 0.5rem; 
-            }
-            .links-container { 
+             .links-container { 
                 padding: 15px 15px 60px 15px; 
             }
             .header-controls {
-                top: 15px;
-                right: 15px;
-            }
-            .section-title {
-                margin-top: 2rem;
-            }
-            .tabs li.is-active a {
-                border-bottom-color: var(--emca-primary);
-                font-weight: 700;
+                top: 10px;
+                right: 10px;
             }
         }
     </style>
 </head>
-<body class="has-navbar-fixed-top">
+<body class="min-h-screen antialiased">
 
-<div class="links-container">
-
-    <!-- Capçalera Principal -->
-    <header class="has-text-centered pt-6 pb-5">
-        <h1 class="title is-1 mb-2 has-text-dark" style="font-weight: 900;">EMMCA LINKS</h1>
-        <h2 class="subtitle is-4 has-text-grey">Recursos Musicals Essencials per a l'Estudiant</h2>
-    </header>
-    
-    <!-- Controls Interactius de la Capçalera (Sense canvis) -->
-    <div class="header-controls is-flex is-align-items-center is-fixed">
-        <button class="button is-small is-primary is-light is-rounded" id="openSearchModal" title="Obrir Cerca i Filtres">
-            <span class="icon is-small"><i class="fas fa-search"></i></span>
+    <!-- Controls Interactius de la Capçalera (Fixed) -->
+    <div class="header-controls flex items-center">
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-gray-700 hover:text-gray-900 shadow-md transition duration-200" id="openSearchModal" title="Obrir Cerca i Filtres">
+            <span class="icon is-small"><i class="fas fa-search text-sm"></i></span>
         </button>
-        <button class="button is-small is-light is-rounded" id="darkModeToggle" title="Activar/Desactivar Mode Fosc">
-            <span class="icon is-small"><i class="fas fa-moon"></i></span>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-gray-700 hover:text-gray-900 shadow-md transition duration-200" id="darkModeToggle" title="Activar/Desactivar Mode Fosc">
+            <span class="icon is-small"><i class="fas fa-moon text-sm"></i></span>
         </button>
-        <button class="button is-small is-light is-rounded" id="compactViewToggle" title="Canviar a Vista Compacta">
-            <span class="icon is-small"><i class="fas fa-list"></i></span>
+        <button class="w-8 h-8 rounded-full flex items-center justify-center text-gray-700 hover:text-gray-900 shadow-md transition duration-200" id="compactViewToggle" title="Canviar a Vista Compacta">
+            <span class="icon is-small"><i class="fas fa-list text-sm"></i></span>
         </button>
     </div>
 
-    <!-- Secció 1: ENLLAÇOS DESTACATS (HERO - SEMPRE VISIBLES) -->
-    <h3 class="title is-4 section-title has-text-centered" style="border-bottom: 2px solid var(--emca-primary);">Eines d'Entrenament Essencials 💡</h3>
-    <div class="columns is-multiline is-desktop link-list highlighted-links" data-category="eines teoria lectura" style="margin-top: 2rem; margin-bottom: 3rem;">
+    <div class="links-container w-full max-w-7xl mx-auto">
+
+        <!-- Capçalera Principal -->
+        <header class="text-center pt-10 pb-5">
+            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-2" style="color: var(--color-dark);">EMMCA LINKS</h1>
+            <p class="text-xl text-gray-500" style="color: var(--emca-text-color); opacity: 0.8;">Recursos Musicals Essencials per a l'Estudiant</p>
+        </header>
+
+        <!-- Secció 1: ENLLAÇOS DESTACATS (HERO) -->
+        <h3 class="text-2xl font-bold text-center mt-12 mb-8" style="color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;">Eines d'Entrenament Essencials 💡</h3>
         
-        <!-- Destacat 1: Lectura Sol -->
-        <div class="column is-half-tablet is-one-quarter-desktop link-item" data-category="eines lectura nou">
-            <a href="https://emmcaro.github.io/lecturabasic1/" target="_blank" rel="noopener noreferrer" class="highlight-card block">
-                <div class="is-flex is-align-items-center mb-3">
-                    <span class="card-icon"><i class="fas fa-hand-pointer"></i></span>
-                    <p class="card-title is-size-5">Lectura Clau de Sol</p>
-                </div>
-                <p class="card-subtitle">Exercicis d'entrenament per a l'agilitat i reconeixement de notes a la clau de sol.</p>
-                <span class="tag is-new is-pulled-right">NOU</span>
-            </a>
-        </div>
+        <!-- Contenidor de les Targetes (Responsive Grid - 1/2/3 Columnes) -->
+        <div class="grid grid-cols-1 gap-6 
+                    sm:grid-cols-2 
+                    lg:grid-cols-3 xl:grid-cols-5 link-list highlighted-links" data-category="eines teoria lectura auditiva intervals acords" style="margin-bottom: 3rem;">
+            
+            <!-- 1. Lectura Clau de Sol -->
+            <div class="link-item" data-category="eines lectura">
+                <a href="https://emmcaro.github.io/lecturabasic1/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
+                    <div class="flex flex-col items-start space-y-3">
+                        <span class="icon-symbol text-blue-600" aria-hidden="true">𝄞</span>
+                        <h2 class="text-xl font-bold">Lectura Clau de Sol</h2>
+                        <p class="text-gray-500 text-sm">Practica la identificació ràpida de notes al pentagrama en clau de sol.</p>
+                    </div>
+                </a>
+            </div>
 
-        <!-- Destacat 2: Lectura Fa -->
-        <div class="column is-half-tablet is-one-quarter-desktop link-item" data-category="eines lectura">
-            <a href="https://emmcaro.github.io/Lectura-clau-de-fa/" target="_blank" rel="noopener noreferrer" class="highlight-card block">
-                <div class="is-flex is-align-items-center mb-3">
-                    <span class="card-icon"><i class="fas fa-hand-pointer"></i></span>
-                    <p class="card-title is-size-5">Lectura Clau de Fa</p>
-                </div>
-                <p class="card-subtitle">Pràctica específica per a la lectura ràpida de notes utilitzant la clau de fa.</p>
-            </a>
-        </div>
+            <!-- 2. Lectura Clau de Fa -->
+            <div class="link-item" data-category="eines lectura">
+                <a href="https://emmcaro.github.io/Lectura-clau-de-fa/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
+                    <div class="flex flex-col items-start space-y-3">
+                        <span class="icon-symbol text-purple-600" aria-hidden="true">𝄢</span>
+                        <h2 class="text-xl font-bold">Lectura Clau de Fa</h2>
+                        <p class="text-gray-500 text-sm">Domina la lectura de les notes greus utilitzant la clau de fa.</p>
+                    </div>
+                </a>
+            </div>
 
-        <!-- Destacat 3: Intervals Pentagrama -->
-        <div class="column is-half-tablet is-one-quarter-desktop link-item" data-category="eines teoria intervals">
-            <a href="https://eugenicorchero.github.io/intervally/" target="_blank" rel="noopener noreferrer" class="highlight-card block">
-                <div class="is-flex is-align-items-center mb-3">
-                    <span class="card-icon"><i class="fas fa-ruler-horizontal"></i></span>
-                    <p class="card-title is-size-5">Intervals Visuals</p>
-                </div>
-                <p class="card-subtitle">Eina per a l'identificació i entrenament visual dels diferents tipus d'intervals.</p>
-            </a>
+            <!-- 3. Lectura d'Intervals (Visuals) -->
+            <div class="link-item" data-category="eines teoria intervals lectura">
+                <a href="https://eugenicorchero.github.io/intervally/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
+                    <div class="flex flex-col items-start space-y-3">
+                        <span class="icon-symbol text-green-600" aria-hidden="true">🎼</span>
+                        <h2 class="text-xl font-bold">Lectura d'Intervals</h2>
+                        <p class="text-gray-500 text-sm">Exercicis visuals per reconèixer els diferents intervals melòdics i harmònics.</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 4. Dictats Auditius d'Intervals -->
+            <div class="link-item" data-category="eines teoria intervals auditiva">
+                <a href="https://eugenicorchero.github.io/auditorium/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
+                    <div class="flex flex-col items-start space-y-3">
+                        <span class="icon-symbol text-red-600" aria-hidden="true">👂</span>
+                        <h2 class="text-xl font-bold">Dictats Auditius d'Intervals</h2>
+                        <p class="text-gray-500 text-sm">Entrena l'oïda per identificar intervals a partir de la seva sonoritat (sense suport visual).</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 5. Dictats Auditius d'Acords (El nou link demanat) -->
+            <div class="link-item" data-category="eines teoria acords auditiva nou">
+                <a href="https://eugenicorchero.github.io/chordiceps/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
+                    <div class="flex flex-col items-start space-y-3">
+                        <span class="icon-symbol text-yellow-600" aria-hidden="true">🎸</span>
+                        <h2 class="text-xl font-bold">Dictats Auditius d'Acords</h2>
+                        <p class="text-gray-500 text-sm">Reconeix i anomena la qualitat dels acords (majors, menors, setena, etc.) a l'oïda.</p>
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+        <!-- Fi Contenidor Targetes -->
+        
+        <!-- Secció 2: NAVEGACIÓ PER PESTANYES (TABS) -->
+        <h3 class="text-2xl font-bold text-center mt-12 mb-8" style="color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;">Directori Temàtic 📚</h3>
+
+        <!-- Tabs Container (Recreat amb Tailwind) -->
+        <div class="tabs-container">
+            <ul id="tabs-header">
+                <li data-target="tab-teoria" class="is-active">
+                    <a class="flex items-center space-x-2">
+                        <span class="icon is-small"><i class="fas fa-graduation-cap"></i></span>
+                        <span>Teoria i Referència</span>
+                    </a>
+                </li>
+                <li data-target="tab-produccio">
+                    <a class="flex items-center space-x-2">
+                        <span class="icon is-small"><i class="fas fa-sliders-h"></i></span>
+                        <span>Producció i Creativitat</span>
+                    </a>
+                </li>
+                <li data-target="tab-utilitats">
+                    <a class="flex items-center space-x-2">
+                        <span class="icon is-small"><i class="fas fa-mobile-alt"></i></span>
+                        <span>Utilitats i Materials</span>
+                    </a>
+                </li>
+            </ul>
         </div>
         
-        <!-- Destacat 4: Intervals Auditius -->
-        <div class="column is-half-tablet is-one-quarter-desktop link-item" data-category="eines teoria intervals">
-            <a href="https://eugenicorchero.github.io/auditorium/" target="_blank" rel="noopener noreferrer" class="highlight-card block">
-                <div class="is-flex is-align-items-center mb-3">
-                    <span class="card-icon"><i class="fas fa-volume-up"></i></span>
-                    <p class="card-title is-size-5">Intervals Auditius</p>
-                </div>
-                <p class="card-subtitle">Entrenament auditiu per reconèixer els intervals musicals sense suport visual.</p>
-            </a>
-        </div>
-    </div>
-    
-    <!-- Secció 2: NAVEGACIÓ PER PESTANYES (TABS) -->
-    <h3 class="title is-4 section-title has-text-centered" style="border-bottom: 2px solid var(--emca-primary);">Directori Temàtic 📚</h3>
+        <!-- CONTINGUT DE LES PESTANYES -->
+        <div id="tabs-content">
 
-    <div class="tabs is-centered is-boxed">
-        <ul>
-            <li class="is-active" data-target="tab-teoria">
-                <a>
-                    <span class="icon is-small"><i class="fas fa-graduation-cap"></i></span>
-                    <span>Teoria i Referència</span>
-                </a>
-            </li>
-            <li data-target="tab-produccio">
-                <a>
-                    <span class="icon is-small"><i class="fas fa-sliders-h"></i></span>
-                    <span>Producció i Creativitat</span>
-                </a>
-            </li>
-            <li data-target="tab-utilitats">
-                <a>
-                    <span class="icon is-small"><i class="fas fa-mobile-alt"></i></span>
-                    <span>Utilitats i Materials</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    
-    <!-- CONTINGUT DE LES PESTANYES -->
-    <div id="tabs-content">
-
-        <!-- PESTANYA 1: TEORIA I REFERÈNCIA -->
-        <div id="tab-teoria" class="tab-pane is-active">
-            <div class="columns is-multiline is-desktop link-list standard-links" data-category="teoria youtube">
-                
-                <!-- Columna 1.1: Webs de Referència -->
-                <div class="column is-one-half-desktop is-full-mobile link-col" data-category="teoria eines">
-                    <p class="link-item-title">Eines Web de Teoria i Dictats</p>
+            <!-- PESTANYA 1: TEORIA I REFERÈNCIA -->
+            <div id="tab-teoria" class="tab-pane">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="teoria youtube">
                     
-                    <div class="link-group">
-                        <a class="button is-fullwidth link-button link-item" href="https://teoria.com/index.php" target="_blank" rel="noopener noreferrer" data-category="teoria eines">
-                            <span class="icon"><i class="fas fa-book-open"></i></span>
-                            <span>Teoria.com (Teoria i dictats)</span>
-                        </a>
-                        <a class="button is-fullwidth link-button link-item" href="https://www.musictheory.net" target="_blank" rel="noopener noreferrer" data-category="teoria eines">
-                            <span class="icon"><i class="fas fa-book"></i></span>
-                            <span>Music Theory (Recursos didàctics)</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Columna 1.2: Canals de YouTube - Teoria i Anàlisi -->
-                <div class="column is-one-half-desktop is-full-mobile link-col" data-category="youtube teoria">
-                    <!-- Grup Plegable: YouTube Teoria -->
-                    <div class="mt-0">
-                        <div class="collapsible-header" data-target="youtube-teoria-links" style="margin-top: 0;">
-                            <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Teoria i Anàlisi 📺</p>
-                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div id="youtube-teoria-links" class="collapsible-content link-group" data-category="youtube teoria">
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Adam Neely</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener noreferrer" data-category="youtube teoria rock">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Rick Beato</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener noreferrer" data-category="youtube analisis pop">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Jaime Altozano</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/AimeeNolte" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz piano">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Aimee Nolte</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/NahreSol" target="_blank" rel="noopener noreferrer" data-category="youtube teoria piano clasica">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Nahre Sol</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/channel/UCTUtqcDkzw7bisadh6AOx5w" target="_blank" rel="noopener noreferrer" data-category="youtube teoria analisi">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>12Tone</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/8bitMusicTheory" target="_blank" rel="noopener noreferrer" data-category="youtube teoria games">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>8bit Music Theory</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/CharlesCornellStudios" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Charles Cornell</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/DeadWaxShow" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Dead Wax</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/bobreynolds" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz saxo">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Bob Reynolds</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/channel/UCcscSHEC5tA1aypzmKvcN0A" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Music Radar Clan</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PESTANYA 2: PRODUCCIÓ I CREATIVITAT -->
-        <div id="tab-produccio" class="tab-pane" style="display: none;">
-            <div class="columns is-multiline is-desktop link-list standard-links" data-category="eines produccio youtube podcast">
-                
-                <!-- Columna 2.1: Eines de Creativitat -->
-                <div class="column is-one-half-desktop is-full-mobile link-col" data-category="eines creativitat produccio">
-                    <p class="link-item-title">Eines Web de Creativitat i Producció</p>
-                    
-                    <div class="link-group">
-                        <a class="button is-fullwidth link-button link-item" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener noreferrer" data-category="eines creativitat">
-                            <span class="icon"><i class="fas fa-palette"></i></span>
-                            <span>Chrome Music Lab (Experimentació)</span>
-                        </a>
-                        <a class="button is-fullwidth link-button link-item" href="https://muted.io" target="_blank" rel="noopener noreferrer" data-category="eines produccio">
-                            <span class="icon"><i class="fas fa-tools"></i></span>
-                            <span>Muted io (Eines vàries de producció)</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Columna 2.2: Canals de YouTube i Podcasts (ARA INCLOU PODCASTS) -->
-                <div class="column is-one-half-desktop is-full-mobile link-col" data-category="youtube produccio podcast">
-                     
-                     <!-- Grup Plegable: Podcasts -->
-                    <div class="mt-0">
-                        <div class="collapsible-header" data-target="podcast-links" style="margin-top: 0;">
-                            <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Podcasts d'Interès 🎧</p>
-                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div id="podcast-links" class="collapsible-content link-group" data-category="podcast">
-                            <a class="button is-fullwidth link-button link-item" href="https://open.spotify.com/show/5Br33snnJU90k2NcYskuM9?si=9a82970a42c34733" target="_blank" rel="noopener noreferrer" data-category="podcast entrevista">
-                                <span class="icon"><i class="fas fa-podcast"></i></span>
-                                <span>Tape Notes</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://open.spotify.com/show/1sgWaKtQxwfjUpZnnK8r7J?si=d7dede0f96eb41ec" target="_blank" rel="noopener noreferrer" data-category="podcast analisis pop">
-                                <span class="icon"><i class="fas fa-podcast"></i></span>
-                                <span>Switched On Pop</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://open.spotify.com/show/10lMwCjvzLCLwth2AW6cLG?si=039962dd03494b8f" target="_blank" rel="noopener noreferrer" data-category="podcast analisis">
-                                <span class="icon"><i class="fas fa-podcast"></i></span>
-                                <span>Song Explorer</span>
-                            </a>
-                        </div>
-                    </div>
-                     
-                    <!-- Grup Plegable: YouTube Producció -->
-                    <div class="mt-5">
-                        <div class="collapsible-header" data-target="youtube-produccio-links">
-                            <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Producció Musical 🎛️</p>
-                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div id="youtube-produccio-links" class="collapsible-content link-group" data-category="youtube produccio">
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener noreferrer" data-category="youtube produccio creativitat">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Andrew Huang</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/c/Producelikeapro" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Produce Like A Pro</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/Z3NWorld" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Zen World</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/@HelpMeDevvon" target="_blank" rel="noopener noreferrer" data-category="youtube produccio r&b">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Help Me Devvon</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Venus Theory</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/@ReidStefanMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Reid Stefan</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/WVmusicOrg" target="_blank" rel="noopener noreferrer" data-category="youtube produccio entrevista">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Weathervane Music</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/imamusicmogul" target="_blank" rel="noopener noreferrer" data-category="youtube produccio marketing">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Music Mogul</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/channel/UCUGf7OXXPWxai-FeLi7N-WA" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Make Pop Music</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/theproaudiofiles" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Pro Audio Files</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/rachelkcollieroff" target="_blank" rel="noopener noreferrer" data-category="youtube produccio live loop">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Rachel K Collier</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/SeanDivine" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Sean Divine</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/channel/UCJpVRw_1bcGrQvUxeXz8Uhw" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Mars Citizen</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/user/cosmcosm" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Tom Cosm</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/channel/UCUGf7OXXPWxai-FeLi7N-WA" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Weiss Advice</span>
-                            </a>
-                            <a class="button is-fullwidth link-button link-item" href="https://www.youtube.com/@TheVelvetYear" target="_blank" rel="noopener noreferrer" data-category="youtube produccio synth">
-                                <span class="icon"><i class="fab fa-youtube"></i></span>
-                                <span>Velvet Year</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- PESTANYA 3: UTILITATS I MATERIALS -->
-        <div id="tab-utilitats" class="tab-pane" style="display: none;">
-             <div class="columns is-multiline is-desktop link-list standard-links" data-category="app pdf">
-
-                <!-- Columna 3.1: Aplicacions -->
-                <div class="column is-one-half-desktop is-full-mobile link-col" data-category="app metronom stemps entrenament">
-                    
-                    <!-- Grup Plegable: Apps Recomanades -->
-                    <div>
-                        <div class="collapsible-header is-expanded" data-target="recommended-apps-links" style="margin-top: 0;">
-                            <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Utilitats Essencials per a la Pràctica 📱</p>
-                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div id="recommended-apps-links" class="collapsible-content is-expanded link-group" data-category="app metronom stemps">
-                            
-                            <!-- App 1: SBL Groove Trainer (Metrònom avançat) -->
-                            <div class="button is-fullwidth link-button link-item" data-category="app metronom groove bateria">
-                                <span class="icon"><i class="fas fa-drum"></i></span>
-                                <div>
-                                    <p class="is-size-6 has-text-weight-bold">SBL Groove Trainer (Metrònom)</p>
-                                    <p class="is-size-7 has-text-grey-dark">El metrònom avançat per a l'entrenament rítmic.</p>
-                                    <div class="app-links">
-                                        <!-- ENLLAÇ iOS/Mac -->
-                                        <a href="https://apps.apple.com/us/app/sbl-groove-trainer/id1571452765" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a App Store (iOS/Mac)">
-                                            <span class="icon"><i class="fab fa-apple"></i></span>
-                                        </a>
-                                        <!-- ENLLAÇ Android -->
-                                        <a href="https://play.google.com/store/apps/details?id=com.scottsbasslessons.groovetrainer&hl=es_419&pli=1" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a Google Play (Android)">
-                                            <span class="icon"><i class="fab fa-android"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- App 2: Moises (Separació de stemps) -->
-                            <div class="button is-fullwidth link-button link-item" data-category="app stemps produccio karaoke">
-                                <span class="icon"><i class="fas fa-magic"></i></span>
-                                <div>
-                                    <p class="is-size-6 has-text-weight-bold">Moises (Separador de Stems)</p>
-                                    <p class="is-size-7 has-text-grey-dark">Separa veus, bateria i altres instruments d'una cançó qualsevol.</p>
-                                    <div class="app-links">
-                                        <!-- ENLLAÇ iOS/Mac -->
-                                        <a href="https://apps.apple.com/es/app/moises-la-app-para-m%C3%BAsics/id1515796612" target="_blank" rel="noopener noreferrer" title="Moises a App Store (iOS/Mac)">
-                                            <span class="icon"><i class="fab fa-apple"></i></span>
-                                        </a>
-                                        <!-- ENLLAÇ Android -->
-                                        <a href="https://play.google.com/store/apps/details?id=ai.moises&hl=es_419" target="_blank" rel="noopener noreferrer" title="Moises a Google Play (Android)">
-                                            <span class="icon"><i class="fab fa-android"></i></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Columna 3.2: Documents PDF -->
-                <div class="column is-one-half-desktop is-full-mobile link-col" data-category="document pdf curs material">
-                    <p class="link-item-title">Materials de Curs (PDFs)</p>
-
-                    <div class="link-group" data-category="pdf material harmonia teoria">
-                        <!-- PDF 1: LLIBRE D'HARMONIA BÀSICA -->
-                        <a class="button is-fullwidth link-button link-item is-download" 
-                           href="https://drive.google.com/file/d/1uXKDGcUFRG-pb14TFmutK7jpjbHzEMgd/view?usp=sharing" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           data-category="pdf teoria harmonia llibre">
-                            <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                            <div style="text-align: left;">
-                                <p class="is-size-6 has-text-weight-bold">Veure i Descarregar: Llibre d'Harmonia Bàsica</p>
-                                <p class="is-size-7 has-text-white-ter" style="opacity: 0.8;">Obre la visualització de Drive per descarregar l'última versió.</p>
-                            </div>
-                        </a>
+                    <!-- Columna 1.1: Webs de Referència -->
+                    <div class="link-col" data-category="teoria eines">
+                        <p class="link-item-title">Eines Web de Teoria i Dictats</p>
                         
-                        <a class="button is-fullwidth link-button link-item" 
-                           href="https://drive.google.com/uc?export=download&id=EXAMPLE_FILE_ID_2" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           data-category="pdf exercicis">
-                            <span class="icon"><i class="fas fa-clipboard-list"></i></span>
-                            <span>Llista d'Exercicis Setmanals (PLANTILLA)</span>
-                        </a>
+                        <div class="link-group">
+                            <a class="w-full link-button link-item" href="https://teoria.com/index.php" target="_blank" rel="noopener noreferrer" data-category="teoria eines dictats">
+                                <span class="icon"><i class="fas fa-book-open"></i></span>
+                                <span>Teoria.com (Teoria i dictats)</span>
+                            </a>
+                            <a class="w-full link-button link-item" href="https://www.musictheory.net" target="_blank" rel="noopener noreferrer" data-category="teoria eines didactica">
+                                <span class="icon"><i class="fas fa-book"></i></span>
+                                <span>Music Theory (Recursos didàctics)</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Columna 1.2: Canals de YouTube - Teoria i Anàlisi -->
+                    <div class="link-col" data-category="youtube teoria">
+                        <!-- Grup Plegable: YouTube Teoria -->
+                        <div class="mt-0">
+                            <div class="collapsible-header" data-target="youtube-teoria-links" style="margin-top: 0;">
+                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Teoria i Anàlisi 📺</p>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div id="youtube-teoria-links" class="collapsible-content link-group" data-category="youtube teoria">
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Adam Neely</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener noreferrer" data-category="youtube teoria rock">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Rick Beato</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener noreferrer" data-category="youtube analisis pop">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Jaime Altozano</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/AimeeNolte" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz piano">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Aimee Nolte</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/NahreSol" target="_blank" rel="noopener noreferrer" data-category="youtube teoria piano clasica">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Nahre Sol</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCTUtqcDkzw7bisadh6AOx5w" target="_blank" rel="noopener noreferrer" data-category="youtube teoria analisi">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>12Tone</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/8bitMusicTheory" target="_blank" rel="noopener noreferrer" data-category="youtube teoria games">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>8bit Music Theory</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/CharlesCornellStudios" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Charles Cornell</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/DeadWaxShow" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Dead Wax</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/bobreynolds" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz saxo">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Bob Reynolds</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCcscSHEC5tA1aypzmKvcN0A" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Music Radar Clan</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div> <!-- Fi del Contenidor de Pestanyes -->
-    
-</div>
+            <!-- PESTANYA 2: PRODUCCIÓ I CREATIVITAT -->
+            <div id="tab-produccio" class="tab-pane" style="display: none;">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="eines produccio youtube podcast">
+                    
+                    <!-- Columna 2.1: Eines de Creativitat -->
+                    <div class="link-col" data-category="eines creativitat produccio">
+                        <p class="link-item-title">Eines Web de Creativitat i Producció</p>
+                        
+                        <div class="link-group">
+                            <a class="w-full link-button link-item" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener noreferrer" data-category="eines creativitat experimentacio">
+                                <span class="icon"><i class="fas fa-palette"></i></span>
+                                <span>Chrome Music Lab (Experimentació)</span>
+                            </a>
+                            <a class="w-full link-button link-item" href="https://muted.io" target="_blank" rel="noopener noreferrer" data-category="eines produccio utilitats">
+                                <span class="icon"><i class="fas fa-tools"></i></span>
+                                <span>Muted io (Eines vàries de producció)</span>
+                            </a>
+                        </div>
+                    </div>
 
-<!-- Peu de Pàgina (Footer) -->
-<footer class="footer">
-    <p class="has-text-grey-dark">
-        <i class="fas fa-copyright"></i> Copyright **Eugeni Corchero** 2025 | Creat per a l'EMMCA
-    </p>
-</footer>
-
-<!-- Modal de Cerca i Filtres (Ocult per defecte - sense canvis) -->
-<div id="searchModal" class="search-modal" style="display: none;">
-    <div class="search-modal-content">
-        <h3 class="title is-4 has-text-centered mb-5" style="color: var(--emca-primary);">Cerca i Filtres</h3>
-        
-        <!-- Funció 1: Cerca Interactiva (Amb botó de neteja) -->
-        <div class="field">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-large" type="text" id="searchInputModal" placeholder="🔍 Cerca per títol, descripció o categoria...">
-                <span class="icon is-left">
-                    <i class="fas fa-search"></i>
-                </span>
-                <!-- Botó per Netejar Cerca -->
-                <span class="icon is-right" id="clearSearchInput" style="pointer-events: all; cursor: pointer; display: none;">
-                    <i class="fas fa-times"></i>
-                </span>
-            </div>
-        </div>
-
-        <!-- Funció 2: Filtres Dinàmics (Botons) -->
-        <div class="field is-grouped is-grouped-multiline is-grouped-centered mt-4">
-            <div class="control">
-                <div class="buttons has-addons">
-                    <button class="button is-primary filter-btn" data-filter="all" style="border-radius: var(--emca-radius) 0 0 var(--emca-radius);">Tots</button>
-                    <button class="button is-light filter-btn" data-filter="teoria">Teoria</button>
-                    <button class="button is-light filter-btn" data-filter="produccio">Producció</button>
-                    <button class="button is-light filter-btn" data-filter="app">Apps</button>
-                    <button class="button is-light filter-btn" data-filter="pdf">PDF</button>
-                    <button class="button is-light filter-btn" data-filter="eines" style="border-radius: 0 var(--emca-radius) var(--emca-radius) 0;">Eines</button>
+                    <!-- Columna 2.2: Canals de YouTube i Podcasts -->
+                    <div class="link-col" data-category="youtube produccio podcast">
+                         
+                         <!-- Grup Plegable: Podcasts -->
+                        <div class="mt-0">
+                            <div class="collapsible-header" data-target="podcast-links" style="margin-top: 0;">
+                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Podcasts d'Interès 🎧</p>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div id="podcast-links" class="collapsible-content link-group" data-category="podcast entrevista analisi">
+                                <a class="w-full link-button link-item" href="https://open.spotify.com/show/5Br33snnJU90k2NcYskuM9?si=9a82970a42c34733" target="_blank" rel="noopener noreferrer" data-category="podcast entrevista produccio">
+                                    <span class="icon"><i class="fas fa-podcast"></i></span>
+                                    <span>Tape Notes</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://open.spotify.com/show/1sgWaKtQxwfjUpZnnK8r7J?si=d7dede0f96eb41ec" target="_blank" rel="noopener noreferrer" data-category="podcast analisis pop">
+                                    <span class="icon"><i class="fas fa-podcast"></i></span>
+                                    <span>Switched On Pop</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://open.spotify.com/show/10lMwCjvzLCLwth2AW6cLG?si=039962dd03494b8f" target="_blank" rel="noopener noreferrer" data-category="podcast analisis produccio">
+                                    <span class="icon"><i class="fas fa-podcast"></i></span>
+                                    <span>Song Explorer</span>
+                                </a>
+                            </div>
+                        </div>
+                         
+                        <!-- Grup Plegable: YouTube Producció -->
+                        <div class="mt-5">
+                            <div class="collapsible-header" data-target="youtube-produccio-links">
+                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Producció Musical 🎛️</p>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div id="youtube-produccio-links" class="collapsible-content link-group" data-category="youtube produccio">
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener noreferrer" data-category="youtube produccio creativitat">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Andrew Huang</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/Producelikeapro" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Produce Like A Pro</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/Z3NWorld" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Zen World</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/@HelpMeDevvon" target="_blank" rel="noopener noreferrer" data-category="youtube produccio r&b">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Help Me Devvon</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Venus Theory</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/@ReidStefanMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Reid Stefan</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/WVmusicOrg" target="_blank" rel="noopener noreferrer" data-category="youtube produccio entrevista">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Weathervane Music</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/imamusicmogul" target="_blank" rel="noopener noreferrer" data-category="youtube produccio marketing">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Music Mogul</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCUGf7OXXPWxai-FeLi7N-WA" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Make Pop Music</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/theproaudiofiles" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Pro Audio Files</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/rachelkcollieroff" target="_blank" rel="noopener noreferrer" data-category="youtube produccio live loop">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Rachel K Collier</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/SeanDivine" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Sean Divine</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCJpVRw_1bcGrQvUxeXz8Uhw" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Mars Citizen</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/cosmcosm" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Tom Cosm</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCUGf7OXXPWxai-FeLi7N-WA" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Weiss Advice</span>
+                                </a>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/@TheVelvetYear" target="_blank" rel="noopener noreferrer" data-category="youtube produccio synth">
+                                    <span class="icon"><i class="fab fa-youtube"></i></span>
+                                    <span>Velvet Year</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <!-- CONTENIDOR DE RESULTATS DINS DEL POPUP -->
-        <div id="searchResultsList" class="mt-5" style="max-height: 55vh; overflow-y: auto; border-top: 1px solid var(--emca-border-color); padding-top: 20px;">
-            <p class="has-text-grey-light has-text-centered" id="searchPlaceholder">Comença a escriure o selecciona un filtre...</p>
-        </div>
 
-        <div class="buttons is-right mt-6">
-            <button class="button is-small is-light is-rounded" id="closeSearchModal">Tanca</button>
+            <!-- PESTANYA 3: UTILITATS I MATERIALS -->
+            <div id="tab-utilitats" class="tab-pane" style="display: none;">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="app pdf">
+
+                    <!-- Columna 3.1: Aplicacions -->
+                    <div class="link-col" data-category="app metronom stemps entrenament">
+                        
+                        <!-- Grup Plegable: Apps Recomanades -->
+                        <div>
+                            <div class="collapsible-header is-expanded" data-target="recommended-apps-links" style="margin-top: 0;">
+                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Utilitats Essencials per a la Pràctica 📱</p>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                            <div id="recommended-apps-links" class="collapsible-content is-expanded link-group" data-category="app metronom stemps">
+                                
+                                <!-- App 1: SBL Groove Trainer (Metrònom avançat) -->
+                                <div class="w-full link-button link-item" data-category="app metronom groove bateria" style="margin-bottom: 1.2rem;">
+                                    <span class="icon"><i class="fas fa-drum"></i></span>
+                                    <div class="flex-grow">
+                                        <p class="text-base font-bold">SBL Groove Trainer (Metrònom)</p>
+                                        <p class="is-size-7 text-gray-500">El metrònom avançat per a l'entrenament rítmic.</p>
+                                        <div class="app-links flex space-x-4 mt-4">
+                                            <!-- ENLLAÇ iOS/Mac -->
+                                            <a href="https://apps.apple.com/us/app/sbl-groove-trainer/id1571452765" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a App Store (iOS/Mac)">
+                                                <span class="icon text-2xl" style="margin-right: 0;"><i class="fab fa-apple"></i></span>
+                                            </a>
+                                            <!-- ENLLAÇ Android -->
+                                            <a href="https://play.google.com/store/apps/details?id=com.scottsbasslessons.groovetrainer&hl=es_419&pli=1" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a Google Play (Android)">
+                                                <span class="icon text-2xl" style="margin-right: 0;"><i class="fab fa-android"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- App 2: Moises (Separació de stemps) -->
+                                <div class="w-full link-button link-item" data-category="app stemps produccio karaoke">
+                                    <span class="icon"><i class="fas fa-magic"></i></span>
+                                    <div class="flex-grow">
+                                        <p class="text-base font-bold">Moises (Separador de Stems)</p>
+                                        <p class="is-size-7 text-gray-500">Separa veus, bateria i altres instruments d'una cançó qualsevol.</p>
+                                        <div class="app-links flex space-x-4 mt-4">
+                                            <!-- ENLLAÇ iOS/Mac -->
+                                            <a href="https://apps.apple.com/es/app/moises-la-app-para-m%C3%BAsics/id1515796612" target="_blank" rel="noopener noreferrer" title="Moises a App Store (iOS/Mac)">
+                                                <span class="icon text-2xl" style="margin-right: 0;"><i class="fab fa-apple"></i></span>
+                                            </a>
+                                            <!-- ENLLAÇ Android -->
+                                            <a href="https://play.google.com/store/apps/details?id=ai.moises&hl=es_419" target="_blank" rel="noopener noreferrer" title="Moises a Google Play (Android)">
+                                                <span class="icon text-2xl" style="margin-right: 0;"><i class="fab fa-android"></i></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Columna 3.2: Documents PDF -->
+                    <div class="link-col" data-category="document pdf curs material">
+                        <p class="link-item-title">Materials de Curs (PDFs)</p>
+
+                        <div class="link-group" data-category="pdf material harmonia teoria">
+                            <!-- PDF 1: LLIBRE D'HARMONIA BÀSICA -->
+                            <a class="w-full link-button link-item is-download" 
+                               href="https://drive.google.com/file/d/1uXKDGcUFRG-pb14TFmutK7jpjbHzEMgd/view?usp=sharing" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               data-category="pdf teoria harmonia llibre">
+                                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                                <div style="text-align: left;">
+                                    <p class="text-base font-bold">Veure i Descarregar: Llibre d'Harmonia Bàsica</p>
+                                    <p class="text-sm" style="color: var(--color-link-bg); opacity: 0.8;">Obre la visualització de Drive per descarregar l'última versió.</p>
+                                </div>
+                            </a>
+                            
+                            <a class="w-full link-button link-item" 
+                               href="https://drive.google.com/uc?export=download&id=EXAMPLE_FILE_ID_2" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               data-category="pdf exercicis">
+                                <span class="icon"><i class="fas fa-clipboard-list"></i></span>
+                                <span>Llista d'Exercicis Setmanals (PLANTILLA)</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- Fi del Contenidor de Pestanyes -->
+        
+    </div> <!-- Fi del links-container -->
+
+    <!-- Peu de Pàgina (Footer) -->
+    <footer class="text-center py-6 text-gray-500 text-sm">
+        <p>
+            <i class="fas fa-copyright"></i> Copyright **Eugeni Corchero** 2025 | Creat per a l'EMMCA
+        </p>
+    </footer>
+
+    <!-- Modal de Cerca i Filtres (Ocult per defecte) -->
+    <div id="searchModal" class="search-modal" style="display: none;">
+        <div class="search-modal-content">
+            <h3 class="text-2xl font-bold text-center mb-5" style="color: var(--color-primary);">Cerca i Filtres</h3>
+            
+            <!-- Funció 1: Cerca Interactiva (Amb botó de neteja) -->
+            <div class="mb-4">
+                <div class="relative">
+                    <input class="w-full p-4 text-lg border border-gray-300 rounded-lg pl-10" type="text" id="searchInputModal" placeholder="🔍 Cerca per títol, descripció o categoria...">
+                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                        <i class="fas fa-search"></i>
+                    </span>
+                    <!-- Botó per Netejar Cerca -->
+                    <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" id="clearSearchInput" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Funció 2: Filtres Dinàmics (Botons) -->
+            <div class="flex flex-wrap justify-center gap-2 mt-4">
+                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-blue-500 text-white" data-filter="all">Tots</button>
+                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="teoria">Teoria</button>
+                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="produccio">Producció</button>
+                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="app">Apps</button>
+                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="pdf">PDF</button>
+                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="eines">Eines</button>
+            </div>
+            
+            <!-- CONTENIDOR DE RESULTATS DINS DEL POPUP -->
+            <div id="searchResultsList" class="mt-8 border-t border-gray-300 pt-5" style="max-height: 55vh; overflow-y: auto;">
+                <p class="text-gray-400 text-center" id="searchPlaceholder">Comença a escriure o selecciona un filtre...</p>
+            </div>
+
+            <div class="flex justify-end mt-6">
+                <button class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200" id="closeSearchModal">Tanca</button>
+            </div>
         </div>
     </div>
-</div>
 
-
-<script>
-    // --- Referències als elements del DOM ---
-    const body = document.body;
-    const searchModal = document.getElementById('searchModal');
-    const searchInputModal = document.getElementById('searchInputModal');
-    const openSearchModalBtn = document.getElementById('openSearchModal');
-    const closeSearchModalBtn = document.getElementById('closeSearchModal');
-    const clearSearchInputBtn = document.getElementById('clearSearchInput');
-    const resultsList = document.getElementById('searchResultsList');
-    const searchPlaceholder = document.getElementById('searchPlaceholder');
-    const filterButtons = document.querySelectorAll('#searchModal .filter-btn');
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const compactViewToggle = document.getElementById('compactViewToggle');
-    // Actualització: ara cerquem tots els elements de link de la pàgina
-    const linkItems = document.querySelectorAll('.link-item'); 
-    
-    // Referències per a les pestanyes (NOU)
-    const tabHeaders = document.querySelectorAll('.tabs li');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-
-    // --- Funció per gestionar el canvi de pestanyes (NOU) ---
-    function switchTab(targetId) {
-        // Desactivar tots els headers i amagar tots els panells
-        tabHeaders.forEach(header => header.classList.remove('is-active'));
-        tabPanes.forEach(pane => pane.style.display = 'none');
-
-        // Activar el header clicat
-        const activeHeader = document.querySelector(`.tabs li[data-target="${targetId}"]`);
-        if (activeHeader) {
-            activeHeader.classList.add('is-active');
-        }
-
-        // Mostrar el panell corresponent
-        const activePane = document.getElementById(targetId);
-        if (activePane) {
-            activePane.style.display = 'block';
-        }
+    <script>
+        // --- Referències als elements del DOM ---
+        const body = document.body;
+        const searchModal = document.getElementById('searchModal');
+        const searchInputModal = document.getElementById('searchInputModal');
+        const openSearchModalBtn = document.getElementById('openSearchModal');
+        const closeSearchModalBtn = document.getElementById('closeSearchModal');
+        const clearSearchInputBtn = document.getElementById('clearSearchInput');
+        const resultsList = document.getElementById('searchResultsList');
+        const searchPlaceholder = document.getElementById('searchPlaceholder');
+        const filterButtons = document.querySelectorAll('#searchModal .filter-btn');
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const compactViewToggle = document.getElementById('compactViewToggle');
         
-        // Assegurar que els collapsibles es reinicien correctament
-        setupCollapsibles(); 
-    }
-
-    // --- Assignació d'esdeveniments per a les pestanyes (NOU) ---
-    tabHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const targetId = header.dataset.target;
-            switchTab(targetId);
-        });
-    });
-
-
-    // --- Funcions de Cerca i Filtre (Adaptades) ---
-
-    function toggleSearchModal(show) {
-        if (show) {
-            searchModal.style.display = 'flex';
-            filterLinks(); 
-            setTimeout(() => searchInputModal.focus(), 100); 
-        } else {
-            searchInputModal.value = '';
-            
-            // Restablir l'estat dels filtres a 'Tots'
-            filterButtons.forEach(btn => {
-                btn.classList.remove('is-primary');
-                btn.classList.add('is-light');
-            });
-            document.querySelector('#searchModal .filter-btn[data-filter="all"]').classList.add('is-primary');
-            document.querySelector('#searchModal .filter-btn[data-filter="all"]').classList.remove('is-light');
-
-            resultsList.innerHTML = ''; 
-            clearSearchInputBtn.style.display = 'none'; 
-            searchPlaceholder.textContent = 'Comença a escriure o selecciona un filtre...';
-            searchPlaceholder.style.display = 'block';
-
-            searchModal.style.display = 'none';
-        }
-    }
-
-    function filterLinks(filterCategory = null) {
-        const searchValue = searchInputModal.value.toLowerCase().trim();
-        resultsList.innerHTML = '';
-        let foundCount = 0;
+        // Recuperar tots els elements de link de la pàgina (Hero i Standard)
+        const linkItems = document.querySelectorAll('.link-item'); 
         
-        let currentFilter = filterCategory || document.querySelector('#searchModal .filter-btn.is-primary')?.dataset.filter || 'all';
+        // Referències per a les pestanyes
+        const tabHeaders = document.querySelectorAll('.tabs-container li');
+        const tabPanes = document.querySelectorAll('.tab-pane');
 
-        if (filterCategory) {
-            filterButtons.forEach(btn => {
-                btn.classList.remove('is-primary');
-                btn.classList.add('is-light');
-                if (btn.dataset.filter === currentFilter) {
-                    btn.classList.add('is-primary');
-                    btn.classList.remove('is-light');
-                }
-            });
-        }
+        // --- Funció per gestionar el canvi de pestanyes ---
+        function switchTab(targetId) {
+            tabHeaders.forEach(header => header.classList.remove('is-active'));
+            tabPanes.forEach(pane => pane.style.display = 'none');
 
-        linkItems.forEach(item => {
-            // Extreure dades per a la cerca
-            const titleElement = item.querySelector('.card-title') || item.querySelector('span:not(.icon)') || item.querySelector('.is-size-6');
-            const descriptionElement = item.querySelector('.card-subtitle') || item.querySelector('.is-size-7');
-
-            const title = titleElement ? titleElement.textContent.toLowerCase() : '';
-            const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
-            const categories = item.dataset.category || '';
-            
-            let isVisibleBySearch = true;
-            if (searchValue.length > 0) {
-                isVisibleBySearch = title.includes(searchValue) || description.includes(searchValue) || categories.includes(searchValue);
+            const activeHeader = document.querySelector(`.tabs-container li[data-target="${targetId}"]`);
+            if (activeHeader) {
+                activeHeader.classList.add('is-active');
             }
 
-            let isVisibleByFilter = true;
-            if (currentFilter !== 'all') {
-                isVisibleByFilter = categories.includes(currentFilter);
+            const activePane = document.getElementById(targetId);
+            if (activePane) {
+                activePane.style.display = 'block';
             }
+            
+            // Reinicialitzar l'estat dels Collapsibles de la nova pestanya
+            setupCollapsibles(); 
+        }
+        
+        // --- Funció de Collapsible/Accordion Header ---
+        function setupCollapsibles() {
+            document.querySelectorAll('.collapsible-header').forEach(header => {
+                const targetId = header.dataset.target;
+                const content = document.getElementById(targetId);
 
-            if (isVisibleBySearch && isVisibleByFilter) {
-                let itemToClone;
-                
-                // Si és un element destacat (card)
-                if (item.closest('.highlighted-links')) {
-                    // Clonar la columna
-                    itemToClone = item.closest('.column').cloneNode(true);
-                    itemToClone.classList.remove('is-half-tablet', 'is-one-quarter-desktop', 'is-half-desktop');
-                    itemToClone.classList.add('is-full', 'is-full-mobile');
-                    const tagNou = itemToClone.querySelector('.tag.is-new');
-                    if(tagNou) tagNou.remove(); 
-                    
-                } else {
-                    // Si és un enllaç estàndard (botó o div d'app)
-                    itemToClone = item.cloneNode(true);
-                    
-                    // Embolcallar en una columna per a la llista de resultats
-                    const tempWrapper = document.createElement('div');
-                    tempWrapper.classList.add('column', 'is-full', 'is-full-mobile', 'p-0');
-                    tempWrapper.style.marginBottom = '1rem'; 
-                    tempWrapper.appendChild(itemToClone);
-                    itemToClone = tempWrapper;
-                }
-                
-                // Aplicar configuració de vista compacta si està activa
-                const actualItem = itemToClone.querySelector('.link-item') || itemToClone;
-                actualItem.classList.remove('hidden-item'); 
-                
-                if (body.classList.contains('compact-view-active')) {
-                    const subtitle = actualItem.querySelector('.card-subtitle') || actualItem.querySelector('.is-size-7');
-                    if (subtitle) subtitle.style.display = 'none';
-                    
-                    const appLinks = actualItem.querySelector('.app-links');
-                    if (appLinks) {
-                        const desc = actualItem.querySelector('.is-size-7');
-                        if (desc) desc.style.display = 'none';
-                        const titleApp = actualItem.querySelector('.is-size-6');
-                        if (titleApp) titleApp.style.marginBottom = '0';
-                        appLinks.style.marginTop = '0';
-                    }
-                } else {
-                    const subtitle = actualItem.querySelector('.card-subtitle') || actualItem.querySelector('.is-size-7');
-                    if (subtitle) subtitle.style.display = 'block'; 
-                    
-                    const appLinks = actualItem.querySelector('.app-links');
-                    if (appLinks) {
-                        const desc = actualItem.querySelector('.is-size-7');
-                        if (desc) desc.style.display = 'block';
-                        const titleApp = actualItem.querySelector('.is-size-6');
-                        if (titleApp) titleApp.style.marginBottom = ''; 
-                        appLinks.style.marginTop = '15px';
+                if (content) {
+                    const isAppsCollapsible = targetId === 'recommended-apps-links';
+                    const parentPane = header.closest('.tab-pane');
+
+                    // Reinicialitzar estat: només les Apps de la pestanya Utilitats obertes per defecte
+                    if (isAppsCollapsible && parentPane && parentPane.id === 'tab-utilitats') {
+                        content.classList.add('is-expanded');
+                        header.classList.add('is-expanded');
+                    } else {
+                        content.classList.remove('is-expanded');
+                        header.classList.remove('is-expanded');
                     }
                 }
 
-                resultsList.appendChild(itemToClone);
-                foundCount++;
-            }
-        });
-
-        if (foundCount === 0) {
-            searchPlaceholder.textContent = `❌ No s'ha trobat cap enllaç per "${searchValue || currentFilter}".`;
-            searchPlaceholder.style.display = 'block';
-        } else {
-            searchPlaceholder.style.display = 'none';
-        }
-        
-        if (searchValue.length > 0) {
-            clearSearchInputBtn.style.display = 'block';
-        } else {
-            clearSearchInputBtn.style.display = 'none';
-        }
-    }
-
-    // --- Funció de Vista Compacta (sense canvis) ---
-    function toggleCompactView() {
-        body.classList.toggle('compact-view-active');
-        
-        const icon = compactViewToggle.querySelector('i');
-        if (body.classList.contains('compact-view-active')) {
-            localStorage.setItem('emca-view', 'compact');
-            icon.classList.replace('fa-list', 'fa-grip-vertical');
-        } else {
-            localStorage.setItem('emca-view', 'standard');
-            icon.classList.replace('fa-grip-vertical', 'fa-list');
+                // Evitar múltiples listeners
+                header.removeEventListener('click', handleCollapsibleClick);
+                header.addEventListener('click', handleCollapsibleClick);
+            });
         }
 
-        if (searchModal.style.display === 'flex') {
-            filterLinks();
-        }
-    }
-    
-    // --- Funció de Collapsible/Accordion Header ---
-    function setupCollapsibles() {
-        document.querySelectorAll('.collapsible-header').forEach(header => {
+        function handleCollapsibleClick(event) {
+            const header = event.currentTarget;
             const targetId = header.dataset.target;
             const content = document.getElementById(targetId);
-
-            // Reinicialitzar l'estat d'expansió per defecte
-            if (content) {
-                // Si la pestanya és 'Utilitats', les Apps han d'estar obertes per defecte
-                const isAppsCollapsible = targetId === 'recommended-apps-links';
-                const parentPane = header.closest('.tab-pane');
-
-                if (isAppsCollapsible && parentPane && parentPane.id === 'tab-utilitats') {
-                    content.classList.add('is-expanded');
-                    header.classList.add('is-expanded');
-                } else {
-                    // La resta estan tancats per defecte, fins i tot si tenien l'estat is-expanded previ
-                    content.classList.remove('is-expanded');
-                    header.classList.remove('is-expanded');
-                }
+            const activePane = header.closest('.tab-pane');
+            
+            // Tancar altres collapsibles de la mateixa pestanya
+            if (activePane) {
+                activePane.querySelectorAll('.collapsible-content.is-expanded').forEach(expandedContent => {
+                    if (expandedContent.id !== targetId) {
+                        expandedContent.classList.remove('is-expanded');
+                        if (expandedContent.previousElementSibling) {
+                            expandedContent.previousElementSibling.classList.remove('is-expanded');
+                        }
+                    }
+                });
             }
 
-            // Eliminar listeners previs abans d'afegir-ne un de nou
-            header.removeEventListener('click', handleCollapsibleClick);
-            header.addEventListener('click', handleCollapsibleClick);
-        });
-    }
+            if (content) {
+                content.classList.toggle('is-expanded');
+            }
+            header.classList.toggle('is-expanded');
+        }
 
-    function handleCollapsibleClick(event) {
-        const header = event.currentTarget;
-        const targetId = header.dataset.target;
-        const content = document.getElementById(targetId);
-        
-        // Determinar el contenidor de pestanya actiu per només tancar els collapsibles dins de la mateixa pestanya
-        const activePane = header.closest('.tab-pane');
-        
-        if (activePane) {
-            activePane.querySelectorAll('.collapsible-content.is-expanded').forEach(expandedContent => {
-                if (expandedContent.id !== targetId) {
-                    expandedContent.classList.remove('is-expanded');
-                    if (expandedContent.previousElementSibling) {
-                        expandedContent.previousElementSibling.classList.remove('is-expanded');
+        // --- Funció per gestionar la Cerca i Filtre al Modal ---
+        function filterLinks(filterCategory = null) {
+            const searchValue = searchInputModal.value.toLowerCase().trim();
+            resultsList.innerHTML = '';
+            let foundCount = 0;
+            
+            // Determinar filtre actiu
+            let currentFilter = filterCategory || document.querySelector('#searchModal .filter-btn.bg-blue-500')?.dataset.filter || 'all';
+
+            if (filterCategory) {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-blue-500', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
+                    if (btn.dataset.filter === currentFilter) {
+                        btn.classList.add('bg-blue-500', 'text-white');
+                        btn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
                     }
+                });
+            }
+
+            linkItems.forEach(item => {
+                const titleElement = item.querySelector('h2') || item.querySelector('span:not(.icon)') || item.querySelector('.text-base.font-bold');
+                const descriptionElement = item.querySelector('p:not(.text-gray-400)') || item.querySelector('.is-size-7');
+
+                const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+                const categories = item.dataset.category || '';
+                
+                let isVisibleBySearch = true;
+                if (searchValue.length > 0) {
+                    isVisibleBySearch = title.includes(searchValue) || description.includes(searchValue) || categories.includes(searchValue);
+                }
+
+                let isVisibleByFilter = true;
+                if (currentFilter !== 'all') {
+                    isVisibleByFilter = categories.includes(currentFilter);
+                }
+
+                if (isVisibleBySearch && isVisibleByFilter) {
+                    let itemToClone;
+                    
+                    if (item.closest('.highlighted-links')) {
+                        // Clonar la targeta sencera del Hero
+                        itemToClone = item.cloneNode(true);
+                        itemToClone.classList.add('mb-4');
+                        itemToClone.classList.remove('link-item');
+                        itemToClone.querySelector('a').classList.remove('hero-card');
+                        itemToClone.querySelector('a').classList.add('link-button', 'w-full', 'p-4', 'flex', 'items-center');
+                        
+                        // Adaptar icona i text
+                        const iconSymbol = itemToClone.querySelector('.icon-symbol');
+                        if (iconSymbol) {
+                            iconSymbol.classList.remove('icon-symbol');
+                            iconSymbol.classList.add('icon', 'text-2xl');
+                            iconSymbol.style.marginRight = '1.2rem';
+                            iconSymbol.style.color = 'var(--color-primary)'; 
+                        }
+
+                        const h2 = itemToClone.querySelector('h2');
+                        if (h2) { h2.classList.replace('text-xl', 'text-base'); h2.classList.add('font-semibold'); }
+                        const p = itemToClone.querySelector('p');
+                        if (p) { p.classList.replace('text-sm', 'text-xs'); }
+                        
+                        // Eliminar hover del modal
+                         itemToClone.querySelector('a').classList.remove('hover:shadow-xl', 'hover:scale-[1.02]');
+                        
+                        // Embolcallar amb un div per replicar la llista de botons
+                        const tempWrapper = document.createElement('div');
+                        tempWrapper.appendChild(itemToClone);
+                        itemToClone = tempWrapper;
+                        
+                    } else {
+                        // Si és un enllaç estàndard (botó o div d'app)
+                        itemToClone = item.cloneNode(true);
+                        itemToClone.classList.add('mb-4'); 
+                        
+                        // Netejar classes d'espaiat de l'element original
+                        itemToClone.classList.remove('link-item'); 
+                    }
+                    
+                    // Aplicar configuració de vista compacta si està activa
+                    const actualItem = itemToClone.querySelector('a') || itemToClone;
+                    
+                    if (body.classList.contains('compact-view-active')) {
+                        const subtitle = actualItem.querySelector('.text-sm') || actualItem.querySelector('.is-size-7');
+                        if (subtitle) subtitle.style.display = 'none';
+                        
+                        const appLinks = actualItem.querySelector('.app-links');
+                        if (appLinks) {
+                            const desc = actualItem.querySelector('.is-size-7');
+                            if (desc) desc.style.display = 'none';
+                            appLinks.style.marginTop = '0';
+                        }
+                    } 
+
+                    resultsList.appendChild(itemToClone);
+                    foundCount++;
                 }
             });
+
+            if (foundCount === 0) {
+                searchPlaceholder.textContent = `❌ No s'ha trobat cap enllaç per "${searchValue || currentFilter}".`;
+                searchPlaceholder.style.display = 'block';
+            } else {
+                searchPlaceholder.style.display = 'none';
+            }
+            
+            clearSearchInputBtn.style.display = (searchValue.length > 0) ? 'block' : 'none';
         }
 
-        if (content) {
-            content.classList.toggle('is-expanded');
+
+        // --- Funció de Vista Compacta (Toggle) ---
+        function toggleCompactView() {
+            body.classList.toggle('compact-view-active');
+            
+            const icon = compactViewToggle.querySelector('i');
+            if (body.classList.contains('compact-view-active')) {
+                localStorage.setItem('emca-view', 'compact');
+                icon.classList.replace('fa-list', 'fa-grip-vertical');
+            } else {
+                localStorage.setItem('emca-view', 'standard');
+                icon.classList.replace('fa-grip-vertical', 'fa-list');
+            }
+
+            if (searchModal.style.display === 'flex') {
+                filterLinks(); // Refrescar modal si està obert
+            }
         }
-        header.classList.toggle('is-expanded');
-    }
 
-
-    // --- Inicialització i Assignació d'esdeveniments ---
-    
-    // Cerca
-    openSearchModalBtn.addEventListener('click', () => toggleSearchModal(true));
-    closeSearchModalBtn.addEventListener('click', () => toggleSearchModal(false));
-    searchModal.addEventListener('click', (e) => {
-        if (e.target.id === 'searchModal') { toggleSearchModal(false); }
-    });
-    searchInputModal.addEventListener('keyup', () => filterLinks());
-    clearSearchInputBtn.addEventListener('click', () => {
-        searchInputModal.value = '';
-        filterLinks(); 
-    });
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => { filterLinks(btn.dataset.filter); });
-    });
-
-    // Vista Compacta
-    compactViewToggle.addEventListener('click', toggleCompactView);
-
-    // Mode Fosc
-    darkModeToggle.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        if (document.body.classList.contains('dark-mode')) {
-            localStorage.setItem('emca-theme', 'dark');
-            darkModeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-        } else {
-            localStorage.setItem('emca-theme', 'light');
-            darkModeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+        // --- Inicialització i Assignació d'esdeveniments ---
+        
+        // Cerca
+        openSearchModalBtn.addEventListener('click', () => toggleSearchModal(true));
+        closeSearchModalBtn.addEventListener('click', () => toggleSearchModal(false));
+        searchModal.addEventListener('click', (e) => {
+            if (e.target.id === 'searchModal') { toggleSearchModal(false); }
+        });
+        searchInputModal.addEventListener('keyup', () => filterLinks());
+        clearSearchInputBtn.addEventListener('click', () => {
+            searchInputModal.value = '';
+            filterLinks(); 
+        });
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => { filterLinks(btn.dataset.filter); });
+        });
+        
+        // Modal Funció (Obrir/Tancar)
+        function toggleSearchModal(show) {
+            if (show) {
+                searchModal.style.display = 'flex';
+                // Reset del filtre al obrir
+                filterLinks('all'); 
+                setTimeout(() => searchInputModal.focus(), 100); 
+            } else {
+                searchInputModal.value = '';
+                resultsList.innerHTML = ''; 
+                clearSearchInputBtn.style.display = 'none'; 
+                searchPlaceholder.textContent = 'Comença a escriure o selecciona un filtre...';
+                searchPlaceholder.style.display = 'block';
+                searchModal.style.display = 'none';
+            }
         }
-    });
 
-    // Carregar la preferència del mode fosc
-    if (localStorage.getItem('emca-theme') === 'dark') {
-        document.body.classList.add('dark-mode');
-        darkModeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-    }
 
-    // Carregar la preferència de vista compacta
-    if (localStorage.getItem('emca-view') === 'compact') {
-        body.classList.add('compact-view-active');
-        compactViewToggle.querySelector('i').classList.replace('fa-list', 'fa-grip-vertical');
-    }
+        // Vista Compacta
+        compactViewToggle.addEventListener('click', toggleCompactView);
 
-    // Inicialitzar collapsibles i activar la primera pestanya
-    window.addEventListener('DOMContentLoaded', () => {
-        switchTab('tab-teoria');
-        setupCollapsibles(); 
-    });
+        // Mode Fosc
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('emca-theme', 'dark');
+                darkModeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+            } else {
+                localStorage.setItem('emca-theme', 'light');
+                darkModeToggle.querySelector('i').classList.replace('fa-sun', 'fa-moon');
+            }
+        });
 
-</script>
+        // Assignació d'esdeveniments per a les pestanyes
+        tabHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const targetId = header.dataset.target;
+                switchTab(targetId);
+            });
+        });
+
+        // Carregar la preferència i inicialitzar en carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            // Carregar Mode Fosc
+            if (localStorage.getItem('emca-theme') === 'dark') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+            }
+
+            // Carregar Vista Compacta
+            if (localStorage.getItem('emca-view') === 'compact') {
+                body.classList.add('compact-view-active');
+                compactViewToggle.querySelector('i').classList.replace('fa-list', 'fa-grip-vertical');
+            }
+            
+            // Activar la primera pestanya i inicialitzar collapsibles
+            switchTab('tab-teoria');
+        });
+
+    </script>
 
 </body>
 </html>
