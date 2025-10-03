@@ -9,7 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Iconografia: Font Awesome (Free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.5/css/all.min.css">
     
     <!-- Configuració de la font Inter i colors base -->
     <style>
@@ -316,10 +316,11 @@
         <!-- Secció 1: ENLLAÇOS DESTACATS (HERO) -->
         <h3 class="text-2xl font-bold text-center mt-12 mb-8" style="color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;">Eines d'Entrenament Essencials 💡</h3>
         
-        <!-- Contenidor de les Targetes (Responsive Grid - 1/2/3 Columnes) -->
+        <!-- Contenidor de les Targetes (Responsive Grid - 1/2/3/6 Columnes) -->
         <div class="grid grid-cols-1 gap-6 
                     sm:grid-cols-2 
-                    lg:grid-cols-3 xl:grid-cols-5 link-list highlighted-links" data-category="eines teoria lectura auditiva intervals acords" style="margin-bottom: 3rem;">
+                    lg:grid-cols-3
+                    xl:grid-cols-6 link-list highlighted-links" data-category="eines teoria lectura auditiva intervals acords" style="margin-bottom: 3rem;">
             
             <!-- 1. Lectura Clau de Sol -->
             <div class="link-item" data-category="eines lectura">
@@ -365,13 +366,24 @@
                 </a>
             </div>
 
-            <!-- 5. Dictats Auditius d'Acords (El nou link demanat) -->
+            <!-- 5. Dictats Auditius d'Acords -->
             <div class="link-item" data-category="eines teoria acords auditiva nou">
                 <a href="https://eugenicorchero.github.io/chordiceps/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
                     <div class="flex flex-col items-start space-y-3">
                         <span class="icon-symbol text-yellow-600" aria-hidden="true">🎸</span>
                         <h2 class="text-xl font-bold">Dictats Auditius d'Acords</h2>
                         <p class="text-gray-500 text-sm">Reconeix i anomena la qualitat dels acords (majors, menors, setena, etc.) a l'oïda.</p>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- 6. NOU: Temporitzador d'Estudi Diari -->
+            <div class="link-item" data-category="eines utilitats timer estudi organitzacio nou">
+                <a href="https://eugenicorchero.github.io/musicstudy/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
+                    <div class="flex flex-col items-start space-y-3">
+                        <span class="icon-symbol text-orange-600" aria-hidden="true"><i class="fas fa-hourglass-half"></i></span>
+                        <h2 class="text-xl font-bold">Temporitzador d'Estudi Diari</h2>
+                        <p class="text-gray-500 text-sm">Eina Pomodoro personalitzada per estructurar i cronometrar les sessions de pràctica.</p>
                     </div>
                 </a>
             </div>
@@ -885,25 +897,29 @@
                         itemToClone = item.cloneNode(true);
                         itemToClone.classList.add('mb-4');
                         itemToClone.classList.remove('link-item');
-                        itemToClone.querySelector('a').classList.remove('hero-card');
-                        itemToClone.querySelector('a').classList.add('link-button', 'w-full', 'p-4', 'flex', 'items-center');
                         
-                        // Adaptar icona i text
-                        const iconSymbol = itemToClone.querySelector('.icon-symbol');
-                        if (iconSymbol) {
-                            iconSymbol.classList.remove('icon-symbol');
-                            iconSymbol.classList.add('icon', 'text-2xl');
-                            iconSymbol.style.marginRight = '1.2rem';
-                            iconSymbol.style.color = 'var(--color-primary)'; 
-                        }
+                        const aTag = itemToClone.querySelector('a');
+                        if(aTag) {
+                            aTag.classList.remove('hero-card');
+                            aTag.classList.add('link-button', 'w-full', 'p-4', 'flex', 'items-center');
+                            
+                            // Adaptar icona i text
+                            const iconSymbol = aTag.querySelector('.icon-symbol');
+                            if (iconSymbol) {
+                                iconSymbol.classList.remove('icon-symbol');
+                                iconSymbol.classList.add('icon', 'text-2xl');
+                                iconSymbol.style.marginRight = '1.2rem';
+                                iconSymbol.style.color = 'var(--color-primary)'; 
+                            }
 
-                        const h2 = itemToClone.querySelector('h2');
-                        if (h2) { h2.classList.replace('text-xl', 'text-base'); h2.classList.add('font-semibold'); }
-                        const p = itemToClone.querySelector('p');
-                        if (p) { p.classList.replace('text-sm', 'text-xs'); }
-                        
-                        // Eliminar hover del modal
-                         itemToClone.querySelector('a').classList.remove('hover:shadow-xl', 'hover:scale-[1.02]');
+                            const h2 = aTag.querySelector('h2');
+                            if (h2) { h2.classList.replace('text-xl', 'text-base'); h2.classList.add('font-semibold'); }
+                            const p = aTag.querySelector('p');
+                            if (p) { p.classList.replace('text-sm', 'text-xs'); }
+                            
+                            // Eliminar hover del modal
+                            aTag.classList.remove('hover:shadow-xl', 'hover:scale-[1.02]');
+                        }
                         
                         // Embolcallar amb un div per replicar la llista de botons
                         const tempWrapper = document.createElement('div');
