@@ -4,464 +4,926 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMMCA LINKS | Recursos Musicals Interactius</title>
+    <meta name="description" content="Recursos essencials per a l'estudiant de música: eines d'entrenament, teoria musical, producció i materials didàctics de l'EMMCA.">
+    <meta name="keywords" content="música, educació musical, teoria musical, EMMCA, recursos educatius, dictats auditius, lectura musical">
+    <meta name="author" content="Eugeni Corchero">
     
-    <!-- Carrega de Tailwind CSS CDN per a estils ràpids i responsius -->
+    <!-- Preload critical resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- NOVES Icones: Lucide Icons (Més estables en entorns virtuals) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lucide Icons with fallback -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" onerror="this.onerror=null;console.warn('Lucide icons failed to load')"></script>
     
-    <!-- Configuració de la font Inter i colors base -->
+    <!-- Optimized fonts and CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
-
-        /* NOVA PALETA DE COLORS (Tailwind Custom) */
+        /* CSS Custom Properties for theming */
         :root {
-            --color-primary: #3498db; /* Blau Fort */
-            --color-secondary: #2980b9; /* Blau Fosc (per hover) */
-            --color-dark: #2c3e50; /* Negre/Gris molt fosc */
-            --color-light: #ffffff; /* Blanc pur */
-            --color-link-bg: #f5f7fa; /* Gris molt clar */
-            --color-border: #e4e6eb; /* Gris clar per vores */
+            --color-primary: #3498db;
+            --color-secondary: #2980b9;
+            --color-text: #2c3e50;
+            --color-bg: #ffffff;
+            --color-surface: #f8fafc;
+            --color-border: #e2e8f0;
+            --color-muted: #64748b;
+            --color-success: #22c55e;
+            --color-warning: #f59e0b;
+            --color-error: #ef4444;
             
-            --emca-text-color: var(--color-dark);
-            --emca-container-bg: var(--color-light);
-            --emca-control-icon: #444; /* Gris fosc per a icones de control */
+            /* Spacing and sizing */
+            --header-height: 70px;
+            --border-radius: 0.75rem;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            
+            /* Transitions */
+            --transition-fast: 150ms ease-in-out;
+            --transition-normal: 200ms ease-in-out;
+            --transition-slow: 300ms ease-in-out;
         }
 
-        /* --- Mode Fosc --- */
+        /* Dark mode theme */
         .dark-mode {
-            --color-primary: #5dade2; 
-            --color-secondary: #3498db;
-            --color-dark: #f0f0f0; 
-            --color-light: #121212; 
-            --color-link-bg: #1e1e1e; 
-            --color-border: #333;
-            
-            --emca-text-color: var(--color-dark);
-            --emca-container-bg: #121212;
-            --emca-control-icon: #f0f0f0; /* Blanc clar per a icones de control */
+            --color-text: #f1f5f9;
+            --color-bg: #0f172a;
+            --color-surface: #1e293b;
+            --color-border: #334155;
+            --color-muted: #94a3b8;
+            --color-primary: #60a5fa;
+            --color-secondary: #3b82f6;
         }
 
-        /* Estil Global & Tipografia Inter */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--emca-container-bg);
-            color: var(--emca-text-color);
-            transition: background-color 0.3s, color 0.3s;
+        /* Base styles */
+        * {
+            box-sizing: border-box;
         }
         
-        /* Ajustos Bulma (Recreats amb Tailwind) */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color var(--transition-slow), color var(--transition-slow);
+            scroll-behavior: smooth;
+        }
+        
+        /* Main container */
         .links-container {
-            padding: 30px 25px 60px 25px; 
+            padding: 2rem 1.5rem 4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .links-container {
+                padding: 2.5rem 2rem 5rem;
+            }
         }
 
-        /* Hero Card Styling - Adaptació per a Hero Cards */
+        /* Hero Card Styling */
         .hero-card {
             border: 1px solid var(--color-border);
-            background-color: var(--color-link-bg);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s, border-color 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+            background-color: var(--color-surface);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: all var(--transition-normal);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            opacity: 0;
+            transition: opacity var(--transition-normal);
+            z-index: 1;
+        }
+
+        .hero-card:hover::before {
+            opacity: 1;
+        }
+
+        .hero-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-card:hover {
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); 
-            background-color: var(--color-secondary);
-            border-color: var(--color-secondary);
-            color: var(--color-light) !important; 
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-primary);
         }
         
-        .hero-card:hover h2, 
+        .hero-card:hover h2,
         .hero-card:hover .icon-symbol {
-            color: var(--color-light) !important;
+            color: white !important;
         }
 
         .hero-card h2 {
             color: var(--color-primary);
-            transition: color 0.3s;
+            transition: color var(--transition-normal);
+            font-weight: 600;
         }
 
         .hero-card:hover p {
-            color: #f0f0f0; /* Gris clar en hover */
+            color: rgba(255, 255, 255, 0.9);
         }
 
+        .hero-card:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        /* Icon styling */
         .icon-symbol {
             font-size: 2.5rem;
             line-height: 1;
-            /* Estil per a les icones d'emoji/lucide en Hero */
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: color var(--transition-normal);
         }
+        
         .icon-symbol svg {
             width: 2.5rem;
             height: 2.5rem;
+            stroke-width: 1.5;
         }
 
-        /* Estil per als botons estàndard (fora del Hero) */
+        /* Standard link buttons */
         .link-button {
-            background-color: var(--color-link-bg);
-            color: var(--emca-text-color) !important;
-            border: none;
-            font-weight: 600;
-            margin-bottom: 0.75rem; 
-            transition: all 0.2s ease-in-out, background-color 0.3s;
-            text-align: left;
-            padding: 1rem 1.4rem; 
-            height: auto;
-            white-space: normal;
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            padding: 1rem 1.25rem;
+            text-decoration: none;
             display: flex;
             align-items: center;
-            border-radius: 0.625rem; /* 10px */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+            gap: 1rem;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
         }
         
-        .link-button:hover, .link-button:focus {
+        .link-button:hover,
+        .link-button:focus {
             background-color: var(--color-primary);
-            color: var(--color-light) !important;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); 
-            transform: translateY(-2px);
+            color: white;
+            border-color: var(--color-primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+        }
+
+        .link-button:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
         }
 
         .link-button .icon {
-            margin-right: 1.2rem;
-            font-size: 1.3rem;
             color: var(--color-primary);
-            transition: color 0.2s;
+            transition: color var(--transition-normal);
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
-        /* Ajustar SVG de Lucide dins de .icon */
+        
         .link-button .icon svg {
-             width: 1.3rem;
-             height: 1.3rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke-width: 2;
         }
 
-        .link-button:hover .icon, .link-button:focus .icon {
-            color: var(--color-light);
+        .link-button:hover .icon,
+        .link-button:focus .icon {
+            color: white;
         }
 
-        /* Controls de Capçalera (Fixed) - Z-INDEX 900 */
+        /* Header controls */
         .header-controls {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 900; /* REFORÇAT */
+            top: 1.25rem;
+            right: 1.25rem;
+            z-index: 50;
+            display: flex;
+            gap: 0.5rem;
         }
 
         .header-controls button {
-            margin-left: 0.5rem;
-            color: var(--emca-control-icon);
-            background-color: rgba(255, 255, 255, 0.95); /* Menys transparent */
-            backdrop-filter: blur(8px); /* Blur més fort */
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--color-surface);
             border: 1px solid var(--color-border);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra més visible */
+            color: var(--color-text);
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(8px);
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all var(--transition-normal);
+            cursor: pointer;
         }
-        .dark-mode .header-controls button {
-            background-color: rgba(0, 0, 0, 0.7); /* Fons fosc amb transparència */
-            border: 1px solid #333;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.05);
-        }
+        
         .header-controls button:hover {
-            color: var(--color-primary);
+            background-color: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
             transform: scale(1.05);
         }
-        /* Ajust per a icones Lucide dins dels botons de control */
+        
+        .header-controls button:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+        
         .header-controls button svg {
-            width: 1rem;
-            height: 1rem;
-            stroke-width: 2.5; /* Més gruixut per visibilitat */
+            width: 1.125rem;
+            height: 1.125rem;
+            stroke-width: 2;
+        }
+
+        @media (max-width: 768px) {
+            .header-controls {
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .header-controls button {
+                width: 2.25rem;
+                height: 2.25rem;
+            }
         }
 
 
-        /* Estil Pestanyes (Tabs - Recreant Bulma amb Tailwind) */
+        /* Tabs styling */
+        .tabs-container {
+            margin-bottom: 2rem;
+        }
+        
         .tabs-container ul {
             display: flex;
             justify-content: center;
             border-bottom: 2px solid var(--color-border);
-            margin-bottom: 1.5rem;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            gap: 0.5rem;
         }
 
         .tabs-container li {
-            padding: 0 1rem;
-            margin-bottom: -2px; /* Superposició sobre la línia */
-            cursor: pointer;
+            margin-bottom: -2px;
         }
 
-        .tabs-container li a {
+        .tabs-container button {
             display: flex;
             align-items: center;
-            padding: 0.75rem 0;
-            color: var(--emca-text-color);
-            transition: color 0.3s;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            color: var(--color-muted);
+            background: none;
+            border: none;
+            font-weight: 500;
+            font-size: inherit;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            transition: all var(--transition-normal);
+            position: relative;
+            cursor: pointer;
         }
 
-        .tabs-container li.is-active a {
-            border-bottom: 2px solid var(--color-primary);
-            color: var(--color-primary) !important;
+        .tabs-container button:hover {
+            color: var(--color-primary);
+            background-color: var(--color-surface);
+        }
+
+        .tabs-container button:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: -2px;
+        }
+
+        .tabs-container button.is-active {
+            color: var(--color-primary);
             font-weight: 600;
+            background-color: var(--color-surface);
+            border-bottom: 2px solid var(--color-primary);
         }
         
-        /* Utilitats i Materials App Links Styling */
+        .tabs-container button .icon svg {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .tabs-container ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+            }
+            
+            .tabs-container button {
+                padding: 1rem;
+                border-radius: 0;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+        
+        /* Screen reader only content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .sr-only:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: 0.5rem 1rem;
+            margin: 0;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+        }
+        
+        /* App links styling */
+        .app-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.75rem;
+        }
+        
         .app-links a {
-            color: var(--emca-text-color);
-            opacity: 0.8;
-            transition: opacity 0.2s;
-        }
-        .link-button:hover .app-links .icon {
-             color: var(--color-light); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 0.375rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-normal);
+            text-decoration: none;
         }
         
-        /* Collapsible Styling */
+        .app-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        /* Collapsible sections */
         .collapsible-header {
             cursor: pointer;
-            padding: 12px 0; 
+            padding: 0.75rem 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 700;
-            color: var(--color-dark); 
-            transition: color 0.3s;
+            font-weight: 600;
+            color: var(--color-text);
+            transition: color var(--transition-normal);
             border-bottom: 1px solid var(--color-border);
+            user-select: none;
         }
-        .dark-mode .collapsible-header {
-            color: var(--color-dark); 
-        }
+        
         .collapsible-header:hover {
             color: var(--color-primary);
         }
+        
         .collapsible-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding-top: 15px; 
-            padding-bottom: 10px; 
+            transition: max-height var(--transition-slow) ease-out;
+            padding-top: 0;
+            padding-bottom: 0;
         }
+        
         .collapsible-content.is-expanded {
-            max-height: 3000px; 
-            transition: max-height 0.5s ease-in;
+            max-height: 200vh;
+            padding-top: 1rem;
+            padding-bottom: 0.5rem;
+            transition: max-height var(--transition-slow) ease-in;
         }
-        .collapsible-header .icon svg { /* Lucide icones a collapsible */
-            transition: transform 0.3s;
+        
+        .collapsible-header .icon svg {
+            transition: transform var(--transition-normal);
         }
+        
         .collapsible-header.is-expanded .icon svg {
             transform: rotate(180deg);
         }
 
-        /* --- Modal Styling --- */
+        /* Search modal */
         .search-modal {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 100;
+            padding: 1rem;
         }
+        
         .search-modal-content {
-            background-color: var(--emca-container-bg);
-            border-radius: 12px;
+            background-color: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--border-radius);
             padding: 2rem;
-            max-width: 90%;
-            width: 700px;
+            width: 100%;
+            max-width: 42rem;
             max-height: 90vh;
             overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-lg);
         }
+        
+        .search-modal input {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            border-radius: var(--border-radius);
+        }
+        
+        .search-modal input:focus {
+            outline: 2px solid var(--color-primary);
+            outline-offset: -2px;
+            border-color: var(--color-primary);
+        }
+        
+        /* Section titles */
         .link-item-title {
-            color: var(--color-primary); 
-            font-weight: 700;
-            font-size: 1.35rem !important; 
-            padding-bottom: 5px;
-            margin-bottom: 1.5rem !important;
-            border-bottom: 1px solid var(--color-border);
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 1.25rem;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--color-border);
         }
         
-        /* Compact View Styling (Recreat) */
-        .compact-view-active .hero-card h2 { margin-bottom: 0 !important; }
-        .compact-view-active .hero-card p { display: none !important; }
+        /* Filter buttons */
+        .filter-btn {
+            border: 1px solid var(--color-border);
+            transition: all var(--transition-normal);
+        }
         
-        .link-button.is-download {
+        .filter-btn:hover {
+            border-color: var(--color-primary);
             background-color: var(--color-primary);
-            color: var(--color-light) !important;
-        }
-        .link-button.is-download .icon {
-            color: var(--color-light) !important;
-        }
-        .link-button.is-download:hover {
-            background-color: var(--color-secondary);
-            transform: scale(1.02);
+            color: white;
         }
         
-        /* Utilitats App Links: Ocultar subtítols en vista compacta */
+        /* Compact view */
+        .compact-view-active .hero-card h2 {
+            margin-bottom: 0 !important;
+        }
+        
+        .compact-view-active .hero-card p {
+            display: none !important;
+        }
+        
+        .compact-view-active .link-button .text-sm,
         .compact-view-active .link-button .is-size-7 {
             display: none !important;
         }
-        .compact-view-active .link-button .app-links {
-            margin-top: 0 !important;
+        
+        /* Download button variant */
+        .is-download {
+            background-color: var(--color-success) !important;
+            color: white !important;
+            border-color: var(--color-success) !important;
         }
         
-        /* Mòbil */
-        @media (max-width: 768px) {
-             .links-container { 
-                padding: 15px 15px 60px 15px; 
+        .is-download .icon {
+            color: white !important;
+        }
+        
+        .is-download:hover {
+            background-color: #16a34a !important;
+            border-color: #16a34a !important;
+        }
+        
+        /* Loading states */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: var(--color-surface);
+            border-radius: inherit;
+        }
+        
+        /* Responsive improvements */
+        @media (max-width: 640px) {
+            .links-container {
+                padding: 1rem 1rem 3rem;
             }
+            
+            /* Hero cards: single column on mobile */
+            .highlighted-links {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+            
+            /* Larger touch targets */
+            .hero-card,
+            .link-button {
+                min-height: 60px;
+                padding: 1.25rem !important;
+            }
+            
+            /* Better text sizing */
+            .hero-card h3 {
+                font-size: 1.125rem;
+            }
+            
+            .hero-card p {
+                font-size: 0.875rem;
+                line-height: 1.4;
+            }
+            
+            /* Modal improvements */
+            .search-modal-content {
+                margin: 1rem;
+                max-height: 85vh;
+                padding: 1.5rem;
+            }
+            
+            /* Icon sizing */
+            .icon-symbol {
+                font-size: 2rem;
+            }
+            
+            .icon-symbol svg {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small screens */
             .header-controls {
-                top: 10px;
-                right: 10px;
+                top: 0.75rem;
+                right: 0.75rem;
+                gap: 0.25rem;
             }
+            
+            .header-controls button {
+                width: 2rem;
+                height: 2rem;
+            }
+            
+            .header-controls button svg {
+                width: 1rem;
+                height: 1rem;
+            }
+            
+            /* Title sizing */
+            header h1 {
+                font-size: 2rem !important;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            /* Section headings */
+            section h2 {
+                font-size: 1.5rem;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --color-border: #000000;
+            }
+            
+            .dark-mode {
+                --color-border: #ffffff;
+            }
+            
+            .hero-card,
+            .link-button {
+                border-width: 2px;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .hero-card:hover {
+                transform: none;
+            }
+            
+            .link-button:hover {
+                transform: none;
+            }
+        }
+        
+        /* Focus visible improvements */
+        @media (prefers-reduced-motion: no-preference) {
+            .hero-card:focus-visible,
+            .link-button:focus-visible,
+            .header-controls button:focus-visible {
+                transform: scale(1.02);
+            }
+        }
+        /* Loading state */
+        .loading-app {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        .loading-app.loaded {
+            opacity: 1;
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--color-border);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            z-index: 1000;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+        
+        .loading-app.loaded .loading-spinner {
+            display: none;
         }
     </style>
 </head>
-<body class="min-h-screen antialiased">
+<body class="min-h-screen antialiased loading-app">
+    <!-- Loading spinner -->
+    <div class="loading-spinner" aria-label="Carregant..."></div>
 
-    <!-- Controls Interactius de la Capçalera (Fixed) - Z-INDEX 900 -->
-    <div class="header-controls flex items-center">
-        <!-- Cerca -->
-        <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition duration-200" id="openSearchModal" title="Obrir Cerca i Filtres">
-            <i data-lucide="search"></i> <!-- Icona Lucide -->
+    <!-- Skip to main content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
+        Salta al contingut principal
+    </a>
+    
+    <!-- Header controls -->
+    <div class="header-controls" role="toolbar" aria-label="Controls de la pàgina">
+        <button 
+            type="button"
+            id="openSearchModal" 
+            aria-label="Obrir cerca i filtres"
+            title="Obrir Cerca i Filtres">
+            <i data-lucide="search" aria-hidden="true"></i>
         </button>
-        <!-- Mode Fosc -->
-        <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition duration-200" id="darkModeToggle" title="Activar/Desactivar Mode Fosc">
-            <i data-lucide="moon"></i> <!-- Icona Lucide -->
+        
+        <button 
+            type="button"
+            id="darkModeToggle" 
+            aria-label="Canviar mode fosc"
+            title="Activar/Desactivar Mode Fosc">
+            <i data-lucide="moon" aria-hidden="true"></i>
         </button>
-        <!-- Vista Compacta -->
-        <button class="w-9 h-9 rounded-full flex items-center justify-center shadow-lg transition duration-200" id="compactViewToggle" title="Canviar a Vista Compacta">
-            <i data-lucide="list"></i> <!-- Icona Lucide -->
+        
+        <button 
+            type="button"
+            id="compactViewToggle" 
+            aria-label="Canviar vista compacta"
+            title="Canviar a Vista Compacta">
+            <i data-lucide="list" aria-hidden="true"></i>
         </button>
     </div>
 
     <div class="links-container w-full max-w-7xl mx-auto">
-
-        <!-- Capçalera Principal -->
-        <header class="text-center pt-10 pb-5">
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-2" style="color: var(--color-dark);">EMMCA LINKS</h1>
-            <p class="text-xl text-gray-500" style="color: var(--emca-text-color); opacity: 0.8;">Recursos Musicals Essencials per a l'Estudiant</p>
+        <!-- Main header -->
+        <header class="text-center pt-8 pb-6">
+            <h1 class="text-4xl sm:text-5xl font-bold mb-3" style="color: var(--color-text);">
+                EMMCA LINKS
+            </h1>
+            <p class="text-xl" style="color: var(--color-muted);">
+                Recursos Musicals Essencials per a l'Estudiant
+            </p>
         </header>
 
-        <!-- Secció 1: ENLLAÇOS DESTACATS (HERO) -->
-        <h3 class="text-2xl font-bold text-center mt-12 mb-8" style="color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;">Eines d'Entrenament Essencials 💡</h3>
-        
-        <!-- Contenidor de les Targetes (Responsive Grid - 1/2/3/6 Columnes) -->
-        <div class="grid grid-cols-1 gap-6 
-                    sm:grid-cols-2 
-                    lg:grid-cols-3
-                    xl:grid-cols-6 link-list highlighted-links" data-category="eines teoria lectura auditiva intervals acords" style="margin-bottom: 3rem;">
+        <main id="main-content">
+
+            <!-- Hero section: Essential training tools -->
+            <section aria-labelledby="hero-heading" class="mb-16">
+                <h2 id="hero-heading" class="text-2xl font-bold text-center mb-8 pb-2 border-b-2" 
+                    style="color: var(--color-primary); border-color: var(--color-primary);">
+                    Eines d'Entrenament Essencials 💡
+                </h2>
+                
+                <!-- Responsive grid for hero cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 link-list highlighted-links" 
+                     data-category="eines teoria lectura auditiva intervals acords"
+                     role="list"
+                     aria-label="Eines d'entrenament musical">
             
-            <!-- 1. Lectura Clau de Sol -->
-            <div class="link-item" data-category="eines lectura">
-                <a href="https://emmcaro.github.io/lecturabasic1/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
-                    <div class="flex flex-col items-start space-y-3">
-                        <span class="icon-symbol text-blue-600" aria-hidden="true">𝄞</span>
-                        <h2 class="text-xl font-bold">Lectura Clau de Sol</h2>
-                        <p class="text-gray-500 text-sm">Practica la identificació ràpida de notes al pentagrama en clau de sol.</p>
+                    <!-- Treble clef reading -->
+                    <div class="link-item" data-category="eines lectura" role="listitem">
+                        <a href="https://emmcaro.github.io/lecturabasic1/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="hero-card block p-6"
+                           aria-describedby="treble-desc">
+                            <div class="flex flex-col items-start space-y-3">
+                                <span class="icon-symbol text-blue-600" aria-hidden="true">𝄞</span>
+                                <h3 class="text-xl font-bold">Lectura Clau de Sol</h3>
+                                <p id="treble-desc" class="text-sm" style="color: var(--color-muted);">
+                                    Practica la identificació ràpida de notes al pentagrama en clau de sol.
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
 
-            <!-- 2. Lectura Clau de Fa -->
-            <div class="link-item" data-category="eines lectura">
-                <a href="https://emmcaro.github.io/Lectura-clau-de-fa/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
-                    <div class="flex flex-col items-start space-y-3">
-                        <span class="icon-symbol text-purple-600" aria-hidden="true">𝄢</span>
-                        <h2 class="text-xl font-bold">Lectura Clau de Fa</h2>
-                        <p class="text-gray-500 text-sm">Domina la lectura de les notes greus utilitzant la clau de fa.</p>
+                    <!-- Bass clef reading -->
+                    <div class="link-item" data-category="eines lectura" role="listitem">
+                        <a href="https://emmcaro.github.io/Lectura-clau-de-fa/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="hero-card block p-6"
+                           aria-describedby="bass-desc">
+                            <div class="flex flex-col items-start space-y-3">
+                                <span class="icon-symbol text-purple-600" aria-hidden="true">𝄢</span>
+                                <h3 class="text-xl font-bold">Lectura Clau de Fa</h3>
+                                <p id="bass-desc" class="text-sm" style="color: var(--color-muted);">
+                                    Domina la lectura de les notes greus utilitzant la clau de fa.
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
 
-            <!-- 3. Lectura d'Intervals (Visuals) -->
-            <div class="link-item" data-category="eines teoria intervals lectura">
-                <a href="https://eugenicorchero.github.io/intervally/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
-                    <div class="flex flex-col items-start space-y-3">
-                        <span class="icon-symbol text-green-600" aria-hidden="true">🎼</span>
-                        <h2 class="text-xl font-bold">Lectura d'Intervals</h2>
-                        <p class="text-gray-500 text-sm">Exercicis visuals per reconèixer els diferents intervals melòdics i harmònics.</p>
+                    <!-- Interval reading -->
+                    <div class="link-item" data-category="eines teoria intervals lectura" role="listitem">
+                        <a href="https://eugenicorchero.github.io/intervally/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="hero-card block p-6"
+                           aria-describedby="intervals-desc">
+                            <div class="flex flex-col items-start space-y-3">
+                                <span class="icon-symbol text-green-600" aria-hidden="true">🎼</span>
+                                <h3 class="text-xl font-bold">Lectura d'Intervals</h3>
+                                <p id="intervals-desc" class="text-sm" style="color: var(--color-muted);">
+                                    Exercicis visuals per reconèixer els diferents intervals melòdics i harmònics.
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
 
-            <!-- 4. Dictats Auditius d'Intervals -->
-            <div class="link-item" data-category="eines teoria intervals auditiva">
-                <a href="https://eugenicorchero.github.io/auditorium/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
-                    <div class="flex flex-col items-start space-y-3">
-                        <span class="icon-symbol text-red-600" aria-hidden="true">👂</span>
-                        <h2 class="text-xl font-bold">Dictats Auditius d'Intervals</h2>
-                        <p class="text-gray-500 text-sm">Entrena l'oïda per identificar intervals a partir de la seva sonoritat (sense suport visual).</p>
+                    <!-- Interval ear training -->
+                    <div class="link-item" data-category="eines teoria intervals auditiva" role="listitem">
+                        <a href="https://eugenicorchero.github.io/auditorium/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="hero-card block p-6"
+                           aria-describedby="ear-intervals-desc">
+                            <div class="flex flex-col items-start space-y-3">
+                                <span class="icon-symbol text-red-600" aria-hidden="true">👂</span>
+                                <h3 class="text-xl font-bold">Dictats Auditius d'Intervals</h3>
+                                <p id="ear-intervals-desc" class="text-sm" style="color: var(--color-muted);">
+                                    Entrena l'oïda per identificar intervals a partir de la seva sonoritat.
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
 
-            <!-- 5. Dictats Auditius d'Acords -->
-            <div class="link-item" data-category="eines teoria acords auditiva nou">
-                <a href="https://eugenicorchero.github.io/chordiceps/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
-                    <div class="flex flex-col items-start space-y-3">
-                        <span class="icon-symbol text-yellow-600" aria-hidden="true">🎸</span>
-                        <h2 class="text-xl font-bold">Dictats Auditius d'Acords</h2>
-                        <p class="text-gray-500 text-sm">Reconeix i anomena la qualitat dels acords (majors, menors, setena, etc.) a l'oïda.</p>
+                    <!-- Chord ear training -->
+                    <div class="link-item" data-category="eines teoria acords auditiva nou" role="listitem">
+                        <a href="https://eugenicorchero.github.io/chordiceps/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="hero-card block p-6"
+                           aria-describedby="ear-chords-desc">
+                            <div class="flex flex-col items-start space-y-3">
+                                <span class="icon-symbol text-yellow-600" aria-hidden="true">🎸</span>
+                                <h3 class="text-xl font-bold">Dictats Auditius d'Acords</h3>
+                                <p id="ear-chords-desc" class="text-sm" style="color: var(--color-muted);">
+                                    Reconeix la qualitat dels acords (majors, menors, setena, etc.) a l'oïda.
+                                </p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-            </div>
+                    
+                    <!-- Study timer -->
+                    <div class="link-item" data-category="eines utilitats timer estudi organitzacio nou" role="listitem">
+                        <a href="https://eugenicorchero.github.io/musicstudy/" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="hero-card block p-6"
+                           aria-describedby="timer-desc">
+                            <div class="flex flex-col items-start space-y-3">
+                                <span class="icon-symbol text-orange-600" aria-hidden="true">
+                                    <i data-lucide="timer"></i>
+                                </span>
+                                <h3 class="text-xl font-bold">Temporitzador d'Estudi</h3>
+                                <p id="timer-desc" class="text-sm" style="color: var(--color-muted);">
+                                    Eina Pomodoro per estructurar les sessions de pràctica.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+            </section>
             
-            <!-- 6. NOU: Temporitzador d'Estudi Diari -->
-            <div class="link-item" data-category="eines utilitats timer estudi organitzacio nou">
-                <a href="https://eugenicorchero.github.io/musicstudy/" target="_blank" rel="noopener noreferrer" class="hero-card block p-6 rounded-xl">
-                    <div class="flex flex-col items-start space-y-3">
-                        <span class="icon-symbol text-orange-600" aria-hidden="true"><i data-lucide="timer"></i></span> <!-- Icona Lucide -->
-                        <h2 class="text-xl font-bold">Temporitzador d'Estudi Diari</h2>
-                        <p class="text-gray-500 text-sm">Eina Pomodoro personalitzada per estructurar i cronometrar les sessions de pràctica.</p>
-                    </div>
-                </a>
-            </div>
-            
-        </div>
-        <!-- Fi Contenidor Targetes -->
-        
-        <!-- Secció 2: NAVEGACIÓ PER PESTANYES (TABS) -->
-        <h3 class="text-2xl font-bold text-center mt-12 mb-8" style="color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;">Directori Temàtic 📚</h3>
+            <!-- Thematic directory section -->
+            <section aria-labelledby="directory-heading">
+                <h2 id="directory-heading" class="text-2xl font-bold text-center mb-8 pb-2 border-b-2" 
+                    style="color: var(--color-primary); border-color: var(--color-primary);">
+                    Directori Temàtic 📚
+                </h2>
 
-        <!-- Tabs Container (Recreat amb Tailwind) -->
-        <div class="tabs-container">
-            <ul id="tabs-header">
-                <li data-target="tab-teoria" class="is-active">
-                    <a class="flex items-center space-x-2">
-                        <span class="icon is-small"><i data-lucide="graduation-cap"></i></span> <!-- Icona Lucide -->
-                        <span>Teoria Musical</span>
-                    </a>
-                </li>
-                <li data-target="tab-produccio">
-                    <a class="flex items-center space-x-2">
-                        <span class="icon is-small"><i data-lucide="sliders-horizontal"></i></span> <!-- Icona Lucide -->
-                        <span>Producció i Creativitat</span>
-                    </a>
-                </li>
-                <li data-target="tab-utilitats">
-                    <a class="flex items-center space-x-2">
-                        <span class="icon is-small"><i data-lucide="smartphone"></i></span> <!-- Icona Lucide -->
-                        <span>Utilitats i Materials</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+                <!-- Tabs navigation -->
+                <div class="tabs-container">
+                    <ul id="tabs-header" role="tablist" aria-label="Categories de recursos">
+                        <li role="presentation">
+                            <button role="tab" 
+                                    data-target="tab-teoria" 
+                                    class="is-active" 
+                                    aria-selected="true"
+                                    aria-controls="tab-teoria"
+                                    id="tab-teoria-button">
+                                <span class="icon" aria-hidden="true">
+                                    <i data-lucide="graduation-cap"></i>
+                                </span>
+                                <span>Teoria Musical</span>
+                            </button>
+                        </li>
+                        <li role="presentation">
+                            <button role="tab" 
+                                    data-target="tab-produccio"
+                                    aria-selected="false"
+                                    aria-controls="tab-produccio"
+                                    id="tab-produccio-button">
+                                <span class="icon" aria-hidden="true">
+                                    <i data-lucide="sliders-horizontal"></i>
+                                </span>
+                                <span>Producció i Creativitat</span>
+                            </button>
+                        </li>
+                        <li role="presentation">
+                            <button role="tab" 
+                                    data-target="tab-utilitats"
+                                    aria-selected="false"
+                                    aria-controls="tab-utilitats"
+                                    id="tab-utilitats-button">
+                                <span class="icon" aria-hidden="true">
+                                    <i data-lucide="smartphone"></i>
+                                </span>
+                                <span>Utilitats i Materials</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
         
-        <!-- CONTINGUT DE LES PESTANYES -->
-        <div id="tabs-content">
-
-            <!-- PESTANYA 1: TEORIA I REFERÈNCIA -->
-            <div id="tab-teoria" class="tab-pane">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="teoria youtube">
+                <!-- Tab panels -->
+                <div id="tabs-content">
+                    <!-- Music theory tab -->
+                    <div id="tab-teoria" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-teoria-button"
+                         aria-hidden="false">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="teoria youtube">
                     
                     <!-- Columna 1.1: Webs de Referència -->
                     <div class="link-col" data-category="teoria eines">
@@ -528,9 +990,9 @@
                                     <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
                                     <span>Bob Reynolds</span>
                                 </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCUGf7OXXPWxai-FeLi7N-WA" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Music Radar Clan</span>
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/@MusicRadarTech" target="_blank" rel="noopener noreferrer" data-category="youtube teoria tecnologia">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Music Radar Tech</span>
                                 </a>
                             </div>
                         </div>
@@ -538,9 +1000,13 @@
                 </div>
             </div>
 
-            <!-- PESTANYA 2: PRODUCCIÓ I CREATIVITAT -->
-            <div id="tab-produccio" class="tab-pane" style="display: none;">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="eines produccio youtube podcast">
+                    <!-- Production and creativity tab -->
+                    <div id="tab-produccio" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-produccio-button"
+                         aria-hidden="true"
+                         style="display: none;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="eines produccio youtube podcast">
                     
                     <!-- Columna 2.1: Eines de Creativitat -->
                     <div class="link-col" data-category="eines creativitat produccio">
@@ -622,8 +1088,8 @@
                                     <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
                                     <span>Music Mogul</span>
                                 </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCUGf7OXXPWxai-FeLi7N-WA" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/@MakePopMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
                                     <span>Make Pop Music</span>
                                 </a>
                                 <a class="w-full link-button link-item" href="https://www.youtube.com/user/theproaudiofiles" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
@@ -646,8 +1112,8 @@
                                     <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
                                     <span>Tom Cosm</span>
                                 </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCUGf7OXXPWxai-FeLi7N-WA" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
+                                <a class="w-full link-button link-item" href="https://www.youtube.com/@WeissAdvice" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
                                     <span>Weiss Advice</span>
                                 </a>
                                 <a class="w-full link-button link-item" href="https://www.youtube.com/@TheVelvetYear" target="_blank" rel="noopener noreferrer" data-category="youtube produccio synth">
@@ -660,9 +1126,13 @@
                 </div>
             </div>
 
-            <!-- PESTANYA 3: UTILITATS I MATERIALS -->
-            <div id="tab-utilitats" class="tab-pane" style="display: none;">
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="app pdf">
+                    <!-- Utilities and materials tab -->
+                    <div id="tab-utilitats" 
+                         role="tabpanel" 
+                         aria-labelledby="tab-utilitats-button"
+                         aria-hidden="true"
+                         style="display: none;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="app pdf">
 
                     <!-- Columna 3.1: Aplicacions -->
                     <div class="link-col" data-category="app metronom stemps entrenament">
@@ -735,390 +1205,659 @@
                                 </div>
                             </a>
                             
-                            <a class="w-full link-button link-item" 
-                               href="https://drive.google.com/uc?export=download&id=EXAMPLE_FILE_ID_2" 
-                               target="_blank" 
-                               rel="noopener noreferrer" 
-                               data-category="pdf exercicis">
-                                <span class="icon"><i data-lucide="clipboard-list"></i></span> <!-- Icona Lucide -->
-                                <span>Llista d'Exercicis Setmanals (PENDENT❌)</span>
-                            </a>
+                            <!-- Placeholder for future materials -->
+                            <div class="w-full p-4 rounded-lg border-2 border-dashed" 
+                                 style="border-color: var(--color-border); color: var(--color-muted);">
+                                <div class="flex items-center gap-3">
+                                    <span class="icon">
+                                        <i data-lucide="file-plus" aria-hidden="true"></i>
+                                    </span>
+                                    <div>
+                                        <p class="font-medium">Materials addicionals</p>
+                                        <p class="text-sm">Més recursos estaran disponibles aviat</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        </div> <!-- Fi del Contenidor de Pestanyes -->
-        
-    </div> <!-- Fi del links-container -->
+                </div> <!-- End tabs content -->
+            </section>
+        </main>
+    </div> <!-- End links-container -->
 
-    <!-- Peu de Pàgina (Footer) -->
-    <footer class="text-center py-6 text-gray-500 text-sm">
-        <p>
-          Eugeni Corchero © 2025 | Creat per a l'alumnat de l'EMMCA
+    <!-- Footer -->
+    <footer class="text-center py-8 border-t" style="border-color: var(--color-border);">
+        <p class="text-sm" style="color: var(--color-muted);">
+            Eugeni Corchero © 2025 | Creat per a l'alumnat de l'EMMCA
         </p>
     </footer>
 
-    <!-- Modal de Cerca i Filtres (Ocult per defecte) -->
-    <div id="searchModal" class="search-modal" style="display: none;">
+    <!-- Search and filters modal -->
+    <div id="searchModal" 
+         class="search-modal" 
+         style="display: none;"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="modal-title">
         <div class="search-modal-content">
-            <h3 class="text-2xl font-bold text-center mb-5" style="color: var(--color-primary);">Cerca i Filtres</h3>
+            <h2 id="modal-title" class="text-2xl font-bold text-center mb-6" style="color: var(--color-primary);">
+                Cerca i Filtres
+            </h2>
             
-            <!-- Funció 1: Cerca Interactiva (Amb botó de neteja) -->
-            <div class="mb-4">
+            <!-- Search input -->
+            <div class="mb-6">
+                <label for="searchInputModal" class="sr-only">Cerca recursos</label>
                 <div class="relative">
-                    <input class="w-full p-4 text-lg border border-gray-300 rounded-lg pl-10" type="text" id="searchInputModal" placeholder="🔍 Cerca per títol, descripció o categoria...">
-                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
-                        <i data-lucide="search"></i> <!-- Icona Lucide -->
+                    <input 
+                        class="w-full p-4 text-lg pl-12 pr-12" 
+                        type="text" 
+                        id="searchInputModal" 
+                        placeholder="Cerca per títol, descripció o categoria..."
+                        aria-describedby="search-help">
+                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2" style="color: var(--color-muted);" aria-hidden="true">
+                        <i data-lucide="search"></i>
                     </span>
-                    <!-- Botó per Netejar Cerca -->
-                    <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" id="clearSearchInput" style="display: none;">
-                        <i data-lucide="x"></i> <!-- Icona Lucide -->
-                    </span>
+                    <button 
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" 
+                        id="clearSearchInput" 
+                        style="display: none; color: var(--color-muted);"
+                        aria-label="Neteja la cerca"
+                        type="button">
+                        <i data-lucide="x" aria-hidden="true"></i>
+                    </button>
                 </div>
+                <p id="search-help" class="text-sm mt-2" style="color: var(--color-muted);">
+                    Escriu per cercar o utilitza els filtres a continuació
+                </p>
             </div>
 
-            <!-- Funció 2: Filtres Dinàmics (Botons) -->
-            <div class="flex flex-wrap justify-center gap-2 mt-4">
-                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-blue-500 text-white" data-filter="all">Tots</button>
-                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="teoria">Teoria</button>
-                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="produccio">Producció</button>
-                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="app">Apps</button>
-                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="pdf">PDF</button>
-                <button class="px-4 py-2 text-sm font-semibold rounded-full filter-btn bg-gray-200 text-gray-700 hover:bg-gray-300" data-filter="eines">Eines</button>
+            <!-- Filter buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-6" role="group" aria-label="Filtres de categoria">
+                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
+                        style="background-color: var(--color-primary); color: white;" 
+                        data-filter="all" 
+                        aria-pressed="true">Tots</button>
+                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
+                        style="background-color: var(--color-surface); color: var(--color-text);" 
+                        data-filter="teoria"
+                        aria-pressed="false">Teoria</button>
+                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
+                        style="background-color: var(--color-surface); color: var(--color-text);" 
+                        data-filter="produccio"
+                        aria-pressed="false">Producció</button>
+                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
+                        style="background-color: var(--color-surface); color: var(--color-text);" 
+                        data-filter="app"
+                        aria-pressed="false">Apps</button>
+                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
+                        style="background-color: var(--color-surface); color: var(--color-text);" 
+                        data-filter="pdf"
+                        aria-pressed="false">PDF</button>
+                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
+                        style="background-color: var(--color-surface); color: var(--color-text);" 
+                        data-filter="eines"
+                        aria-pressed="false">Eines</button>
             </div>
             
-            <!-- CONTENIDOR DE RESULTATS DINS DEL POPUP -->
-            <div id="searchResultsList" class="mt-8 border-t border-gray-300 pt-5" style="max-height: 55vh; overflow-y: auto;">
-                <p class="text-gray-400 text-center" id="searchPlaceholder">Comença a escriure o selecciona un filtre...</p>
+            <!-- Search results -->
+            <div id="searchResultsList" 
+                 class="border-t pt-4" 
+                 style="max-height: 50vh; overflow-y: auto; border-color: var(--color-border);"
+                 role="region"
+                 aria-label="Resultats de la cerca"
+                 aria-live="polite">
+                <p class="text-center" id="searchPlaceholder" style="color: var(--color-muted);">
+                    Comença a escriure o selecciona un filtre...
+                </p>
             </div>
 
-            <div class="flex justify-end mt-6">
-                <button class="px-4 py-2 text-sm font-semibold rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition duration-200" id="closeSearchModal">Tanca</button>
+            <div class="flex justify-end mt-6 gap-2">
+                <button class="px-4 py-2 text-sm font-medium rounded-lg transition-colors" 
+                        style="background-color: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border);"
+                        id="closeSearchModal"
+                        type="button">
+                    Tanca
+                </button>
             </div>
         </div>
     </div>
 
     <script>
-        // --- Referències als elements del DOM ---
-        const body = document.body;
-        const searchModal = document.getElementById('searchModal');
-        const searchInputModal = document.getElementById('searchInputModal');
-        const openSearchModalBtn = document.getElementById('openSearchModal');
-        const closeSearchModalBtn = document.getElementById('closeSearchModal');
-        const clearSearchInputBtn = document.getElementById('clearSearchInput');
-        const resultsList = document.getElementById('searchResultsList');
-        const searchPlaceholder = document.getElementById('searchPlaceholder');
-        const filterButtons = document.querySelectorAll('#searchModal .filter-btn');
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const compactViewToggle = document.getElementById('compactViewToggle');
-        
-        // Recuperar tots els elements de link de la pàgina (Hero i Standard)
-        const linkItems = document.querySelectorAll('.link-item'); 
-        
-        // Referències per a les pestanyes
-        const tabHeaders = document.querySelectorAll('.tabs-container li');
-        const tabPanes = document.querySelectorAll('.tab-pane');
-
-        // --- Funció per gestionar el canvi de pestanyes ---
-        function switchTab(targetId) {
-            tabHeaders.forEach(header => header.classList.remove('is-active'));
-            tabPanes.forEach(pane => pane.style.display = 'none');
-
-            const activeHeader = document.querySelector(`.tabs-container li[data-target="${targetId}"]`);
-            if (activeHeader) {
-                activeHeader.classList.add('is-active');
-            }
-
-            const activePane = document.getElementById(targetId);
-            if (activePane) {
-                activePane.style.display = 'block';
+        // Enhanced error handling and initialization
+        class EMMCAApp {
+            constructor() {
+                this.elements = this.initializeElements();
+                this.linkItems = document.querySelectorAll('.link-item');
+                this.tabButtons = document.querySelectorAll('[role="tab"]');
+                this.tabPanes = document.querySelectorAll('[role="tabpanel"]');
+                this.currentActiveFilter = 'all';
+                
+                this.init();
             }
             
-            // Reinicialitzar l'estat dels Collapsibles de la nova pestanya
-            setupCollapsibles(); 
-        }
+            initializeElements() {
+                const elements = {
+                    body: document.body,
+                    searchModal: document.getElementById('searchModal'),
+                    searchInput: document.getElementById('searchInputModal'),
+                    openSearchBtn: document.getElementById('openSearchModal'),
+                    closeSearchBtn: document.getElementById('closeSearchModal'),
+                    clearSearchBtn: document.getElementById('clearSearchInput'),
+                    resultsList: document.getElementById('searchResultsList'),
+                    searchPlaceholder: document.getElementById('searchPlaceholder'),
+                    filterButtons: document.querySelectorAll('.filter-btn'),
+                    darkModeToggle: document.getElementById('darkModeToggle'),
+                    compactViewToggle: document.getElementById('compactViewToggle')
+                };
+                
+                // Check for missing elements
+                for (const [key, element] of Object.entries(elements)) {
+                    if (!element && !key.includes('Button')) {
+                        console.warn(`Element not found: ${key}`);
+                    }
+                }
+                
+                return elements;
+            }
+            
+            init() {
+                this.setupEventListeners();
+                this.loadUserPreferences();
+                this.initializeTabs();
+                this.initializeCollapsibles();
+                this.initializeLucideIcons();
+            }
+
+            setupEventListeners() {
+                // Search functionality
+                if (this.elements.openSearchBtn) {
+                    this.elements.openSearchBtn.addEventListener('click', () => this.toggleSearchModal(true));
+                }
+                
+                if (this.elements.closeSearchBtn) {
+                    this.elements.closeSearchBtn.addEventListener('click', () => this.toggleSearchModal(false));
+                }
+                
+                if (this.elements.searchModal) {
+                    this.elements.searchModal.addEventListener('click', (e) => {
+                        if (e.target.id === 'searchModal') {
+                            this.toggleSearchModal(false);
+                        }
+                    });
+                }
+                
+                if (this.elements.searchInput) {
+                    this.elements.searchInput.addEventListener('input', () => this.filterLinks());
+                    this.elements.searchInput.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') {
+                            this.toggleSearchModal(false);
+                        }
+                    });
+                }
+                
+                if (this.elements.clearSearchBtn) {
+                    this.elements.clearSearchBtn.addEventListener('click', () => this.clearSearch());
+                }
+                
+                // Filter buttons
+                this.elements.filterButtons.forEach(btn => {
+                    btn.addEventListener('click', () => this.setFilter(btn.dataset.filter));
+                });
+                
+                // Theme toggles
+                if (this.elements.darkModeToggle) {
+                    this.elements.darkModeToggle.addEventListener('click', () => this.toggleDarkMode());
+                }
+                
+                if (this.elements.compactViewToggle) {
+                    this.elements.compactViewToggle.addEventListener('click', () => this.toggleCompactView());
+                }
+                
+                // Tab navigation
+                this.tabButtons.forEach(button => {
+                    button.addEventListener('click', () => this.switchTab(button.dataset.target));
+                    button.addEventListener('keydown', (e) => this.handleTabKeydown(e));
+                });
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => this.handleGlobalKeydown(e));
+            }
+            
+            switchTab(targetId) {
+                // Update tab buttons
+                this.tabButtons.forEach(button => {
+                    const isActive = button.dataset.target === targetId;
+                    button.classList.toggle('is-active', isActive);
+                    button.setAttribute('aria-selected', isActive);
+                    
+                    if (isActive) {
+                        button.focus();
+                    }
+                });
+                
+                // Update tab panels
+                this.tabPanes.forEach(pane => {
+                    const isActive = pane.id === targetId;
+                    pane.style.display = isActive ? 'block' : 'none';
+                    pane.setAttribute('aria-hidden', !isActive);
+                });
+                
+                // Reinitialize collapsibles for the active tab
+                this.initializeCollapsibles();
+            }
         
-        // --- Funció de Collapsible/Accordion Header ---
-        function setupCollapsibles() {
-            document.querySelectorAll('.collapsible-header').forEach(header => {
+            initializeCollapsibles() {
+                document.querySelectorAll('.collapsible-header').forEach(header => {
+                    const targetId = header.dataset.target;
+                    const content = document.getElementById(targetId);
+
+                    if (content) {
+                        const isAppsCollapsible = targetId === 'recommended-apps-links';
+                        const parentPane = header.closest('[role="tabpanel"]');
+
+                        // Initialize state: only Apps in Utilities tab open by default
+                        if (isAppsCollapsible && parentPane && parentPane.id === 'tab-utilitats') {
+                            content.classList.add('is-expanded');
+                            header.classList.add('is-expanded');
+                            header.setAttribute('aria-expanded', 'true');
+                        } else {
+                            content.classList.remove('is-expanded');
+                            header.classList.remove('is-expanded');
+                            header.setAttribute('aria-expanded', 'false');
+                        }
+                    }
+
+                    // Remove existing listeners to avoid duplicates
+                    header.removeEventListener('click', this.handleCollapsibleClick);
+                    header.removeEventListener('keydown', this.handleCollapsibleKeydown);
+                    
+                    // Add event listeners
+                    header.addEventListener('click', (e) => this.handleCollapsibleClick(e));
+                    header.addEventListener('keydown', (e) => this.handleCollapsibleKeydown(e));
+                });
+            }
+
+            handleCollapsibleClick(event) {
+                const header = event.currentTarget;
+                this.toggleCollapsible(header);
+            }
+            
+            handleCollapsibleKeydown(event) {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    this.toggleCollapsible(event.currentTarget);
+                }
+            }
+            
+            toggleCollapsible(header) {
                 const targetId = header.dataset.target;
                 const content = document.getElementById(targetId);
+                const activePane = header.closest('[role="tabpanel"]');
+                
+                // Close other collapsibles in the same tab
+                if (activePane) {
+                    activePane.querySelectorAll('.collapsible-content.is-expanded').forEach(expandedContent => {
+                        if (expandedContent.id !== targetId) {
+                            expandedContent.classList.remove('is-expanded');
+                            const expandedHeader = expandedContent.previousElementSibling;
+                            if (expandedHeader && expandedHeader.classList.contains('collapsible-header')) {
+                                expandedHeader.classList.remove('is-expanded');
+                                expandedHeader.setAttribute('aria-expanded', 'false');
+                            }
+                        }
+                    });
+                }
 
                 if (content) {
-                    const isAppsCollapsible = targetId === 'recommended-apps-links';
-                    const parentPane = header.closest('.tab-pane');
-
-                    // Reinicialitzar estat: només les Apps de la pestanya Utilitats obertes per defecte
-                    if (isAppsCollapsible && parentPane && parentPane.id === 'tab-utilitats') {
-                        content.classList.add('is-expanded');
-                        header.classList.add('is-expanded');
-                    } else {
-                        content.classList.remove('is-expanded');
-                        header.classList.remove('is-expanded');
-                    }
+                    const isExpanded = content.classList.toggle('is-expanded');
+                    header.classList.toggle('is-expanded', isExpanded);
+                    header.setAttribute('aria-expanded', isExpanded);
                 }
-
-                // Evitar múltiples listeners
-                header.removeEventListener('click', handleCollapsibleClick);
-                header.addEventListener('click', handleCollapsibleClick);
-            });
-        }
-
-        function handleCollapsibleClick(event) {
-            const header = event.currentTarget;
-            const targetId = header.dataset.target;
-            const content = document.getElementById(targetId);
-            const activePane = header.closest('.tab-pane');
-            
-            // Tancar altres collapsibles de la mateixa pestanya
-            if (activePane) {
-                activePane.querySelectorAll('.collapsible-content.is-expanded').forEach(expandedContent => {
-                    if (expandedContent.id !== targetId) {
-                        expandedContent.classList.remove('is-expanded');
-                        if (expandedContent.previousElementSibling) {
-                            expandedContent.previousElementSibling.classList.remove('is-expanded');
-                        }
-                    }
-                });
             }
 
-            if (content) {
-                content.classList.toggle('is-expanded');
-            }
-            header.classList.toggle('is-expanded');
-        }
-
-        // --- Funció per gestionar la Cerca i Filtre al Modal ---
-        function filterLinks(filterCategory = null) {
-            const searchValue = searchInputModal.value.toLowerCase().trim();
-            resultsList.innerHTML = '';
-            let foundCount = 0;
-            
-            // Determinar filtre actiu
-            let currentFilter = filterCategory || document.querySelector('#searchModal .filter-btn.bg-blue-500')?.dataset.filter || 'all';
-
-            if (filterCategory) {
-                filterButtons.forEach(btn => {
-                    btn.classList.remove('bg-blue-500', 'text-white');
-                    btn.classList.add('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-                    if (btn.dataset.filter === currentFilter) {
-                        btn.classList.add('bg-blue-500', 'text-white');
-                        btn.classList.remove('bg-gray-200', 'text-gray-700', 'hover:bg-gray-300');
-                    }
-                });
-            }
-
-            linkItems.forEach(item => {
-                const titleElement = item.querySelector('h2') || item.querySelector('span:not(.icon)') || item.querySelector('.text-base.font-bold');
-                const descriptionElement = item.querySelector('p:not(.text-gray-400)') || item.querySelector('.is-size-7');
-
-                const title = titleElement ? titleElement.textContent.toLowerCase() : '';
-                const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
-                const categories = item.dataset.category || '';
+            filterLinks() {
+                if (!this.elements.searchInput || !this.elements.resultsList) return;
                 
-                let isVisibleBySearch = true;
-                if (searchValue.length > 0) {
-                    isVisibleBySearch = title.includes(searchValue) || description.includes(searchValue) || categories.includes(searchValue);
-                }
+                const searchValue = this.elements.searchInput.value.toLowerCase().trim();
+                this.elements.resultsList.innerHTML = '';
+                let foundCount = 0;
+                
+                this.linkItems.forEach(item => {
+                    const titleElement = item.querySelector('h3') || item.querySelector('h2') || item.querySelector('span:not(.icon)') || item.querySelector('.font-bold');
+                    const descriptionElement = item.querySelector('p:not([style*="color: var(--color-muted)"])') || item.querySelector('.text-sm');
 
-                let isVisibleByFilter = true;
-                if (currentFilter !== 'all') {
-                    isVisibleByFilter = categories.includes(currentFilter);
-                }
-
-                if (isVisibleBySearch && isVisibleByFilter) {
-                    let itemToClone;
+                    const title = titleElement ? titleElement.textContent.toLowerCase() : '';
+                    const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
+                    const categories = item.dataset.category || '';
                     
-                    if (item.closest('.highlighted-links')) {
-                        // Clonar la targeta sencera del Hero
-                        itemToClone = item.cloneNode(true);
-                        itemToClone.classList.add('mb-4');
-                        itemToClone.classList.remove('link-item');
-                        
-                        const aTag = itemToClone.querySelector('a');
-                        if(aTag) {
-                            aTag.classList.remove('hero-card');
-                            aTag.classList.add('link-button', 'w-full', 'p-4', 'flex', 'items-center');
-                            
-                            // Adaptar icona i text
-                            const iconSymbol = aTag.querySelector('.icon-symbol');
-                            if (iconSymbol) {
-                                iconSymbol.classList.remove('icon-symbol');
-                                iconSymbol.classList.add('icon', 'text-2xl');
-                                iconSymbol.style.marginRight = '1.2rem';
-                                iconSymbol.style.color = 'var(--color-primary)'; 
-                                
-                                // Assegurar que les icones Lucide del Hero es renderitzen
-                                const lucideIcon = iconSymbol.querySelector('[data-lucide]');
-                                if(lucideIcon) {
-                                     lucideIcon.setAttribute('data-lucide', lucideIcon.getAttribute('data-lucide')); // Forçar re-renderitzat
-                                }
-                            }
-
-                            const h2 = aTag.querySelector('h2');
-                            if (h2) { h2.classList.replace('text-xl', 'text-base'); h2.classList.add('font-semibold'); }
-                            const p = aTag.querySelector('p');
-                            if (p) { p.classList.replace('text-sm', 'text-xs'); }
-                            
-                            // Eliminar hover del modal
-                            aTag.classList.remove('hover:shadow-xl', 'hover:scale-[1.02]');
-                        }
-                        
-                        // Embolcallar amb un div per replicar la llista de botons
-                        const tempWrapper = document.createElement('div');
-                        tempWrapper.appendChild(itemToClone);
-                        itemToClone = tempWrapper;
-                        
-                    } else {
-                        // Si és un enllaç estàndard (botó o div d'app)
-                        itemToClone = item.cloneNode(true);
-                        itemToClone.classList.add('mb-4'); 
-                        
-                        // Netejar classes d'espaiat de l'element original
-                        itemToClone.classList.remove('link-item'); 
+                    let isVisibleBySearch = true;
+                    if (searchValue.length > 0) {
+                        isVisibleBySearch = title.includes(searchValue) || 
+                                          description.includes(searchValue) || 
+                                          categories.includes(searchValue);
                     }
-                    
-                    // Aplicar configuració de vista compacta si està activa
-                    const actualItem = itemToClone.querySelector('a') || itemToClone;
-                    
-                    if (body.classList.contains('compact-view-active')) {
-                        const subtitle = actualItem.querySelector('.text-sm') || actualItem.querySelector('.is-size-7');
-                        if (subtitle) subtitle.style.display = 'none';
-                        
-                        const appLinks = actualItem.querySelector('.app-links');
-                        if (appLinks) {
-                            const desc = actualItem.querySelector('.is-size-7');
-                            if (desc) desc.style.display = 'none';
-                            appLinks.style.marginTop = '0';
+
+                    let isVisibleByFilter = true;
+                    if (this.currentActiveFilter !== 'all') {
+                        isVisibleByFilter = categories.includes(this.currentActiveFilter);
+                    }
+
+                    if (isVisibleBySearch && isVisibleByFilter) {
+                        const clonedItem = this.createSearchResultItem(item);
+                        if (clonedItem) {
+                            this.elements.resultsList.appendChild(clonedItem);
+                            foundCount++;
                         }
-                    } 
+                    }
+                });
 
-                    resultsList.appendChild(itemToClone);
-                    foundCount++;
+                this.updateSearchResults(foundCount, searchValue);
+                this.updateClearButton(searchValue);
+                this.initializeLucideIcons();
+            }
+            
+            createSearchResultItem(item) {
+                let itemToClone;
+                
+                if (item.closest('.highlighted-links')) {
+                    // Clone hero card
+                    itemToClone = item.cloneNode(true);
+                    itemToClone.classList.add('mb-4');
+                    itemToClone.classList.remove('link-item');
+                    
+                    const linkElement = itemToClone.querySelector('a');
+                    if (linkElement) {
+                        linkElement.classList.remove('hero-card', 'p-6');
+                        linkElement.classList.add('link-button', 'w-full', 'p-4', 'flex', 'items-center', 'gap-4');
+                        
+                        // Adapt icon and text
+                        const iconSymbol = linkElement.querySelector('.icon-symbol');
+                        if (iconSymbol) {
+                            iconSymbol.classList.remove('icon-symbol');
+                            iconSymbol.classList.add('icon');
+                            iconSymbol.style.marginRight = '0';
+                        }
+
+                        const heading = linkElement.querySelector('h3');
+                        if (heading) {
+                            heading.classList.remove('text-xl');
+                            heading.classList.add('text-base', 'font-semibold');
+                        }
+                        
+                        const description = linkElement.querySelector('p');
+                        if (description) {
+                            description.classList.remove('text-sm');
+                            description.classList.add('text-xs');
+                        }
+                    }
+                } else {
+                    // Clone standard link
+                    itemToClone = item.cloneNode(true);
+                    itemToClone.classList.add('mb-4');
+                    itemToClone.classList.remove('link-item');
                 }
-            });
+                
+                // Apply compact view if active
+                if (this.elements.body.classList.contains('compact-view-active')) {
+                    const subtitle = itemToClone.querySelector('.text-sm, .is-size-7');
+                    if (subtitle) subtitle.style.display = 'none';
+                }
 
-            if (foundCount === 0) {
-                searchPlaceholder.textContent = `❌ No s'ha trobat cap enllaç per "${searchValue || currentFilter}".`;
-                searchPlaceholder.style.display = 'block';
-            } else {
-                searchPlaceholder.style.display = 'none';
+                return itemToClone;
             }
             
-            clearSearchInputBtn.style.display = (searchValue.length > 0) ? 'block' : 'none';
+            updateSearchResults(foundCount, searchValue) {
+                if (!this.elements.searchPlaceholder) return;
+                
+                if (foundCount === 0) {
+                    const query = searchValue || this.currentActiveFilter;
+                    this.elements.searchPlaceholder.textContent = `❌ No s'ha trobat cap resultat per "${query}".`;
+                    this.elements.searchPlaceholder.style.display = 'block';
+                } else {
+                    this.elements.searchPlaceholder.style.display = 'none';
+                }
+            }
             
-            // Important: Re-renderitzar Lucide Icons als resultats de cerca
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                 lucide.createIcons();
+            updateClearButton(searchValue) {
+                if (this.elements.clearSearchBtn) {
+                    this.elements.clearSearchBtn.style.display = searchValue.length > 0 ? 'block' : 'none';
+                }
+            }
+            
+            setFilter(filterCategory) {
+                this.currentActiveFilter = filterCategory;
+                
+                // Update filter button states
+                this.elements.filterButtons.forEach(btn => {
+                    const isActive = btn.dataset.filter === filterCategory;
+                    btn.setAttribute('aria-pressed', isActive);
+                    
+                    if (isActive) {
+                        btn.style.backgroundColor = 'var(--color-primary)';
+                        btn.style.color = 'white';
+                    } else {
+                        btn.style.backgroundColor = 'var(--color-surface)';
+                        btn.style.color = 'var(--color-text)';
+                    }
+                });
+                
+                this.filterLinks();
+            }
+
+
+            toggleCompactView() {
+                if (!this.elements.body || !this.elements.compactViewToggle) return;
+                
+                this.elements.body.classList.toggle('compact-view-active');
+                
+                const icon = this.elements.compactViewToggle.querySelector('[data-lucide]');
+                const isCompact = this.elements.body.classList.contains('compact-view-active');
+                
+                if (icon) {
+                    icon.setAttribute('data-lucide', isCompact ? 'grip-vertical' : 'list');
+                }
+                
+                // Save preference
+                localStorage.setItem('emmca-view', isCompact ? 'compact' : 'standard');
+                
+                // Update button label
+                this.elements.compactViewToggle.setAttribute('aria-label', 
+                    isCompact ? 'Canviar a vista estàndard' : 'Canviar a vista compacta');
+                
+                this.initializeLucideIcons();
+                
+                // Refresh modal if open
+                if (this.elements.searchModal && this.elements.searchModal.style.display === 'flex') {
+                    this.filterLinks();
+                }
+            }
+            
+            toggleDarkMode() {
+                if (!this.elements.body || !this.elements.darkModeToggle) return;
+                
+                this.elements.body.classList.toggle('dark-mode');
+                
+                const icon = this.elements.darkModeToggle.querySelector('[data-lucide]');
+                const isDark = this.elements.body.classList.contains('dark-mode');
+                
+                if (icon) {
+                    icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                }
+                
+                // Save preference
+                localStorage.setItem('emmca-theme', isDark ? 'dark' : 'light');
+                
+                // Update button label
+                this.elements.darkModeToggle.setAttribute('aria-label', 
+                    isDark ? 'Canviar a mode clar' : 'Canviar a mode fosc');
+                
+                this.initializeLucideIcons();
+            }
+
+            toggleSearchModal(show) {
+                if (!this.elements.searchModal || !this.elements.searchInput) return;
+                
+                if (show) {
+                    this.elements.searchModal.style.display = 'flex';
+                    this.elements.searchModal.setAttribute('aria-hidden', 'false');
+                    
+                    // Reset filter and focus
+                    this.setFilter('all');
+                    setTimeout(() => {
+                        this.elements.searchInput.focus();
+                    }, 100);
+                    
+                    // Trap focus in modal
+                    this.trapFocus(this.elements.searchModal);
+                } else {
+                    this.clearSearch();
+                    this.elements.searchModal.style.display = 'none';
+                    this.elements.searchModal.setAttribute('aria-hidden', 'true');
+                    
+                    // Return focus to trigger button
+                    if (this.elements.openSearchBtn) {
+                        this.elements.openSearchBtn.focus();
+                    }
+                }
+            }
+            
+            clearSearch() {
+                if (this.elements.searchInput) {
+                    this.elements.searchInput.value = '';
+                }
+                if (this.elements.resultsList) {
+                    this.elements.resultsList.innerHTML = '';
+                }
+                if (this.elements.clearSearchBtn) {
+                    this.elements.clearSearchBtn.style.display = 'none';
+                }
+                if (this.elements.searchPlaceholder) {
+                    this.elements.searchPlaceholder.textContent = 'Comença a escriure o selecciona un filtre...';
+                    this.elements.searchPlaceholder.style.display = 'block';
+                }
+            }
+            
+            trapFocus(element) {
+                const focusableElements = element.querySelectorAll(
+                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+                );
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                element.addEventListener('keydown', (e) => {
+                    if (e.key === 'Tab') {
+                        if (e.shiftKey) {
+                            if (document.activeElement === firstElement) {
+                                lastElement.focus();
+                                e.preventDefault();
+                            }
+                        } else {
+                            if (document.activeElement === lastElement) {
+                                firstElement.focus();
+                                e.preventDefault();
+                            }
+                        }
+                    }
+                });
+            }
+            
+            handleTabKeydown(event) {
+                const tabs = Array.from(this.tabButtons);
+                const currentIndex = tabs.indexOf(event.target);
+                
+                switch (event.key) {
+                    case 'ArrowLeft':
+                        event.preventDefault();
+                        const prevIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+                        tabs[prevIndex].focus();
+                        break;
+                    case 'ArrowRight':
+                        event.preventDefault();
+                        const nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+                        tabs[nextIndex].focus();
+                        break;
+                    case 'Home':
+                        event.preventDefault();
+                        tabs[0].focus();
+                        break;
+                    case 'End':
+                        event.preventDefault();
+                        tabs[tabs.length - 1].focus();
+                        break;
+                }
+            }
+            
+            handleGlobalKeydown(event) {
+                // Global keyboard shortcuts
+                if (event.ctrlKey || event.metaKey) {
+                    switch (event.key) {
+                        case 'k':
+                            event.preventDefault();
+                            this.toggleSearchModal(true);
+                            break;
+                    }
+                }
+                
+                // Escape key handling
+                if (event.key === 'Escape') {
+                    if (this.elements.searchModal && this.elements.searchModal.style.display === 'flex') {
+                        this.toggleSearchModal(false);
+                    }
+                }
+            }
+            
+            initializeTabs() {
+                // Set up initial tab state
+                this.switchTab('tab-teoria');
+            }
+            
+            loadUserPreferences() {
+                // Load dark mode preference
+                if (localStorage.getItem('emmca-theme') === 'dark') {
+                    this.elements.body.classList.add('dark-mode');
+                    const icon = this.elements.darkModeToggle?.querySelector('[data-lucide]');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', 'sun');
+                    }
+                }
+
+                // Load compact view preference
+                if (localStorage.getItem('emmca-view') === 'compact') {
+                    this.elements.body.classList.add('compact-view-active');
+                    const icon = this.elements.compactViewToggle?.querySelector('[data-lucide]');
+                    if (icon) {
+                        icon.setAttribute('data-lucide', 'grip-vertical');
+                    }
+                }
+            }
+            
+            initializeLucideIcons() {
+                // Initialize Lucide icons with error handling
+                try {
+                    if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                        lucide.createIcons();
+                    }
+                } catch (error) {
+                    console.warn('Failed to initialize Lucide icons:', error);
+                }
             }
         }
-
-
-        // --- Funció de Vista Compacta (Toggle) ---
-        function toggleCompactView() {
-            body.classList.toggle('compact-view-active');
-            
-            const icon = compactViewToggle.querySelector('[data-lucide]');
-            if (body.classList.contains('compact-view-active')) {
-                localStorage.setItem('emca-view', 'compact');
-                icon.setAttribute('data-lucide', 'grip-vertical');
-            } else {
-                localStorage.setItem('emca-view', 'standard');
-                icon.setAttribute('data-lucide', 'list');
-            }
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                 lucide.createIcons(); // Re-renderitzar Lucide
-            }
-
-
-            if (searchModal.style.display === 'flex') {
-                filterLinks(); // Refrescar modal si està obert
-            }
-        }
-
-        // --- Inicialització i Assignació d'esdeveniments ---
         
-        // Cerca
-        openSearchModalBtn.addEventListener('click', () => toggleSearchModal(true));
-        closeSearchModalBtn.addEventListener('click', () => toggleSearchModal(false));
-        searchModal.addEventListener('click', (e) => {
-            if (e.target.id === 'searchModal') { toggleSearchModal(false); }
-        });
-        searchInputModal.addEventListener('keyup', () => filterLinks());
-        clearSearchInputBtn.addEventListener('click', () => {
-            searchInputModal.value = '';
-            filterLinks(); 
-        });
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => { filterLinks(btn.dataset.filter); });
-        });
-        
-        // Modal Funció (Obrir/Tancar)
-        function toggleSearchModal(show) {
-            if (show) {
-                searchModal.style.display = 'flex';
-                // Reset del filtre al obrir
-                filterLinks('all'); 
-                setTimeout(() => searchInputModal.focus(), 100); 
-            } else {
-                searchInputModal.value = '';
-                resultsList.innerHTML = ''; 
-                clearSearchInputBtn.style.display = 'none'; 
-                searchPlaceholder.textContent = 'Comença a escriure o selecciona un filtre...';
-                searchPlaceholder.style.display = 'block';
-                searchModal.style.display = 'none';
-            }
-        }
-
-
-        // Vista Compacta
-        compactViewToggle.addEventListener('click', toggleCompactView);
-
-        // Mode Fosc
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const icon = darkModeToggle.querySelector('[data-lucide]');
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('emca-theme', 'dark');
-                icon.setAttribute('data-lucide', 'sun'); // Sol en mode fosc
-            } else {
-                localStorage.setItem('emca-theme', 'light');
-                icon.setAttribute('data-lucide', 'moon'); // Lluna en mode clar
-            }
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                 lucide.createIcons(); // Re-renderitzar Lucide
-            }
-        });
-
-        // Assignació d'esdeveniments per a les pestanyes
-        tabHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                const targetId = header.dataset.target;
-                switchTab(targetId);
-            });
-        });
-
-        // Carregar la preferència i inicialitzar en carregar
-        window.addEventListener('DOMContentLoaded', () => {
-            // Carregar Mode Fosc
-            if (localStorage.getItem('emca-theme') === 'dark') {
-                document.body.classList.add('dark-mode');
-                darkModeToggle.querySelector('[data-lucide]').setAttribute('data-lucide', 'sun');
-            }
-
-            // Carregar Vista Compacta
-            if (localStorage.getItem('emca-view') === 'compact') {
-                body.classList.add('compact-view-active');
-                compactViewToggle.querySelector('[data-lucide]').setAttribute('data-lucide', 'grip-vertical');
-            }
-            
-            // Activar la primera pestanya i inicialitzar collapsibles
-            switchTab('tab-teoria');
-            
-            // CRÍTIC: Inicialitzar Lucide Icons després de carregar tot el DOM
-            if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                 lucide.createIcons();
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const app = new EMMCAApp();
+                // Show the app after initialization
+                setTimeout(() => {
+                    document.body.classList.add('loaded');
+                }, 300);
+            } catch (error) {
+                console.error('Failed to initialize EMMCA Links application:', error);
+                // Basic fallback - still show the page
+                document.body.classList.add('loaded');
             }
         });
 
