@@ -696,6 +696,117 @@
         .loading-app.loaded .loading-spinner {
             display: none;
         }
+        
+        /* Enhanced micro-interactions */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 5px rgba(52, 152, 219, 0.3); }
+            50% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.6); }
+        }
+        
+        @keyframes slide-in {
+            from { 
+                opacity: 0; 
+                transform: translateY(10px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        .animate-breathe {
+            animation: breathe 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .animate-slide-in {
+            animation: slide-in 0.3s ease-out;
+        }
+        
+        /* Success feedback */
+        .success-feedback {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--color-success);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            transform: translateX(100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: transform var(--transition-normal), opacity var(--transition-normal), visibility var(--transition-normal);
+        }
+        
+        .success-feedback.show {
+            transform: translateX(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Loading progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--color-border);
+            z-index: 1000;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+
+        
+        /* Search suggestions */
+        .search-suggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-top: none;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 10;
+        }
+        
+        .search-suggestion {
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--color-border);
+            transition: background-color var(--transition-fast);
+        }
+        
+        .search-suggestion:hover,
+        .search-suggestion.highlighted {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .search-suggestion:last-child {
+            border-bottom: none;
+        }
+        
+
     </style>
 </head>
 <body class="min-h-screen antialiased loading-app">
@@ -1247,7 +1358,7 @@
                 Cerca i Filtres
             </h2>
             
-            <!-- Search input -->
+            <!-- Enhanced search input with suggestions -->
             <div class="mb-6">
                 <label for="searchInputModal" class="sr-only">Cerca recursos</label>
                 <div class="relative">
@@ -1256,7 +1367,8 @@
                         type="text" 
                         id="searchInputModal" 
                         placeholder="Cerca per títol, descripció o categoria..."
-                        aria-describedby="search-help">
+                        aria-describedby="search-help"
+                        autocomplete="off">
                     <span class="absolute left-3 top-1/2 transform -translate-y-1/2" style="color: var(--color-muted);" aria-hidden="true">
                         <i data-lucide="search"></i>
                     </span>
@@ -1268,9 +1380,14 @@
                         type="button">
                         <i data-lucide="x" aria-hidden="true"></i>
                     </button>
+                    
+                    <!-- Search suggestions dropdown -->
+                    <div id="searchSuggestions" class="search-suggestions" style="display: none;" role="listbox">
+                        <!-- Suggestions will be populated dynamically -->
+                    </div>
                 </div>
                 <p id="search-help" class="text-sm mt-2" style="color: var(--color-muted);">
-                    Escriu per cercar o utilitza els filtres a continuació
+                    Escriu per cercar o utilitza els filtres. Prem Tab per navegar pels suggeriments.
                 </p>
             </div>
 
@@ -1325,6 +1442,19 @@
         </div>
     </div>
 
+    <!-- Success feedback notification -->
+    <div id="successFeedback" class="success-feedback">
+        <div class="flex items-center gap-2">
+            <i data-lucide="check-circle" aria-hidden="true"></i>
+            <span>Operació completada!</span>
+        </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div id="progressBar" class="progress-bar" style="display: none;">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+    </div>
+
     <script>
         // Enhanced error handling and initialization
         class EMMCAApp {
@@ -1343,6 +1473,7 @@
                     body: document.body,
                     searchModal: document.getElementById('searchModal'),
                     searchInput: document.getElementById('searchInputModal'),
+                    searchSuggestions: document.getElementById('searchSuggestions'),
                     openSearchBtn: document.getElementById('openSearchModal'),
                     closeSearchBtn: document.getElementById('closeSearchModal'),
                     clearSearchBtn: document.getElementById('clearSearchInput'),
@@ -1350,12 +1481,15 @@
                     searchPlaceholder: document.getElementById('searchPlaceholder'),
                     filterButtons: document.querySelectorAll('.filter-btn'),
                     darkModeToggle: document.getElementById('darkModeToggle'),
-                    compactViewToggle: document.getElementById('compactViewToggle')
+                    compactViewToggle: document.getElementById('compactViewToggle'),
+                    successFeedback: document.getElementById('successFeedback'),
+                    progressBar: document.getElementById('progressBar'),
+                    progressBarFill: document.getElementById('progressBarFill')
                 };
                 
                 // Check for missing elements
                 for (const [key, element] of Object.entries(elements)) {
-                    if (!element && !key.includes('Button')) {
+                    if (!element && !key.includes('Button') && !key.includes('Suggestions')) {
                         console.warn(`Element not found: ${key}`);
                     }
                 }
@@ -1368,6 +1502,8 @@
                 this.loadUserPreferences();
                 this.initializeTabs();
                 this.initializeCollapsibles();
+                this.initializeSearchSuggestions();
+                this.initializeMicroInteractions();
                 this.initializeLucideIcons();
             }
 
@@ -1814,6 +1950,43 @@
                 this.switchTab('tab-teoria');
             }
             
+            setupEventListeners() {
+                // Search functionality
+                this.elements.openSearchBtn?.addEventListener('click', () => this.toggleSearchModal(true));
+                this.elements.closeSearchBtn?.addEventListener('click', () => this.toggleSearchModal(false));
+                this.elements.clearSearchBtn?.addEventListener('click', () => this.clearSearch());
+                this.elements.searchInput?.addEventListener('input', () => this.handleSearchInput());
+                this.elements.searchInput?.addEventListener('keydown', (e) => this.handleSearchKeydown(e));
+                
+                // Filter buttons
+                this.elements.filterButtons.forEach(btn => {
+                    btn.addEventListener('click', () => this.setFilter(btn.dataset.filter));
+                });
+                
+                // UI toggles
+                this.elements.darkModeToggle?.addEventListener('click', () => this.toggleDarkMode());
+                this.elements.compactViewToggle?.addEventListener('click', () => this.toggleCompactView());
+                
+                // Tab navigation
+                this.tabButtons.forEach(button => {
+                    button.addEventListener('click', () => this.switchTab(button.dataset.target));
+                    button.addEventListener('keydown', (e) => this.handleTabKeydown(e));
+                });
+                
+                // Global keyboard shortcuts
+                document.addEventListener('keydown', (e) => this.handleGlobalKeydown(e));
+                
+                // Modal backdrop
+                this.elements.searchModal?.addEventListener('click', (e) => {
+                    if (e.target.id === 'searchModal') this.toggleSearchModal(false);
+                });
+                
+                // Enhanced link interactions
+                document.querySelectorAll('.hero-card, .link-button').forEach(link => {
+                    link.addEventListener('click', (e) => this.handleLinkClick(e, link));
+                });
+            }
+
             loadUserPreferences() {
                 // Load dark mode preference
                 if (localStorage.getItem('emmca-theme') === 'dark') {
@@ -1834,6 +2007,206 @@
                 }
             }
             
+            initializeSearchSuggestions() {
+                this.searchSuggestions = [
+                    'teoria musical', 'intervals', 'acords', 'lectura', 'dictats auditius',
+                    'clau de sol', 'clau de fa', 'producció musical', 'YouTube', 'podcast',
+                    'apps mòbil', 'metrònom', 'temporitzador', 'harmonia', 'jazz',
+                    'piano', 'guitarra', 'bateria', 'baixe', 'saxòfon', 'composició'
+                ];
+                this.currentSuggestionIndex = -1;
+            }
+            
+            initializeMicroInteractions() {
+                // Add breathing animation to active elements
+                this.addBreathingAnimation();
+                
+                // Initialize progress tracking
+                this.progressSteps = 0;
+                this.totalSteps = this.linkItems.length;
+            }
+            
+            handleSearchInput() {
+                const query = this.elements.searchInput.value.toLowerCase().trim();
+                
+                if (query.length > 0) {
+                    this.showSearchSuggestions(query);
+                    this.filterLinks();
+                } else {
+                    this.hideSearchSuggestions();
+                    this.filterLinks();
+                }
+            }
+            
+            showSearchSuggestions(query) {
+                if (!this.elements.searchSuggestions) return;
+                
+                const filteredSuggestions = this.searchSuggestions
+                    .filter(suggestion => suggestion.toLowerCase().includes(query))
+                    .slice(0, 5);
+                
+                if (filteredSuggestions.length > 0) {
+                    this.elements.searchSuggestions.innerHTML = filteredSuggestions
+                        .map((suggestion, index) => 
+                            `<div class="search-suggestion" data-index="${index}" role="option">
+                                ${suggestion}
+                            </div>`
+                        ).join('');
+                    
+                    this.elements.searchSuggestions.style.display = 'block';
+                    
+                    // Add click handlers to suggestions
+                    this.elements.searchSuggestions.querySelectorAll('.search-suggestion').forEach(item => {
+                        item.addEventListener('click', () => {
+                            this.elements.searchInput.value = item.textContent.trim();
+                            this.hideSearchSuggestions();
+                            this.filterLinks();
+                        });
+                    });
+                } else {
+                    this.hideSearchSuggestions();
+                }
+            }
+            
+            hideSearchSuggestions() {
+                if (this.elements.searchSuggestions) {
+                    this.elements.searchSuggestions.style.display = 'none';
+                }
+                this.currentSuggestionIndex = -1;
+            }
+            
+            handleSearchKeydown(event) {
+                const suggestions = this.elements.searchSuggestions?.querySelectorAll('.search-suggestion');
+                
+                switch (event.key) {
+                    case 'ArrowDown':
+                        event.preventDefault();
+                        if (suggestions && suggestions.length > 0) {
+                            this.currentSuggestionIndex = Math.min(this.currentSuggestionIndex + 1, suggestions.length - 1);
+                            this.highlightSuggestion(suggestions);
+                        }
+                        break;
+                    case 'ArrowUp':
+                        event.preventDefault();
+                        if (suggestions && suggestions.length > 0) {
+                            this.currentSuggestionIndex = Math.max(this.currentSuggestionIndex - 1, -1);
+                            this.highlightSuggestion(suggestions);
+                        }
+                        break;
+                    case 'Enter':
+                        if (this.currentSuggestionIndex >= 0 && suggestions) {
+                            event.preventDefault();
+                            const selectedSuggestion = suggestions[this.currentSuggestionIndex];
+                            this.elements.searchInput.value = selectedSuggestion.textContent.trim();
+                            this.hideSearchSuggestions();
+                            this.filterLinks();
+                        }
+                        break;
+                    case 'Escape':
+                        this.hideSearchSuggestions();
+                        break;
+                }
+            }
+            
+            highlightSuggestion(suggestions) {
+                suggestions.forEach((suggestion, index) => {
+                    suggestion.classList.toggle('highlighted', index === this.currentSuggestionIndex);
+                });
+            }
+            
+            showSuccessFeedback(message) {
+                if (!this.elements.successFeedback) return;
+                
+                const messageElement = this.elements.successFeedback.querySelector('span');
+                if (messageElement) {
+                    messageElement.textContent = message;
+                }
+                
+                this.elements.successFeedback.classList.add('show');
+                
+                setTimeout(() => {
+                    this.elements.successFeedback.classList.remove('show');
+                }, 3000);
+            }
+            
+            showProgress(percentage) {
+                if (!this.elements.progressBar || !this.elements.progressBarFill) return;
+                
+                this.elements.progressBar.style.display = 'block';
+                this.elements.progressBarFill.style.width = `${percentage}%`;
+                
+                if (percentage >= 100) {
+                    setTimeout(() => {
+                        this.elements.progressBar.style.display = 'none';
+                    }, 500);
+                }
+            }
+            
+            handleLinkClick(event, linkElement) {
+                // Add visual feedback for external links
+                const isExternal = linkElement.getAttribute('target') === '_blank';
+                
+                if (isExternal) {
+                    // Show loading progress
+                    this.showProgress(30);
+                    
+                    // Add pulse animation
+                    linkElement.classList.add('animate-pulse-glow');
+                    
+                    // Simulate loading completion
+                    setTimeout(() => {
+                        this.showProgress(100);
+                        linkElement.classList.remove('animate-pulse-glow');
+                        this.showSuccessFeedback('Enllaç obert en nova pestanya');
+                    }, 800);
+                }
+            }
+            
+            addBreathingAnimation() {
+                // Add subtle breathing animation to active tools
+                const activeCards = document.querySelectorAll('.hero-card');
+                let delay = 0;
+                
+                activeCards.forEach(card => {
+                    setTimeout(() => {
+                        card.classList.add('animate-breathe');
+                    }, delay);
+                    delay += 200; // Stagger the animations
+                });
+            }
+            
+            switchTab(targetId) {
+                // Remove active state from all tabs
+                this.tabButtons.forEach(button => {
+                    button.classList.remove('is-active');
+                    button.setAttribute('aria-selected', 'false');
+                });
+                
+                // Hide all tab panels
+                this.tabPanes.forEach(pane => {
+                    pane.style.display = 'none';
+                    pane.setAttribute('aria-hidden', 'true');
+                });
+                
+                // Activate selected tab
+                const activeButton = document.querySelector(`[data-target="${targetId}"]`);
+                const activePane = document.getElementById(targetId);
+                
+                if (activeButton && activePane) {
+                    activeButton.classList.add('is-active');
+                    activeButton.setAttribute('aria-selected', 'true');
+                    
+                    activePane.style.display = 'block';
+                    activePane.setAttribute('aria-hidden', 'false');
+                    
+                    // Add slide-in animation
+                    activePane.classList.add('animate-slide-in');
+                    
+                    // Reinitialize collapsibles for the new tab
+                    this.initializeCollapsibles();
+                }
+            }
+
             initializeLucideIcons() {
                 // Initialize Lucide icons with error handling
                 try {
