@@ -331,7 +331,7 @@
             flex-shrink: 0;
         }
 
-        /* Modal Cerca */
+        /* Modal Generics */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -398,6 +398,32 @@
             color: var(--text-muted);
             font-size: 0.875rem;
             margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-book-btn {
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-md);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-all);
+        }
+
+        .footer-book-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
         }
 
         .compact-view .hero-card p { display: none; }
@@ -495,7 +521,6 @@
                         </div>
                     </a>
 
-                    <!-- Nous Links Afegits -->
                     <a href="https://emmcaro.github.io/Notes-comuns-alt/" target="_blank" rel="noopener noreferrer" class="hero-card">
                         <div class="hero-card-header">
                             <div class="icon-box"><i data-lucide="git-commit"></i></div>
@@ -721,6 +746,9 @@
         </main>
 
         <footer>
+            <button type="button" class="footer-book-btn" id="openBookModal">
+                <i data-lucide="book-marked"></i> Llibre d'Harmonia Recomanat
+            </button>
             <p>&copy; EMMCA LINKS - Dissenyat per a estudiants de música.</p>
         </footer>
     </div>
@@ -736,6 +764,26 @@
             </div>
             <input type="text" class="search-input" id="searchInput" placeholder="Escriu per cercar qualsevol recurs...">
             <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Modal Llibre d'Harmonia -->
+    <div class="modal-overlay" id="bookModal" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">Llibre d'Harmonia Recomanat</h3>
+                <button type="button" id="closeBookModal" style="background: none; border: none; cursor: pointer; color: var(--text-muted);" aria-label="Tancar finestra">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div style="text-align: center; padding: 1rem 0;">
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">
+                    Consulta el llibre d'harmonia directament a Amazon per ampliar els teus coneixements teòrics.
+                </p>
+                <a href="https://www.amazon.es/dp/B0G3671CNB" target="_blank" rel="noopener noreferrer" class="link-button" style="justify-content: center; background: var(--primary); color: #fff; text-decoration: none;">
+                    <i data-lucide="shopping-cart" style="color: #fff;"></i> Veure el llibre a Amazon
+                </a>
+            </div>
         </div>
     </div>
 
@@ -804,8 +852,26 @@
                 if (e.target === searchModal) closeModal();
             });
 
+            // Modal Llibre d'Harmonia Logic
+            const bookModal = document.getElementById('bookModal');
+            const openBook = document.getElementById('openBookModal');
+            const closeBook = document.getElementById('closeBookModal');
+
+            const openBModal = () => bookModal.classList.add('is-active');
+            const closeBModal = () => bookModal.classList.remove('is-active');
+
+            openBook.addEventListener('click', openBModal);
+            closeBook.addEventListener('click', closeBModal);
+
+            bookModal.addEventListener('click', (e) => {
+                if (e.target === bookModal) closeBModal();
+            });
+
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && searchModal.classList.contains('is-active')) closeModal();
+                if (e.key === 'Escape') {
+                    if (searchModal.classList.contains('is-active')) closeModal();
+                    if (bookModal.classList.contains('is-active')) closeBModal();
+                }
             });
 
             // Index Link Data for Search
