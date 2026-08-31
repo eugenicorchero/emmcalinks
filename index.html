@@ -8,347 +8,79 @@
     <meta name="keywords" content="música, educació musical, teoria musical, EMMCA, recursos educatius, dictats auditius, lectura musical">
     <meta name="author" content="Eugeni Corchero">
     
-    <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://unpkg.com">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons with fallback -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" onerror="this.onerror=null;console.warn('Lucide icons failed to load')"></script>
-    
-    <!-- Optimized fonts and CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* CSS Custom Properties for theming */
+        /* CSS Variables */
         :root {
-            --color-primary: #3498db;
-            --color-secondary: #2980b9;
-            --color-text: #2c3e50;
-            --color-bg: #ffffff;
-            --color-surface: #f8fafc;
-            --color-border: #e2e8f0;
-            --color-muted: #64748b;
-            --color-success: #22c55e;
-            --color-warning: #f59e0b;
-            --color-error: #ef4444;
-            
-            /* Spacing and sizing */
-            --header-height: 70px;
-            --border-radius: 0.75rem;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-            
-            /* Transitions */
-            --transition-fast: 150ms ease-in-out;
-            --transition-normal: 200ms ease-in-out;
-            --transition-slow: 300ms ease-in-out;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eeefff;
+            --accent-glow: rgba(79, 70, 229, 0.15);
+            --radius-lg: 1rem;
+            --radius-md: 0.75rem;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-lg: 0 12px 24px -4px rgba(0,0,0,0.08);
+            --transition-all: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Dark mode theme */
         .dark-mode {
-            --color-text: #f1f5f9;
-            --color-bg: #0f172a;
-            --color-surface: #1e293b;
-            --color-border: #334155;
-            --color-muted: #94a3b8;
-            --color-primary: #60a5fa;
-            --color-secondary: #3b82f6;
+            --bg-main: #090d16;
+            --bg-card: #131c2e;
+            --bg-card-hover: #1a263e;
+            --border-color: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-hover: #818cf8;
+            --primary-light: rgba(99, 102, 241, 0.15);
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-lg: 0 12px 24px -4px rgba(0,0,0,0.4);
         }
 
-        /* Base styles */
-        * {
+        /* Base resets */
+        *, *::before, *::after {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
-        
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.6;
-            transition: background-color var(--transition-slow), color var(--transition-slow);
-            scroll-behavior: smooth;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
         }
-        
-        /* Main container */
-        .links-container {
-            padding: 2rem 1.5rem 4rem;
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 4rem;
         }
-        
+
         @media (min-width: 768px) {
-            .links-container {
+            .container {
                 padding: 2.5rem 2rem 5rem;
             }
         }
 
-        /* Hero Card Styling */
-        .hero-card {
-            border: 1px solid var(--color-border);
-            background-color: var(--color-surface);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-sm);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all var(--transition-normal);
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-            opacity: 0;
-            transition: opacity var(--transition-normal);
-            z-index: 1;
-        }
-
-        .hero-card:hover::before {
-            opacity: 1;
-        }
-
-        .hero-card > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--color-primary);
-        }
-        
-        .hero-card:hover h2,
-        .hero-card:hover .icon-symbol {
-            color: white !important;
-        }
-
-        .hero-card h2 {
-            color: var(--color-primary);
-            transition: color var(--transition-normal);
-            font-weight: 600;
-        }
-
-        .hero-card:hover p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .hero-card:focus {
-            outline: 2px solid var(--color-primary);
-            outline-offset: 2px;
-        }
-
-        /* Icon styling */
-        .icon-symbol {
-            font-size: 2.5rem;
-            line-height: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: color var(--transition-normal);
-        }
-        
-        .icon-symbol svg {
-            width: 2.5rem;
-            height: 2.5rem;
-            stroke-width: 1.5;
-        }
-
-        /* Standard link buttons */
-        .link-button {
-            background-color: var(--color-surface);
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            margin-bottom: 0.75rem;
-            padding: 1rem 1.25rem;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            box-shadow: var(--shadow-sm);
-            transition: all var(--transition-normal);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .link-button:hover,
-        .link-button:focus {
-            background-color: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-1px);
-        }
-
-        .link-button:focus {
-            outline: 2px solid var(--color-primary);
-            outline-offset: 2px;
-        }
-
-        .link-button .icon {
-            color: var(--color-primary);
-            transition: color var(--transition-normal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-        
-        .link-button .icon svg {
-            width: 1.25rem;
-            height: 1.25rem;
-            stroke-width: 2;
-        }
-
-        .link-button:hover .icon,
-        .link-button:focus .icon {
-            color: white;
-        }
-
-        /* Header controls */
-        .header-controls {
-            position: fixed;
-            top: 1.25rem;
-            right: 1.25rem;
-            z-index: 50;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .header-controls button {
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 50%;
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-border);
-            color: var(--color-text);
-            box-shadow: var(--shadow-md);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all var(--transition-normal);
-            cursor: pointer;
-        }
-        
-        .header-controls button:hover {
-            background-color: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-            transform: scale(1.05);
-        }
-        
-        .header-controls button:focus {
-            outline: 2px solid var(--color-primary);
-            outline-offset: 2px;
-        }
-        
-        .header-controls button svg {
-            width: 1.125rem;
-            height: 1.125rem;
-            stroke-width: 2;
-        }
-
-        @media (max-width: 768px) {
-            .header-controls {
-                top: 1rem;
-                right: 1rem;
-            }
-            
-            .header-controls button {
-                width: 2.25rem;
-                height: 2.25rem;
-            }
-        }
-
-
-        /* Tabs styling */
-        .tabs-container {
-            margin-bottom: 2rem;
-        }
-        
-        .tabs-container ul {
-            display: flex;
-            justify-content: center;
-            border-bottom: 2px solid var(--color-border);
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            gap: 0.5rem;
-        }
-
-        .tabs-container li {
-            margin-bottom: -2px;
-        }
-
-        .tabs-container button {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            color: var(--color-muted);
-            background: none;
-            border: none;
-            font-weight: 500;
-            font-size: inherit;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
-            transition: all var(--transition-normal);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .tabs-container button:hover {
-            color: var(--color-primary);
-            background-color: var(--color-surface);
-        }
-
-        .tabs-container button:focus {
-            outline: 2px solid var(--color-primary);
-            outline-offset: -2px;
-        }
-
-        .tabs-container button.is-active {
-            color: var(--color-primary);
-            font-weight: 600;
-            background-color: var(--color-surface);
-            border-bottom: 2px solid var(--color-primary);
-        }
-        
-        .tabs-container button .icon svg {
-            width: 1rem;
-            height: 1rem;
-        }
-
-        @media (max-width: 768px) {
-            .tabs-container ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 0;
-            }
-            
-            .tabs-container button {
-                padding: 1rem;
-                border-radius: 0;
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        
-        /* Screen reader only content */
+        /* Skip Link */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -356,1900 +88,630 @@
             padding: 0;
             margin: -1px;
             overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
+            clip: rect(0,0,0,0);
             border: 0;
         }
-        
         .sr-only:focus {
-            position: static;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
             width: auto;
             height: auto;
-            padding: 0.5rem 1rem;
-            margin: 0;
-            overflow: visible;
             clip: auto;
-            white-space: normal;
-        }
-        
-        /* App links styling */
-        .app-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.75rem;
-        }
-        
-        .app-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 0.375rem;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: all var(--transition-normal);
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-md);
             text-decoration: none;
-        }
-        
-        .app-links a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            transform: scale(1.1);
-        }
-        
-        /* Collapsible sections */
-        .collapsible-header {
-            cursor: pointer;
-            padding: 0.75rem 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             font-weight: 600;
-            color: var(--color-text);
-            transition: color var(--transition-normal);
-            border-bottom: 1px solid var(--color-border);
-            user-select: none;
-        }
-        
-        .collapsible-header:hover {
-            color: var(--color-primary);
-        }
-        
-        .collapsible-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height var(--transition-slow) ease-out;
-            padding-top: 0;
-            padding-bottom: 0;
-        }
-        
-        .collapsible-content.is-expanded {
-            max-height: 200vh;
-            padding-top: 1rem;
-            padding-bottom: 0.5rem;
-            transition: max-height var(--transition-slow) ease-in;
-        }
-        
-        .collapsible-header .icon svg {
-            transition: transform var(--transition-normal);
-        }
-        
-        .collapsible-header.is-expanded .icon svg {
-            transform: rotate(180deg);
         }
 
-        /* Search modal */
-        .search-modal {
+        /* Header controls */
+        .header-controls {
             position: fixed;
-            inset: 0;
-            background-color: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(4px);
+            top: 1rem;
+            right: 1rem;
+            z-index: 50;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            padding: 1rem;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 0.35rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
         }
-        
-        .search-modal-content {
-            background-color: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            width: 100%;
-            max-width: 42rem;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: var(--shadow-lg);
+
+        .dark-mode .header-controls {
+            background: rgba(19, 28, 46, 0.8);
         }
-        
-        .search-modal input {
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-border);
-            color: var(--color-text);
-            border-radius: var(--border-radius);
-        }
-        
-        .search-modal input:focus {
-            outline: 2px solid var(--color-primary);
-            outline-offset: -2px;
-            border-color: var(--color-primary);
-        }
-        
-        /* Section titles */
-        .link-item-title {
-            color: var(--color-primary);
-            font-weight: 600;
-            font-size: 1.25rem;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--color-border);
-        }
-        
-        /* Filter buttons */
-        .filter-btn {
-            border: 1px solid var(--color-border);
-            transition: all var(--transition-normal);
-        }
-        
-        .filter-btn:hover {
-            border-color: var(--color-primary);
-            background-color: var(--color-primary);
-            color: white;
-        }
-        
-        /* Compact view */
-        .compact-view-active .hero-card h2 {
-            margin-bottom: 0 !important;
-        }
-        
-        .compact-view-active .hero-card p {
-            display: none !important;
-        }
-        
-        .compact-view-active .link-button .text-sm,
-        .compact-view-active .link-button .is-size-7 {
-            display: none !important;
-        }
-        
-        /* Download button variant */
-        .is-download {
-            background-color: var(--color-success) !important;
-            color: white !important;
-            border-color: var(--color-success) !important;
-        }
-        
-        .is-download .icon {
-            color: white !important;
-        }
-        
-        .is-download:hover {
-            background-color: #16a34a !important;
-            border-color: #16a34a !important;
-        }
-        
-        /* Loading states */
-        .loading {
-            opacity: 0.6;
-            pointer-events: none;
-        }
-        
-        .loading::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: var(--color-surface);
-            border-radius: inherit;
-        }
-        
-        /* Responsive improvements */
-        @media (max-width: 640px) {
-            .links-container {
-                padding: 1rem 1rem 3rem;
-            }
-            
-            /* Hero cards: single column on mobile */
-            .highlighted-links {
-                grid-template-columns: 1fr !important;
-                gap: 1rem;
-            }
-            
-            /* Larger touch targets */
-            .hero-card,
-            .link-button {
-                min-height: 60px;
-                padding: 1.25rem !important;
-            }
-            
-            /* Better text sizing */
-            .hero-card h3 {
-                font-size: 1.125rem;
-            }
-            
-            .hero-card p {
-                font-size: 0.875rem;
-                line-height: 1.4;
-            }
-            
-            /* Modal improvements */
-            .search-modal-content {
-                margin: 1rem;
-                max-height: 85vh;
-                padding: 1.5rem;
-            }
-            
-            /* Icon sizing */
-            .icon-symbol {
-                font-size: 2rem;
-            }
-            
-            .icon-symbol svg {
-                width: 2rem;
-                height: 2rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            /* Extra small screens */
-            .header-controls {
-                top: 0.75rem;
-                right: 0.75rem;
-                gap: 0.25rem;
-            }
-            
-            .header-controls button {
-                width: 2rem;
-                height: 2rem;
-            }
-            
-            .header-controls button svg {
-                width: 1rem;
-                height: 1rem;
-            }
-            
-            /* Title sizing */
-            header h1 {
-                font-size: 2rem !important;
-            }
-            
-            header p {
-                font-size: 1rem;
-            }
-            
-            /* Section headings */
-            section h2 {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            :root {
-                --color-border: #000000;
-            }
-            
-            .dark-mode {
-                --color-border: #ffffff;
-            }
-            
-            .hero-card,
-            .link-button {
-                border-width: 2px;
-            }
-        }
-        
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            
-            .hero-card:hover {
-                transform: none;
-            }
-            
-            .link-button:hover {
-                transform: none;
-            }
-        }
-        
-        /* Focus visible improvements */
-        @media (prefers-reduced-motion: no-preference) {
-            .hero-card:focus-visible,
-            .link-button:focus-visible,
-            .header-controls button:focus-visible {
-                transform: scale(1.02);
-            }
-        }
-        /* Loading state */
-        .loading-app {
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        
-        .loading-app.loaded {
-            opacity: 1;
-        }
-        
-        /* Loading spinner */
-        .loading-spinner {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--color-border);
-            border-top-color: var(--color-primary);
+
+        .header-btn {
+            width: 2.5rem;
+            height: 2.5rem;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
-            z-index: 1000;
-        }
-        
-        @keyframes spin {
-            to {
-                transform: translate(-50%, -50%) rotate(360deg);
-            }
-        }
-        
-        .loading-app.loaded .loading-spinner {
-            display: none;
-        }
-        
-        /* Enhanced micro-interactions */
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-        
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 5px rgba(52, 152, 219, 0.3); }
-            50% { box-shadow: 0 0 20px rgba(52, 152, 219, 0.6); }
-        }
-        
-        @keyframes slide-in {
-            from { 
-                opacity: 0; 
-                transform: translateY(10px); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-            }
-        }
-        
-        .animate-breathe {
-            animation: breathe 3s ease-in-out infinite;
-        }
-        
-        .animate-pulse-glow {
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-        
-        .animate-slide-in {
-            animation: slide-in 0.3s ease-out;
-        }
-        
-        /* Success feedback */
-        .success-feedback {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--color-success);
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            z-index: 1000;
-            transform: translateX(100%);
-            opacity: 0;
-            visibility: hidden;
-            transition: transform var(--transition-normal), opacity var(--transition-normal), visibility var(--transition-normal);
-        }
-        
-        .success-feedback.show {
-            transform: translateX(0);
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        /* Loading progress bar */
-        .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: var(--color-border);
-            z-index: 1000;
-        }
-        
-        .progress-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-        
-
-        
-        /* Search suggestions */
-        .search-suggestions {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-top: none;
-            border-radius: 0 0 var(--border-radius) var(--border-radius);
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 10;
-        }
-        
-        .search-suggestion {
-            padding: 0.75rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            border-bottom: 1px solid var(--color-border);
-            transition: background-color var(--transition-fast);
+            transition: var(--transition-all);
         }
-        
-        .search-suggestion:hover,
-        .search-suggestion.highlighted {
-            background: var(--color-primary);
-            color: white;
-        }
-        
-        .search-suggestion:last-child {
-            border-bottom: none;
-        }
-        
 
+        .header-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Main Header */
+        header {
+            text-align: center;
+            padding: 2.5rem 0 2rem;
+        }
+
+        .brand-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .brand-title { font-size: 3.5rem; }
+        }
+
+        .brand-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+        }
+
+        /* Hero Grid */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .hero-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-all);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 20px -5px var(--accent-glow), var(--shadow-md);
+        }
+
+        .hero-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .icon-box {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: var(--radius-md);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .hero-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .hero-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Tabs Navigation */
+        .tabs-wrapper {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            scrollbar-width: none;
+        }
+        .tabs-wrapper::-webkit-scrollbar { display: none; }
+
+        .tabs-list {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.25rem;
+            min-width: max-content;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: var(--transition-all);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .tab-btn.is-active {
+            color: var(--primary);
+            background: var(--primary-light);
+            position: relative;
+        }
+
+        /* Directory Links Grid */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .directory-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .link-group-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .link-button {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.875rem 1rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
+            transition: var(--transition-all);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .link-button:hover {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+            transform: translateX(4px);
+            color: var(--primary);
+        }
+
+        .link-button i {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* Modal Cerca */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 4rem 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-all);
+        }
+
+        .modal-overlay.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 600px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-results {
+            max-height: 350px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 4rem;
+        }
+
+        /* Compact View Modifier */
+        .compact-view .hero-card p { display: none; }
+        .compact-view .hero-card { padding: 0.75rem 1rem; }
     </style>
 </head>
-<body class="min-h-screen antialiased loading-app">
-    <!-- Loading spinner -->
-    <div class="loading-spinner" aria-label="Carregant..."></div>
+<body>
 
-    <!-- Skip to main content -->
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-md z-50">
-        Salta al contingut principal
-    </a>
-    
-    <!-- Header controls -->
+    <a href="#main-content" class="sr-only">Salta al contingut principal</a>
+
     <div class="header-controls" role="toolbar" aria-label="Controls de la pàgina">
-        <button 
-            type="button"
-            id="openSearchModal" 
-            aria-label="Obrir cerca i filtres"
-            title="Obrir Cerca i Filtres">
-            <i data-lucide="search" aria-hidden="true"></i>
+        <button type="button" class="header-btn" id="openSearchModal" title="Obrir cerca" aria-label="Obrir cerca">
+            <i data-lucide="search"></i>
         </button>
-        
-        <button 
-            type="button"
-            id="darkModeToggle" 
-            aria-label="Canviar mode fosc"
-            title="Activar/Desactivar Mode Fosc">
-            <i data-lucide="moon" aria-hidden="true"></i>
+        <button type="button" class="header-btn" id="darkModeToggle" title="Modo fosc/clar" aria-label="Modo fosc/clar">
+            <i data-lucide="moon"></i>
         </button>
-        
-        <button 
-            type="button"
-            id="compactViewToggle" 
-            aria-label="Canviar vista compacta"
-            title="Canviar a Vista Compacta">
-            <i data-lucide="list" aria-hidden="true"></i>
+        <button type="button" class="header-btn" id="compactViewToggle" title="Vista compacta" aria-label="Vista compacta">
+            <i data-lucide="layout-grid"></i>
         </button>
     </div>
 
-    <div class="links-container w-full max-w-7xl mx-auto">
-        <!-- Main header -->
-        <header class="text-center pt-8 pb-6">
-            <h1 class="text-4xl sm:text-5xl font-bold mb-3" style="color: var(--color-text);">
-                EMMCA LINKS
-            </h1>
-            <p class="text-xl" style="color: var(--color-muted);">
-                Recursos Musicals Essencials per a l'Estudiant
-            </p>
+    <div class="container">
+        <header>
+            <h1 class="brand-title">EMMCA LINKS</h1>
+            <p class="brand-subtitle">Recursos Musicals Essencials per a l'Estudiant de Música</p>
         </header>
 
         <main id="main-content">
-
-            <!-- Hero section: Essential training tools -->
-            <section aria-labelledby="hero-heading" class="mb-16">
-                <h2 id="hero-heading" class="text-2xl font-bold text-center mb-8 pb-2 border-b-2" 
-                    style="color: var(--color-primary); border-color: var(--color-primary);">
-                    Eines d'Entrenament Essencials 💡
+            <section aria-labelledby="hero-heading">
+                <h2 id="hero-heading" class="section-title">
+                    <i data-lucide="zap" style="color: #f59e0b;"></i> Eines d'Entrenament Essencials
                 </h2>
-                
-                <!-- Responsive grid for hero cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 link-list highlighted-links" 
-                     data-category="eines teoria lectura auditiva intervals acords"
-                     role="list"
-                     aria-label="Eines d'entrenament musical">
-            
-                    <!-- Treble clef reading -->
-                    <div class="link-item" data-category="eines lectura" role="listitem">
-                        <a href="https://emmcaro.github.io/lecturabasic1/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="hero-card block p-6"
-                           aria-describedby="treble-desc">
-                            <div class="flex flex-col items-start space-y-3">
-                                <span class="icon-symbol text-blue-600" aria-hidden="true">𝄞</span>
-                                <h3 class="text-xl font-bold">Lectura Clau de Sol</h3>
-                                <p id="treble-desc" class="text-sm" style="color: var(--color-muted);">
-                                    Practica la identificació ràpida de notes al pentagrama en clau de sol.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
 
-                    <!-- Bass clef reading -->
-                    <div class="link-item" data-category="eines lectura" role="listitem">
-                        <a href="https://emmcaro.github.io/Lectura-clau-de-fa/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="hero-card block p-6"
-                           aria-describedby="bass-desc">
-                            <div class="flex flex-col items-start space-y-3">
-                                <span class="icon-symbol text-purple-600" aria-hidden="true">𝄢</span>
-                                <h3 class="text-xl font-bold">Lectura Clau de Fa</h3>
-                                <p id="bass-desc" class="text-sm" style="color: var(--color-muted);">
-                                    Domina la lectura de les notes greus utilitzant la clau de fa.
-                                </p>
+                <div class="hero-grid">
+                    <a href="https://emmcaro.github.io/lecturabasic1/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box">𝄞</div>
+                            <div>
+                                <h3>Lectura Clau de Sol</h3>
+                                <p>Practica la identificació ràpida de notes al pentagrama en clau de sol.</p>
                             </div>
-                        </a>
-                    </div>
-                   <!-- Gran Pentagrama Reading-->
-                    <div class="link-item" data-category="eines lectura" role="listitem">
-                        <a href="https://emmcaro.github.io/Lectura-sol-i-fa/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="hero-card block p-7"
-                           aria-describedby="bass-desc">
-                            <div class="flex flex-col items-start space-y-3">
-                                <span class="icon-symbol text-purple-600" aria-hidden="true">𝄞𝄢</span>
-                                <h3 class="text-xl font-bold">Lectura Gran Pentagrama</h3>
-                                <p id="bass-desc" class="text-sm" style="color: var(--color-muted);">
-                                    Domina la lectura de les notes en el format Gran Pentagrama (Sol i Fa)
-                                </p>
-                            </div>
-                        </a>
-                    </div>    
+                        </div>
+                    </a>
 
-                    <!-- Interval reading -->
-                    <div class="link-item" data-category="eines teoria intervals lectura" role="listitem">
-                        <a href="https://eugenicorchero.github.io/intervally/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="hero-card block p-6"
-                           aria-describedby="intervals-desc">
-                            <div class="flex flex-col items-start space-y-3">
-                                <span class="icon-symbol text-green-600" aria-hidden="true">🎼</span>
-                                <h3 class="text-xl font-bold">Lectura d'Intervals</h3>
-                                <p id="intervals-desc" class="text-sm" style="color: var(--color-muted);">
-                                    Exercicis visuals per reconèixer els diferents intervals melòdics i harmònics.
-                                </p>
+                    <a href="https://emmcaro.github.io/Lectura-clau-de-fa/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box">𝄢</div>
+                            <div>
+                                <h3>Lectura Clau de Fa</h3>
+                                <p>Domina la lectura de les notes greus utilitzant la clau de fa.</p>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
-                    <!-- Interval ear training -->
-                    <div class="link-item" data-category="eines teoria intervals auditiva" role="listitem">
-                        <a href="https://eugenicorchero.github.io/auditorium/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="hero-card block p-6"
-                           aria-describedby="ear-intervals-desc">
-                            <div class="flex flex-col items-start space-y-3">
-                                <span class="icon-symbol text-red-600" aria-hidden="true">👂</span>
-                                <h3 class="text-xl font-bold">Dictats Auditius d'Intervals</h3>
-                                <p id="ear-intervals-desc" class="text-sm" style="color: var(--color-muted);">
-                                    Entrena l'oïda per identificar intervals a partir de la seva sonoritat.
-                                </p>
+                    <a href="https://emmcaro.github.io/Lectura-sol-i-fa/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box">𝄞𝄢</div>
+                            <div>
+                                <h3>Lectura Gran Pentagrama</h3>
+                                <p>Domina la lectura combinada en clau de Sol i Fa simultàniament.</p>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
 
-                    <!-- Chord ear training -->
-                    <div class="link-item" data-category="eines teoria acords auditiva nou" role="listitem">
-                        <a href="https://eugenicorchero.github.io/chordiceps/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="hero-card block p-6"
-                           aria-describedby="ear-chords-desc">
-                            <div class="flex flex-col items-start space-y-3">
-                                <span class="icon-symbol text-yellow-600" aria-hidden="true">🎸</span>
-                                <h3 class="text-xl font-bold">Dictats Auditius d'Acords</h3>
-                                <p id="ear-chords-desc" class="text-sm" style="color: var(--color-muted);">
-                                    Reconeix la qualitat dels acords (majors, menors, setena, etc.) a l'oïda.
-                                </p>
+                    <a href="https://eugenicorchero.github.io/intervally/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box"><i data-lucide="music-2"></i></div>
+                            <div>
+                                <h3>Lectura d'Intervals</h3>
+                                <p>Exercicis visuals per reconèixer intervals melòdics i harmònics.</p>
                             </div>
-                        </a>
-                    </div>
-                    
-                    <!-- Study timer -->
-                    <div class="link-item" data-category="eines utilitats timer estudi organitzacio nou" role="listitem">
-                        <a href="https://eugenicorchero.github.io/musicstudy/" 
-                           target="_blank" 
-                           rel="noopener noreferrer" 
-                           class="hero-card block p-6"
-                           aria-describedby="timer-desc">
-                            <div class="flex flex-col items-start space-y-3">
-                                <span class="icon-symbol text-orange-600" aria-hidden="true">
-                                    <i data-lucide="timer"></i>
-                                </span>
-                                <h3 class="text-xl font-bold">Temporitzador d'Estudi</h3>
-                                <p id="timer-desc" class="text-sm" style="color: var(--color-muted);">
-                                    Eina Pomodoro per estructurar les sessions de pràctica.
-                                </p>
+                        </div>
+                    </a>
+
+                    <a href="https://eugenicorchero.github.io/auditorium/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box"><i data-lucide="ear"></i></div>
+                            <div>
+                                <h3>Dictats d'Intervals</h3>
+                                <p>Entrena la teva oïda per identificar intervals musicals ràpidament.</p>
                             </div>
-                        </a>
-                    </div>
-                    </div>
+                        </div>
+                    </a>
+
+                    <a href="https://eugenicorchero.github.io/chordiceps/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box"><i data-lucide="disc"></i></div>
+                            <div>
+                                <h3>Dictats d'Acords</h3>
+                                <p>Reconeix la qualitat dels acords (majors, menors, setena) a l'oïda.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </section>
-            
-            <!-- Thematic directory section -->
+
             <section aria-labelledby="directory-heading">
-                <h2 id="directory-heading" class="text-2xl font-bold text-center mb-8 pb-2 border-b-2" 
-                    style="color: var(--color-primary); border-color: var(--color-primary);">
-                    Directori Temàtic 📚
+                <h2 id="directory-heading" class="section-title">
+                    <i data-lucide="folder-git-2" style="color: var(--primary);"></i> Directori Temàtic
                 </h2>
 
-                <!-- Tabs navigation -->
-                <div class="tabs-container">
-                    <ul id="tabs-header" role="tablist" aria-label="Categories de recursos">
-                        <li role="presentation">
-                            <button role="tab" 
-                                    data-target="tab-teoria" 
-                                    class="is-active" 
-                                    aria-selected="true"
-                                    aria-controls="tab-teoria"
-                                    id="tab-teoria-button">
-                                <span class="icon" aria-hidden="true">
-                                    <i data-lucide="graduation-cap"></i>
-                                </span>
-                                <span>Teoria Musical</span>
-                            </button>
-                        </li>
-                        <li role="presentation">
-                            <button role="tab" 
-                                    data-target="tab-produccio"
-                                    aria-selected="false"
-                                    aria-controls="tab-produccio"
-                                    id="tab-produccio-button">
-                                <span class="icon" aria-hidden="true">
-                                    <i data-lucide="sliders-horizontal"></i>
-                                </span>
-                                <span>Producció i Creativitat</span>
-                            </button>
-                        </li>
-                        <li role="presentation">
-                            <button role="tab" 
-                                    data-target="tab-utilitats"
-                                    aria-selected="false"
-                                    aria-controls="tab-utilitats"
-                                    id="tab-utilitats-button">
-                                <span class="icon" aria-hidden="true">
-                                    <i data-lucide="smartphone"></i>
-                                </span>
-                                <span>Utilitats i Materials</span>
-                            </button>
-                        </li>
-                    </ul>
+                <div class="tabs-wrapper">
+                    <div class="tabs-list" role="tablist">
+                        <button class="tab-btn is-active" data-tab="teoria" role="tab" aria-selected="true">
+                            <i data-lucide="book-open"></i> Teoria i Educació
+                        </button>
+                        <button class="tab-btn" data-tab="produccio" role="tab" aria-selected="false">
+                            <i data-lucide="sliders"></i> Producció i Creativitat
+                        </button>
+                        <button class="tab-btn" data-tab="utilitats" role="tab" aria-selected="false">
+                            <i data-lucide="wrench"></i> Partitures i Utilitats
+                        </button>
+                    </div>
                 </div>
-        
-                <!-- Tab panels -->
-                <div id="tabs-content">
-                    <!-- Music theory tab -->
-                    <div id="tab-teoria" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-teoria-button"
-                         aria-hidden="false">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="teoria youtube">
-                    
-                    <!-- Columna 1.1: Webs de Referència -->
-                    <div class="link-col" data-category="teoria eines">
-                        <p class="link-item-title">Eines Web de Teoria i Dictats</p>
-                        
-                        <div class="link-group">
-                            <a class="w-full link-button link-item" href="https://teoria.com/index.php" target="_blank" rel="noopener noreferrer" data-category="teoria eines dictats">
-                                <span class="icon"><i data-lucide="book-open"></i></span> <!-- Icona Lucide -->
-                                <span>Teoria.com (Teoria i dictats)</span>
-                            </a>
-                            <a class="w-full link-button link-item" href="https://www.musictheory.net" target="_blank" rel="noopener noreferrer" data-category="teoria eines didactica">
-                                <span class="icon"><i data-lucide="book"></i></span> <!-- Icona Lucide -->
-                                <span>Music Theory (Recursos didàctics)</span>
-                            </a>
+
+                <div id="tab-content">
+                    <div class="tab-panel" id="panel-teoria">
+                        <div class="directory-grid">
+                            <div>
+                                <h3 class="link-group-title">Plataformes de Teoria i Dictats</h3>
+                                <a class="link-button" href="https://teoria.com/index.php" target="_blank" rel="noopener">
+                                    <i data-lucide="globe"></i> Teoria.com (Exercicis i Teoria)
+                                </a>
+                                <a class="link-button" href="https://www.musictheory.net" target="_blank" rel="noopener">
+                                    <i data-lucide="award"></i> MusicTheory.net (Tenuto)
+                                </a>
+                                <a class="link-button" href="https://earmaster.com" target="_blank" rel="noopener">
+                                    <i data-lucide="headphones"></i> EarMaster Entrenament Auditiu
+                                </a>
+                            </div>
+
+                            <div>
+                                <h3 class="link-group-title">Canals de YouTube Recomendats</h3>
+                                <a class="link-button" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Adam Neely (Teoria & Jazz)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Rick Beato (Anàlisi Musical)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Jaime Altozano (Divulgació)
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Columna 1.2: Canals de YouTube - Teoria i Anàlisi -->
-                    <div class="link-col" data-category="youtube teoria">
-                        <!-- Grup Plegable: YouTube Teoria -->
-                        <div class="mt-0">
-                            <div class="collapsible-header" data-target="youtube-teoria-links" style="margin-top: 0;">
-                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Teoria i Anàlisi 📺</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span> <!-- Icona Lucide -->
+                    <div class="tab-panel" id="panel-produccio" style="display: none;">
+                        <div class="directory-grid">
+                            <div>
+                                <h3 class="link-group-title">Eines de Creativitat Web</h3>
+                                <a class="link-button" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener">
+                                    <i data-lucide="cpu"></i> Chrome Music Lab
+                                </a>
+                                <a class="link-button" href="https://muted.io" target="_blank" rel="noopener">
+                                    <i data-lucide="layers"></i> Muted.io (Eines ràpides de música)
+                                </a>
+                                <a class="link-button" href="https://www.bandlab.com" target="_blank" rel="noopener">
+                                    <i data-lucide="mic-2"></i> BandLab Studio Online
+                                </a>
                             </div>
-                            <div id="youtube-teoria-links" class="collapsible-content link-group" data-category="youtube teoria">
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Adam Neely</span>
+
+                            <div>
+                                <h3 class="link-group-title">Producció & Sound Design</h3>
+                                <a class="link-button" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Andrew Huang
                                 </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener noreferrer" data-category="youtube teoria rock">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Rick Beato</span>
+                                <a class="link-button" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Venus Theory
                                 </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener noreferrer" data-category="youtube analisis pop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Jaime Altozano</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-panel" id="panel-utilitats" style="display: none;">
+                        <div class="directory-grid">
+                            <div>
+                                <h3 class="link-group-title">Partitures i Arxiu</h3>
+                                <a class="link-button" href="https://imslp.org" target="_blank" rel="noopener">
+                                    <i data-lucide="file-text"></i> IMSLP / Petrucci Music Library
                                 </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/AimeeNolte" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz piano">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Aimee Nolte</span>
+                                <a class="link-button" href="https://musescore.com" target="_blank" rel="noopener">
+                                    <i data-lucide="music"></i> MuseScore Sheet Music
                                 </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/NahreSol" target="_blank" rel="noopener noreferrer" data-category="youtube teoria piano clasica">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Nahre Sol</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCTUtqcDkzw7bisadh6AOx5w" target="_blank" rel="noopener noreferrer" data-category="youtube teoria analisi">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>12Tone</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/8bitMusicTheory" target="_blank" rel="noopener noreferrer" data-category="youtube teoria games">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>8bit Music Theory</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/CharlesCornellStudios" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Charles Cornell</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/DeadWaxShow" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Dead Wax</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/bobreynolds" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz saxo">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Bob Reynolds</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/@MusicRadarTech" target="_blank" rel="noopener noreferrer" data-category="youtube teoria tecnologia">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Music Radar Tech</span>
+                            </div>
+
+                            <div>
+                                <h3 class="link-group-title">Utilitats de Pràctica</h3>
+                                <a class="link-button" href="https://eugenicorchero.github.io/musicstudy/" target="_blank" rel="noopener">
+                                    <i data-lucide="clock"></i> Temporitzador d'Estudi Pomodoro
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-                    <!-- Production and creativity tab -->
-                    <div id="tab-produccio" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-produccio-button"
-                         aria-hidden="true"
-                         style="display: none;">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="eines produccio youtube podcast">
-                    
-                    <!-- Columna 2.1: Eines de Creativitat -->
-                    <div class="link-col" data-category="eines creativitat produccio">
-                        <p class="link-item-title">Eines Web de Creativitat i Producció</p>
-                        
-                        <div class="link-group">
-                            <a class="w-full link-button link-item" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener noreferrer" data-category="eines creativitat experimentacio">
-                                <span class="icon"><i data-lucide="palette"></i></span> <!-- Icona Lucide -->
-                                <span>Chrome Music Lab (Experimentació)</span>
-                            </a>
-                            <a class="w-full link-button link-item" href="https://muted.io" target="_blank" rel="noopener noreferrer" data-category="eines produccio utilitats">
-                                <span class="icon"><i data-lucide="tool"></i></span> <!-- Icona Lucide -->
-                                <span>Muted io (Eines vàries de producció)</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Columna 2.2: Canals de YouTube i Podcasts -->
-                    <div class="link-col" data-category="youtube produccio podcast">
-                         
-                         <!-- Grup Plegable: Podcasts -->
-                        <div class="mt-0">
-                            <div class="collapsible-header" data-target="podcast-links" style="margin-top: 0;">
-                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Podcasts d'Interès 🎧</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span> <!-- Icona Lucide -->
-                            </div>
-                            <div id="podcast-links" class="collapsible-content link-group" data-category="podcast entrevista analisi">
-                                <a class="w-full link-button link-item" href="https://open.spotify.com/show/5Br33snnJU90k2NcYskuM9?si=9a82970a42c34733" target="_blank" rel="noopener noreferrer" data-category="podcast entrevista produccio">
-                                    <span class="icon"><i data-lucide="podcast"></i></span> <!-- Icona Lucide -->
-                                    <span>Tape Notes</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://open.spotify.com/show/1sgWaKtQxwfjUpZnnK8r7J?si=d7dede0f96eb41ec" target="_blank" rel="noopener noreferrer" data-category="podcast analisis pop">
-                                    <span class="icon"><i data-lucide="podcast"></i></span> <!-- Icona Lucide -->
-                                    <span>Switched On Pop</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://open.spotify.com/show/10lMwCjvzLCLwth2AW6cLG?si=039962dd03494b8f" target="_blank" rel="noopener noreferrer" data-category="podcast analisis produccio">
-                                    <span class="icon"><i data-lucide="podcast"></i></span> <!-- Icona Lucide -->
-                                    <span>Song Explorer</span>
-                                </a>
-                            </div>
-                        </div>
-                         
-                        <!-- Grup Plegable: YouTube Producció -->
-                        <div class="mt-5">
-                            <div class="collapsible-header" data-target="youtube-produccio-links">
-                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Producció Musical 🎛️</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span> <!-- Icona Lucide -->
-                            </div>
-                            <div id="youtube-produccio-links" class="collapsible-content link-group" data-category="youtube produccio">
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener noreferrer" data-category="youtube produccio creativitat">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Andrew Huang</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/c/Producelikeapro" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Produce Like A Pro</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/Z3NWorld" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Zen World</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/@HelpMeDevvon" target="_blank" rel="noopener noreferrer" data-category="youtube produccio r&b">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Help Me Devvon</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Venus Theory</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/@ReidStefanMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Reid Stefan</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/WVmusicOrg" target="_blank" rel="noopener noreferrer" data-category="youtube produccio entrevista">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Weathervane Music</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/imamusicmogul" target="_blank" rel="noopener noreferrer" data-category="youtube produccio marketing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Music Mogul</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/@MakePopMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Make Pop Music</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/theproaudiofiles" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Pro Audio Files</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/rachelkcollieroff" target="_blank" rel="noopener noreferrer" data-category="youtube produccio live loop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Rachel K Collier</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/SeanDivine" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Sean Divine</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCJpVRw_1bcGrQvUxeXz8Uhw" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Mars Citizen</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/user/cosmcosm" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Tom Cosm</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/@WeissAdvice" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Weiss Advice</span>
-                                </a>
-                                <a class="w-full link-button link-item" href="https://www.youtube.com/@TheVelvetYear" target="_blank" rel="noopener noreferrer" data-category="youtube produccio synth">
-                                    <span class="icon"><i data-lucide="youtube"></i></span> <!-- Icona Lucide -->
-                                    <span>Velvet Year</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                    <!-- Utilities and materials tab -->
-                    <div id="tab-utilitats" 
-                         role="tabpanel" 
-                         aria-labelledby="tab-utilitats-button"
-                         aria-hidden="true"
-                         style="display: none;">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="app pdf">
-
-                    <!-- Columna 3.1: Aplicacions -->
-                    <div class="link-col" data-category="app metronom stemps entrenament">
-                        
-                        <!-- Grup Plegable: Apps Recomanades -->
-                        <div>
-                            <div class="collapsible-header is-expanded" data-target="recommended-apps-links" style="margin-top: 0;">
-                                <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Utilitats Essencials per a la Pràctica 📱</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span> <!-- Icona Lucide -->
-                            </div>
-                            <div id="recommended-apps-links" class="collapsible-content is-expanded link-group" data-category="app metronom stemps">
-                                
-                                <!-- App 1: SBL Groove Trainer (Metrònom avançat) -->
-                                <div class="w-full link-button link-item" data-category="app metronom groove bateria" style="margin-bottom: 1.2rem;">
-                                    <span class="icon"><i data-lucide="drum"></i></span> <!-- Icona Lucide -->
-                                    <div class="flex-grow">
-                                        <p class="text-base font-bold">SBL Groove Trainer (Metrònom)</p>
-                                        <p class="is-size-7 text-gray-500">El metrònom avançat per a l'entrenament rítmic.</p>
-                                        <div class="app-links flex space-x-4 mt-4">
-                                            <!-- ENLLAÇ iOS/Mac -->
-                                            <a href="https://apps.apple.com/us/app/sbl-groove-trainer/id1571452765" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a App Store (iOS/Mac)">
-                                                <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
-                                            </a>
-                                             <!-- ENLLAÇ Android - SVG ROBOT D'ANDROID -->
-                                            <a href="https://play.google.com/store/apps/details?id=com.scottsbasslessons.groovetrainer&hl=es_419&pli=1" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a Google Play (Android)">
-                                                <span class="text-2xl" role="img" aria-label="android">🤖</span> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- App 2: Moises (Separació de stemps) -->
-                                <div class="w-full link-button link-item" data-category="app stemps produccio karaoke">
-                                    <span class="icon"><i data-lucide="music-4"></i></span> <!-- Icona Lucide -->
-                                    <div class="flex-grow">
-                                        <p class="text-base font-bold">Moises (Separador de Stems)</p>
-                                        <p class="is-size-7 text-gray-500">Separa veus, bateria i altres instruments d'una cançó qualsevol.</p>
-                                        <div class="app-links flex space-x-4 mt-4">
-                                            <!-- ENLLAÇ iOS/Mac -->
-                                            <a href="https://apps.apple.com/es/app/moises-la-app-para-m%C3%BAsics/id1515796612" target="_blank" rel="noopener noreferrer" title="Moises a App Store (iOS/Mac)">
-                                                <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
-                                            </a>
-                                            <!-- ENLLAÇ Android - SVG ROBOT D'ANDROID -->
-                                            <a href="https://play.google.com/store/apps/details?id=ai.moises&hl=es_419" target="_blank" rel="noopener noreferrer" title="Moises a Google Play (Android)">
-                                                <span class="text-2xl" role="img" aria-label="android">🤖</span> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Columna 3.2: Documents PDF -->
-                    <div class="link-col" data-category="document pdf curs material">
-                        <p class="link-item-title">Materials de Curs (PDFs)</p>
-
-                        <div class="link-group" data-category="pdf material harmonia teoria">
-                            <!-- PDF 1: LLIBRE D'HARMONIA BÀSICA -->
-                            <a class="w-full link-button link-item is-download" 
-                               href="https://www.amazon.es/Harmonia-Eugeni-Corchero-Mestres/dp/B0G3671CNB" 
-                               target="_blank" 
-                               rel="noopener noreferrer" 
-                               data-category="pdf teoria harmonia llibre">
-                                <span class="icon"><i data-lucide="file-text"></i></span> <!-- Icona Lucide -->
-                                <div style="text-align: left;">
-                                    <p class="text-base font-bold">Llibre d'Harmonia Bàsica (Amazon)</p>
-                                </div>
-                            </a>
-                            
-                            <!-- Placeholder for future materials -->
-                            <div class="w-full p-4 rounded-lg border-2 border-dashed" 
-                                 style="border-color: var(--color-border); color: var(--color-muted);">
-                                <div class="flex items-center gap-3">
-                                    <span class="icon">
-                                        <i data-lucide="file-plus" aria-hidden="true"></i>
-                                    </span>
-                                    <div>
-                                        <p class="font-medium">Materials addicionals</p>
-                                        <p class="text-sm">Més recursos estaran disponibles aviat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-                </div> <!-- End tabs content -->
             </section>
         </main>
-    </div> <!-- End links-container -->
 
-    <!-- Footer -->
-    <footer class="text-center py-8 border-t" style="border-color: var(--color-border);">
-        <p class="text-sm" style="color: var(--color-muted);">
-            Eugeni Corchero © 2025 | Creat per a l'alumnat de l'EMMCA
-        </p>
-    </footer>
+        <footer>
+            <p>&copy; EMMCA LINKS - Dissenyat per a estudiants de música.</p>
+        </footer>
+    </div>
 
-    <!-- Search and filters modal -->
-    <div id="searchModal" 
-         class="search-modal" 
-         style="display: none;"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="modal-title">
-        <div class="search-modal-content">
-            <h2 id="modal-title" class="text-2xl font-bold text-center mb-6" style="color: var(--color-primary);">
-                Cerca i Filtres
-            </h2>
-            
-            <!-- Enhanced search input with suggestions -->
-            <div class="mb-6">
-                <label for="searchInputModal" class="sr-only">Cerca recursos</label>
-                <div class="relative">
-                    <input 
-                        class="w-full p-4 text-lg pl-12 pr-12" 
-                        type="text" 
-                        id="searchInputModal" 
-                        placeholder="Cerca per títol, descripció o categoria..."
-                        aria-describedby="search-help"
-                        autocomplete="off">
-                    <span class="absolute left-3 top-1/2 transform -translate-y-1/2" style="color: var(--color-muted);" aria-hidden="true">
-                        <i data-lucide="search"></i>
-                    </span>
-                    <button 
-                        class="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" 
-                        id="clearSearchInput" 
-                        style="display: none; color: var(--color-muted);"
-                        aria-label="Neteja la cerca"
-                        type="button">
-                        <i data-lucide="x" aria-hidden="true"></i>
-                    </button>
-                    
-                    <!-- Search suggestions dropdown -->
-                    <div id="searchSuggestions" class="search-suggestions" style="display: none;" role="listbox">
-                        <!-- Suggestions will be populated dynamically -->
-                    </div>
-                </div>
-                <p id="search-help" class="text-sm mt-2" style="color: var(--color-muted);">
-                    Escriu per cercar o utilitza els filtres. Prem Tab per navegar pels suggeriments.
-                </p>
-            </div>
-
-            <!-- Filter buttons -->
-            <div class="flex flex-wrap justify-center gap-2 mb-6" role="group" aria-label="Filtres de categoria">
-                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
-                        style="background-color: var(--color-primary); color: white;" 
-                        data-filter="all" 
-                        aria-pressed="true">Tots</button>
-                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
-                        style="background-color: var(--color-surface); color: var(--color-text);" 
-                        data-filter="teoria"
-                        aria-pressed="false">Teoria</button>
-                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
-                        style="background-color: var(--color-surface); color: var(--color-text);" 
-                        data-filter="produccio"
-                        aria-pressed="false">Producció</button>
-                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
-                        style="background-color: var(--color-surface); color: var(--color-text);" 
-                        data-filter="app"
-                        aria-pressed="false">Apps</button>
-                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
-                        style="background-color: var(--color-surface); color: var(--color-text);" 
-                        data-filter="pdf"
-                        aria-pressed="false">PDF</button>
-                <button class="px-4 py-2 text-sm font-medium rounded-full filter-btn" 
-                        style="background-color: var(--color-surface); color: var(--color-text);" 
-                        data-filter="eines"
-                        aria-pressed="false">Eines</button>
-            </div>
-            
-            <!-- Search results -->
-            <div id="searchResultsList" 
-                 class="border-t pt-4" 
-                 style="max-height: 50vh; overflow-y: auto; border-color: var(--color-border);"
-                 role="region"
-                 aria-label="Resultats de la cerca"
-                 aria-live="polite">
-                <p class="text-center" id="searchPlaceholder" style="color: var(--color-muted);">
-                    Comença a escriure o selecciona un filtre...
-                </p>
-            </div>
-
-            <div class="flex justify-end mt-6 gap-2">
-                <button class="px-4 py-2 text-sm font-medium rounded-lg transition-colors" 
-                        style="background-color: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border);"
-                        id="closeSearchModal"
-                        type="button">
-                    Tanca
+    <div class="modal-overlay" id="searchModal">
+        <div class="modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">Cerca ràpida</h3>
+                <button type="button" id="closeSearchModal" style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
+                    <i data-lucide="x"></i>
                 </button>
             </div>
+            <input type="text" class="search-input" id="searchInput" placeholder="Escriu per cercar recurs..." autofocus>
+            <div class="search-results" id="searchResults"></div>
         </div>
-    </div>
-
-    <!-- Success feedback notification -->
-    <div id="successFeedback" class="success-feedback">
-        <div class="flex items-center gap-2">
-            <i data-lucide="check-circle" aria-hidden="true"></i>
-            <span>Operació completada!</span>
-        </div>
-    </div>
-
-    <!-- Progress bar -->
-    <div id="progressBar" class="progress-bar" style="display: none;">
-        <div class="progress-bar-fill" id="progressBarFill"></div>
     </div>
 
     <script>
-        // Enhanced error handling and initialization
-        class EMMCAApp {
-            constructor() {
-                this.elements = this.initializeElements();
-                this.linkItems = document.querySelectorAll('.link-item');
-                this.tabButtons = document.querySelectorAll('[role="tab"]');
-                this.tabPanes = document.querySelectorAll('[role="tabpanel"]');
-                this.currentActiveFilter = 'all';
-                
-                this.init();
-            }
-            
-            initializeElements() {
-                const elements = {
-                    body: document.body,
-                    searchModal: document.getElementById('searchModal'),
-                    searchInput: document.getElementById('searchInputModal'),
-                    searchSuggestions: document.getElementById('searchSuggestions'),
-                    openSearchBtn: document.getElementById('openSearchModal'),
-                    closeSearchBtn: document.getElementById('closeSearchModal'),
-                    clearSearchBtn: document.getElementById('clearSearchInput'),
-                    resultsList: document.getElementById('searchResultsList'),
-                    searchPlaceholder: document.getElementById('searchPlaceholder'),
-                    filterButtons: document.querySelectorAll('.filter-btn'),
-                    darkModeToggle: document.getElementById('darkModeToggle'),
-                    compactViewToggle: document.getElementById('compactViewToggle'),
-                    successFeedback: document.getElementById('successFeedback'),
-                    progressBar: document.getElementById('progressBar'),
-                    progressBarFill: document.getElementById('progressBarFill')
-                };
-                
-                // Check for missing elements
-                for (const [key, element] of Object.entries(elements)) {
-                    if (!element && !key.includes('Button') && !key.includes('Suggestions')) {
-                        console.warn(`Element not found: ${key}`);
-                    }
-                }
-                
-                return elements;
-            }
-            
-            init() {
-                this.setupEventListeners();
-                this.loadUserPreferences();
-                this.initializeTabs();
-                this.initializeCollapsibles();
-                this.initializeSearchSuggestions();
-                this.initializeMicroInteractions();
-                this.initializeLucideIcons();
-            }
-
-            setupEventListeners() {
-                // Search functionality
-                if (this.elements.openSearchBtn) {
-                    this.elements.openSearchBtn.addEventListener('click', () => this.toggleSearchModal(true));
-                }
-                
-                if (this.elements.closeSearchBtn) {
-                    this.elements.closeSearchBtn.addEventListener('click', () => this.toggleSearchModal(false));
-                }
-                
-                if (this.elements.searchModal) {
-                    this.elements.searchModal.addEventListener('click', (e) => {
-                        if (e.target.id === 'searchModal') {
-                            this.toggleSearchModal(false);
-                        }
-                    });
-                }
-                
-                if (this.elements.searchInput) {
-                    this.elements.searchInput.addEventListener('input', () => this.filterLinks());
-                    this.elements.searchInput.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape') {
-                            this.toggleSearchModal(false);
-                        }
-                    });
-                }
-                
-                if (this.elements.clearSearchBtn) {
-                    this.elements.clearSearchBtn.addEventListener('click', () => this.clearSearch());
-                }
-                
-                // Filter buttons
-                this.elements.filterButtons.forEach(btn => {
-                    btn.addEventListener('click', () => this.setFilter(btn.dataset.filter));
-                });
-                
-                // Theme toggles
-                if (this.elements.darkModeToggle) {
-                    this.elements.darkModeToggle.addEventListener('click', () => this.toggleDarkMode());
-                }
-                
-                if (this.elements.compactViewToggle) {
-                    this.elements.compactViewToggle.addEventListener('click', () => this.toggleCompactView());
-                }
-                
-                // Tab navigation
-                this.tabButtons.forEach(button => {
-                    button.addEventListener('click', () => this.switchTab(button.dataset.target));
-                    button.addEventListener('keydown', (e) => this.handleTabKeydown(e));
-                });
-                
-                // Keyboard navigation
-                document.addEventListener('keydown', (e) => this.handleGlobalKeydown(e));
-            }
-            
-            switchTab(targetId) {
-                // Update tab buttons
-                this.tabButtons.forEach(button => {
-                    const isActive = button.dataset.target === targetId;
-                    button.classList.toggle('is-active', isActive);
-                    button.setAttribute('aria-selected', isActive);
-                    
-                    if (isActive) {
-                        button.focus();
-                    }
-                });
-                
-                // Update tab panels
-                this.tabPanes.forEach(pane => {
-                    const isActive = pane.id === targetId;
-                    pane.style.display = isActive ? 'block' : 'none';
-                    pane.setAttribute('aria-hidden', !isActive);
-                });
-                
-                // Reinitialize collapsibles for the active tab
-                this.initializeCollapsibles();
-            }
-        
-            initializeCollapsibles() {
-                document.querySelectorAll('.collapsible-header').forEach(header => {
-                    const targetId = header.dataset.target;
-                    const content = document.getElementById(targetId);
-
-                    if (content) {
-                        const isAppsCollapsible = targetId === 'recommended-apps-links';
-                        const parentPane = header.closest('[role="tabpanel"]');
-
-                        // Initialize state: only Apps in Utilities tab open by default
-                        if (isAppsCollapsible && parentPane && parentPane.id === 'tab-utilitats') {
-                            content.classList.add('is-expanded');
-                            header.classList.add('is-expanded');
-                            header.setAttribute('aria-expanded', 'true');
-                        } else {
-                            content.classList.remove('is-expanded');
-                            header.classList.remove('is-expanded');
-                            header.setAttribute('aria-expanded', 'false');
-                        }
-                    }
-
-                    // Remove existing listeners to avoid duplicates
-                    header.removeEventListener('click', this.handleCollapsibleClick);
-                    header.removeEventListener('keydown', this.handleCollapsibleKeydown);
-                    
-                    // Add event listeners
-                    header.addEventListener('click', (e) => this.handleCollapsibleClick(e));
-                    header.addEventListener('keydown', (e) => this.handleCollapsibleKeydown(e));
-                });
-            }
-
-            handleCollapsibleClick(event) {
-                const header = event.currentTarget;
-                this.toggleCollapsible(header);
-            }
-            
-            handleCollapsibleKeydown(event) {
-                if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    this.toggleCollapsible(event.currentTarget);
-                }
-            }
-            
-            toggleCollapsible(header) {
-                const targetId = header.dataset.target;
-                const content = document.getElementById(targetId);
-                const activePane = header.closest('[role="tabpanel"]');
-                
-                // Close other collapsibles in the same tab
-                if (activePane) {
-                    activePane.querySelectorAll('.collapsible-content.is-expanded').forEach(expandedContent => {
-                        if (expandedContent.id !== targetId) {
-                            expandedContent.classList.remove('is-expanded');
-                            const expandedHeader = expandedContent.previousElementSibling;
-                            if (expandedHeader && expandedHeader.classList.contains('collapsible-header')) {
-                                expandedHeader.classList.remove('is-expanded');
-                                expandedHeader.setAttribute('aria-expanded', 'false');
-                            }
-                        }
-                    });
-                }
-
-                if (content) {
-                    const isExpanded = content.classList.toggle('is-expanded');
-                    header.classList.toggle('is-expanded', isExpanded);
-                    header.setAttribute('aria-expanded', isExpanded);
-                }
-            }
-
-            filterLinks() {
-                if (!this.elements.searchInput || !this.elements.resultsList) return;
-                
-                const searchValue = this.elements.searchInput.value.toLowerCase().trim();
-                this.elements.resultsList.innerHTML = '';
-                let foundCount = 0;
-                
-                this.linkItems.forEach(item => {
-                    const titleElement = item.querySelector('h3') || item.querySelector('h2') || item.querySelector('span:not(.icon)') || item.querySelector('.font-bold');
-                    const descriptionElement = item.querySelector('p:not([style*="color: var(--color-muted)"])') || item.querySelector('.text-sm');
-
-                    const title = titleElement ? titleElement.textContent.toLowerCase() : '';
-                    const description = descriptionElement ? descriptionElement.textContent.toLowerCase() : '';
-                    const categories = item.dataset.category || '';
-                    
-                    let isVisibleBySearch = true;
-                    if (searchValue.length > 0) {
-                        isVisibleBySearch = title.includes(searchValue) || 
-                                          description.includes(searchValue) || 
-                                          categories.includes(searchValue);
-                    }
-
-                    let isVisibleByFilter = true;
-                    if (this.currentActiveFilter !== 'all') {
-                        isVisibleByFilter = categories.includes(this.currentActiveFilter);
-                    }
-
-                    if (isVisibleBySearch && isVisibleByFilter) {
-                        const clonedItem = this.createSearchResultItem(item);
-                        if (clonedItem) {
-                            this.elements.resultsList.appendChild(clonedItem);
-                            foundCount++;
-                        }
-                    }
-                });
-
-                this.updateSearchResults(foundCount, searchValue);
-                this.updateClearButton(searchValue);
-                this.initializeLucideIcons();
-            }
-            
-            createSearchResultItem(item) {
-                let itemToClone;
-                
-                if (item.closest('.highlighted-links')) {
-                    // Clone hero card
-                    itemToClone = item.cloneNode(true);
-                    itemToClone.classList.add('mb-4');
-                    itemToClone.classList.remove('link-item');
-                    
-                    const linkElement = itemToClone.querySelector('a');
-                    if (linkElement) {
-                        linkElement.classList.remove('hero-card', 'p-6');
-                        linkElement.classList.add('link-button', 'w-full', 'p-4', 'flex', 'items-center', 'gap-4');
-                        
-                        // Adapt icon and text
-                        const iconSymbol = linkElement.querySelector('.icon-symbol');
-                        if (iconSymbol) {
-                            iconSymbol.classList.remove('icon-symbol');
-                            iconSymbol.classList.add('icon');
-                            iconSymbol.style.marginRight = '0';
-                        }
-
-                        const heading = linkElement.querySelector('h3');
-                        if (heading) {
-                            heading.classList.remove('text-xl');
-                            heading.classList.add('text-base', 'font-semibold');
-                        }
-                        
-                        const description = linkElement.querySelector('p');
-                        if (description) {
-                            description.classList.remove('text-sm');
-                            description.classList.add('text-xs');
-                        }
-                    }
-                } else {
-                    // Clone standard link
-                    itemToClone = item.cloneNode(true);
-                    itemToClone.classList.add('mb-4');
-                    itemToClone.classList.remove('link-item');
-                }
-                
-                // Apply compact view if active
-                if (this.elements.body.classList.contains('compact-view-active')) {
-                    const subtitle = itemToClone.querySelector('.text-sm, .is-size-7');
-                    if (subtitle) subtitle.style.display = 'none';
-                }
-
-                return itemToClone;
-            }
-            
-            updateSearchResults(foundCount, searchValue) {
-                if (!this.elements.searchPlaceholder) return;
-                
-                if (foundCount === 0) {
-                    const query = searchValue || this.currentActiveFilter;
-                    this.elements.searchPlaceholder.textContent = `❌ No s'ha trobat cap resultat per "${query}".`;
-                    this.elements.searchPlaceholder.style.display = 'block';
-                } else {
-                    this.elements.searchPlaceholder.style.display = 'none';
-                }
-            }
-            
-            updateClearButton(searchValue) {
-                if (this.elements.clearSearchBtn) {
-                    this.elements.clearSearchBtn.style.display = searchValue.length > 0 ? 'block' : 'none';
-                }
-            }
-            
-            setFilter(filterCategory) {
-                this.currentActiveFilter = filterCategory;
-                
-                // Update filter button states
-                this.elements.filterButtons.forEach(btn => {
-                    const isActive = btn.dataset.filter === filterCategory;
-                    btn.setAttribute('aria-pressed', isActive);
-                    
-                    if (isActive) {
-                        btn.style.backgroundColor = 'var(--color-primary)';
-                        btn.style.color = 'white';
-                    } else {
-                        btn.style.backgroundColor = 'var(--color-surface)';
-                        btn.style.color = 'var(--color-text)';
-                    }
-                });
-                
-                this.filterLinks();
-            }
-
-
-            toggleCompactView() {
-                if (!this.elements.body || !this.elements.compactViewToggle) return;
-                
-                this.elements.body.classList.toggle('compact-view-active');
-                
-                const icon = this.elements.compactViewToggle.querySelector('[data-lucide]');
-                const isCompact = this.elements.body.classList.contains('compact-view-active');
-                
-                if (icon) {
-                    icon.setAttribute('data-lucide', isCompact ? 'grip-vertical' : 'list');
-                }
-                
-                // Save preference
-                localStorage.setItem('emmca-view', isCompact ? 'compact' : 'standard');
-                
-                // Update button label
-                this.elements.compactViewToggle.setAttribute('aria-label', 
-                    isCompact ? 'Canviar a vista estàndard' : 'Canviar a vista compacta');
-                
-                this.initializeLucideIcons();
-                
-                // Refresh modal if open
-                if (this.elements.searchModal && this.elements.searchModal.style.display === 'flex') {
-                    this.filterLinks();
-                }
-            }
-            
-            toggleDarkMode() {
-                if (!this.elements.body || !this.elements.darkModeToggle) return;
-                
-                this.elements.body.classList.toggle('dark-mode');
-                
-                const icon = this.elements.darkModeToggle.querySelector('[data-lucide]');
-                const isDark = this.elements.body.classList.contains('dark-mode');
-                
-                if (icon) {
-                    icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-                }
-                
-                // Save preference
-                localStorage.setItem('emmca-theme', isDark ? 'dark' : 'light');
-                
-                // Update button label
-                this.elements.darkModeToggle.setAttribute('aria-label', 
-                    isDark ? 'Canviar a mode clar' : 'Canviar a mode fosc');
-                
-                this.initializeLucideIcons();
-            }
-
-            toggleSearchModal(show) {
-                if (!this.elements.searchModal || !this.elements.searchInput) return;
-                
-                if (show) {
-                    this.elements.searchModal.style.display = 'flex';
-                    this.elements.searchModal.setAttribute('aria-hidden', 'false');
-                    
-                    // Reset filter and focus
-                    this.setFilter('all');
-                    setTimeout(() => {
-                        this.elements.searchInput.focus();
-                    }, 100);
-                    
-                    // Trap focus in modal
-                    this.trapFocus(this.elements.searchModal);
-                } else {
-                    this.clearSearch();
-                    this.elements.searchModal.style.display = 'none';
-                    this.elements.searchModal.setAttribute('aria-hidden', 'true');
-                    
-                    // Return focus to trigger button
-                    if (this.elements.openSearchBtn) {
-                        this.elements.openSearchBtn.focus();
-                    }
-                }
-            }
-            
-            clearSearch() {
-                if (this.elements.searchInput) {
-                    this.elements.searchInput.value = '';
-                }
-                if (this.elements.resultsList) {
-                    this.elements.resultsList.innerHTML = '';
-                }
-                if (this.elements.clearSearchBtn) {
-                    this.elements.clearSearchBtn.style.display = 'none';
-                }
-                if (this.elements.searchPlaceholder) {
-                    this.elements.searchPlaceholder.textContent = 'Comença a escriure o selecciona un filtre...';
-                    this.elements.searchPlaceholder.style.display = 'block';
-                }
-            }
-            
-            trapFocus(element) {
-                const focusableElements = element.querySelectorAll(
-                    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-                );
-                const firstElement = focusableElements[0];
-                const lastElement = focusableElements[focusableElements.length - 1];
-                
-                element.addEventListener('keydown', (e) => {
-                    if (e.key === 'Tab') {
-                        if (e.shiftKey) {
-                            if (document.activeElement === firstElement) {
-                                lastElement.focus();
-                                e.preventDefault();
-                            }
-                        } else {
-                            if (document.activeElement === lastElement) {
-                                firstElement.focus();
-                                e.preventDefault();
-                            }
-                        }
-                    }
-                });
-            }
-            
-            handleTabKeydown(event) {
-                const tabs = Array.from(this.tabButtons);
-                const currentIndex = tabs.indexOf(event.target);
-                
-                switch (event.key) {
-                    case 'ArrowLeft':
-                        event.preventDefault();
-                        const prevIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
-                        tabs[prevIndex].focus();
-                        break;
-                    case 'ArrowRight':
-                        event.preventDefault();
-                        const nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
-                        tabs[nextIndex].focus();
-                        break;
-                    case 'Home':
-                        event.preventDefault();
-                        tabs[0].focus();
-                        break;
-                    case 'End':
-                        event.preventDefault();
-                        tabs[tabs.length - 1].focus();
-                        break;
-                }
-            }
-            
-            handleGlobalKeydown(event) {
-                // Global keyboard shortcuts
-                if (event.ctrlKey || event.metaKey) {
-                    switch (event.key) {
-                        case 'k':
-                            event.preventDefault();
-                            this.toggleSearchModal(true);
-                            break;
-                    }
-                }
-                
-                // Escape key handling
-                if (event.key === 'Escape') {
-                    if (this.elements.searchModal && this.elements.searchModal.style.display === 'flex') {
-                        this.toggleSearchModal(false);
-                    }
-                }
-            }
-            
-            initializeTabs() {
-                // Set up initial tab state
-                this.switchTab('tab-teoria');
-            }
-            
-            setupEventListeners() {
-                // Search functionality
-                this.elements.openSearchBtn?.addEventListener('click', () => this.toggleSearchModal(true));
-                this.elements.closeSearchBtn?.addEventListener('click', () => this.toggleSearchModal(false));
-                this.elements.clearSearchBtn?.addEventListener('click', () => this.clearSearch());
-                this.elements.searchInput?.addEventListener('input', () => this.handleSearchInput());
-                this.elements.searchInput?.addEventListener('keydown', (e) => this.handleSearchKeydown(e));
-                
-                // Filter buttons
-                this.elements.filterButtons.forEach(btn => {
-                    btn.addEventListener('click', () => this.setFilter(btn.dataset.filter));
-                });
-                
-                // UI toggles
-                this.elements.darkModeToggle?.addEventListener('click', () => this.toggleDarkMode());
-                this.elements.compactViewToggle?.addEventListener('click', () => this.toggleCompactView());
-                
-                // Tab navigation
-                this.tabButtons.forEach(button => {
-                    button.addEventListener('click', () => this.switchTab(button.dataset.target));
-                    button.addEventListener('keydown', (e) => this.handleTabKeydown(e));
-                });
-                
-                // Global keyboard shortcuts
-                document.addEventListener('keydown', (e) => this.handleGlobalKeydown(e));
-                
-                // Modal backdrop
-                this.elements.searchModal?.addEventListener('click', (e) => {
-                    if (e.target.id === 'searchModal') this.toggleSearchModal(false);
-                });
-                
-                // Enhanced link interactions
-                document.querySelectorAll('.hero-card, .link-button').forEach(link => {
-                    link.addEventListener('click', (e) => this.handleLinkClick(e, link));
-                });
-            }
-
-            loadUserPreferences() {
-                // Load dark mode preference
-                if (localStorage.getItem('emmca-theme') === 'dark') {
-                    this.elements.body.classList.add('dark-mode');
-                    const icon = this.elements.darkModeToggle?.querySelector('[data-lucide]');
-                    if (icon) {
-                        icon.setAttribute('data-lucide', 'sun');
-                    }
-                }
-
-                // Load compact view preference
-                if (localStorage.getItem('emmca-view') === 'compact') {
-                    this.elements.body.classList.add('compact-view-active');
-                    const icon = this.elements.compactViewToggle?.querySelector('[data-lucide]');
-                    if (icon) {
-                        icon.setAttribute('data-lucide', 'grip-vertical');
-                    }
-                }
-            }
-            
-            initializeSearchSuggestions() {
-                this.searchSuggestions = [
-                    'teoria musical', 'intervals', 'acords', 'lectura', 'dictats auditius',
-                    'clau de sol', 'clau de fa', 'producció musical', 'YouTube', 'podcast',
-                    'apps mòbil', 'metrònom', 'temporitzador', 'harmonia', 'jazz',
-                    'piano', 'guitarra', 'bateria', 'baixe', 'saxòfon', 'composició'
-                ];
-                this.currentSuggestionIndex = -1;
-            }
-            
-            initializeMicroInteractions() {
-                // Add breathing animation to active elements
-                this.addBreathingAnimation();
-                
-                // Initialize progress tracking
-                this.progressSteps = 0;
-                this.totalSteps = this.linkItems.length;
-            }
-            
-            handleSearchInput() {
-                const query = this.elements.searchInput.value.toLowerCase().trim();
-                
-                if (query.length > 0) {
-                    this.showSearchSuggestions(query);
-                    this.filterLinks();
-                } else {
-                    this.hideSearchSuggestions();
-                    this.filterLinks();
-                }
-            }
-            
-            showSearchSuggestions(query) {
-                if (!this.elements.searchSuggestions) return;
-                
-                const filteredSuggestions = this.searchSuggestions
-                    .filter(suggestion => suggestion.toLowerCase().includes(query))
-                    .slice(0, 5);
-                
-                if (filteredSuggestions.length > 0) {
-                    this.elements.searchSuggestions.innerHTML = filteredSuggestions
-                        .map((suggestion, index) => 
-                            `<div class="search-suggestion" data-index="${index}" role="option">
-                                ${suggestion}
-                            </div>`
-                        ).join('');
-                    
-                    this.elements.searchSuggestions.style.display = 'block';
-                    
-                    // Add click handlers to suggestions
-                    this.elements.searchSuggestions.querySelectorAll('.search-suggestion').forEach(item => {
-                        item.addEventListener('click', () => {
-                            this.elements.searchInput.value = item.textContent.trim();
-                            this.hideSearchSuggestions();
-                            this.filterLinks();
-                        });
-                    });
-                } else {
-                    this.hideSearchSuggestions();
-                }
-            }
-            
-            hideSearchSuggestions() {
-                if (this.elements.searchSuggestions) {
-                    this.elements.searchSuggestions.style.display = 'none';
-                }
-                this.currentSuggestionIndex = -1;
-            }
-            
-            handleSearchKeydown(event) {
-                const suggestions = this.elements.searchSuggestions?.querySelectorAll('.search-suggestion');
-                
-                switch (event.key) {
-                    case 'ArrowDown':
-                        event.preventDefault();
-                        if (suggestions && suggestions.length > 0) {
-                            this.currentSuggestionIndex = Math.min(this.currentSuggestionIndex + 1, suggestions.length - 1);
-                            this.highlightSuggestion(suggestions);
-                        }
-                        break;
-                    case 'ArrowUp':
-                        event.preventDefault();
-                        if (suggestions && suggestions.length > 0) {
-                            this.currentSuggestionIndex = Math.max(this.currentSuggestionIndex - 1, -1);
-                            this.highlightSuggestion(suggestions);
-                        }
-                        break;
-                    case 'Enter':
-                        if (this.currentSuggestionIndex >= 0 && suggestions) {
-                            event.preventDefault();
-                            const selectedSuggestion = suggestions[this.currentSuggestionIndex];
-                            this.elements.searchInput.value = selectedSuggestion.textContent.trim();
-                            this.hideSearchSuggestions();
-                            this.filterLinks();
-                        }
-                        break;
-                    case 'Escape':
-                        this.hideSearchSuggestions();
-                        break;
-                }
-            }
-            
-            highlightSuggestion(suggestions) {
-                suggestions.forEach((suggestion, index) => {
-                    suggestion.classList.toggle('highlighted', index === this.currentSuggestionIndex);
-                });
-            }
-            
-            showSuccessFeedback(message) {
-                if (!this.elements.successFeedback) return;
-                
-                const messageElement = this.elements.successFeedback.querySelector('span');
-                if (messageElement) {
-                    messageElement.textContent = message;
-                }
-                
-                this.elements.successFeedback.classList.add('show');
-                
-                setTimeout(() => {
-                    this.elements.successFeedback.classList.remove('show');
-                }, 3000);
-            }
-            
-            showProgress(percentage) {
-                if (!this.elements.progressBar || !this.elements.progressBarFill) return;
-                
-                this.elements.progressBar.style.display = 'block';
-                this.elements.progressBarFill.style.width = `${percentage}%`;
-                
-                if (percentage >= 100) {
-                    setTimeout(() => {
-                        this.elements.progressBar.style.display = 'none';
-                    }, 500);
-                }
-            }
-            
-            handleLinkClick(event, linkElement) {
-                // Add visual feedback for external links
-                const isExternal = linkElement.getAttribute('target') === '_blank';
-                
-                if (isExternal) {
-                    // Show loading progress
-                    this.showProgress(30);
-                    
-                    // Add pulse animation
-                    linkElement.classList.add('animate-pulse-glow');
-                    
-                    // Simulate loading completion
-                    setTimeout(() => {
-                        this.showProgress(100);
-                        linkElement.classList.remove('animate-pulse-glow');
-                        this.showSuccessFeedback('Enllaç obert en nova pestanya');
-                    }, 800);
-                }
-            }
-            
-            addBreathingAnimation() {
-                // Add subtle breathing animation to active tools
-                const activeCards = document.querySelectorAll('.hero-card');
-                let delay = 0;
-                
-                activeCards.forEach(card => {
-                    setTimeout(() => {
-                        card.classList.add('animate-breathe');
-                    }, delay);
-                    delay += 200; // Stagger the animations
-                });
-            }
-            
-            switchTab(targetId) {
-                // Remove active state from all tabs
-                this.tabButtons.forEach(button => {
-                    button.classList.remove('is-active');
-                    button.setAttribute('aria-selected', 'false');
-                });
-                
-                // Hide all tab panels
-                this.tabPanes.forEach(pane => {
-                    pane.style.display = 'none';
-                    pane.setAttribute('aria-hidden', 'true');
-                });
-                
-                // Activate selected tab
-                const activeButton = document.querySelector(`[data-target="${targetId}"]`);
-                const activePane = document.getElementById(targetId);
-                
-                if (activeButton && activePane) {
-                    activeButton.classList.add('is-active');
-                    activeButton.setAttribute('aria-selected', 'true');
-                    
-                    activePane.style.display = 'block';
-                    activePane.setAttribute('aria-hidden', 'false');
-                    
-                    // Add slide-in animation
-                    activePane.classList.add('animate-slide-in');
-                    
-                    // Reinitialize collapsibles for the new tab
-                    this.initializeCollapsibles();
-                }
-            }
-
-            initializeLucideIcons() {
-                // Initialize Lucide icons with error handling
-                try {
-                    if (typeof lucide !== 'undefined' && lucide.createIcons) {
-                        lucide.createIcons();
-                    }
-                } catch (error) {
-                    console.warn('Failed to initialize Lucide icons:', error);
-                }
-            }
-        }
-        
-        // Initialize the application
         document.addEventListener('DOMContentLoaded', () => {
-            try {
-                const app = new EMMCAApp();
-                // Show the app after initialization
-                setTimeout(() => {
-                    document.body.classList.add('loaded');
-                }, 300);
-            } catch (error) {
-                console.error('Failed to initialize EMMCA Links application:', error);
-                // Basic fallback - still show the page
-                document.body.classList.add('loaded');
+            // 1. Iniciar Iconos Lucide
+            if (window.lucide) {
+                lucide.createIcons();
             }
+
+            // 2. Control Mode Fosc
+            const darkToggle = document.getElementById('darkModeToggle');
+            const isDarkSaved = localStorage.getItem('theme') === 'dark';
+            
+            if (isDarkSaved) document.body.classList.add('dark-mode');
+
+            darkToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+
+            // 3. Control Vista Compacta
+            const compactToggle = document.getElementById('compactViewToggle');
+            compactToggle.addEventListener('click', () => {
+                document.body.classList.toggle('compact-view');
+            });
+
+            // 4. Control de Tabs
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => {
+                        b.classList.remove('is-active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    tabPanels.forEach(p => p.style.display = 'none');
+
+                    btn.classList.add('is-active');
+                    btn.setAttribute('aria-selected', 'true');
+                    
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(`panel-${tabId}`).style.display = 'block';
+                });
+            });
+
+            // 5. Modal de Cerca
+            const searchModal = document.getElementById('searchModal');
+            const openSearch = document.getElementById('openSearchModal');
+            const closeSearch = document.getElementById('closeSearchModal');
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+
+            openSearch.addEventListener('click', () => {
+                searchModal.classList.add('is-active');
+                searchInput.focus();
+            });
+
+            closeSearch.addEventListener('click', () => {
+                searchModal.classList.remove('is-active');
+            });
+
+            searchModal.addEventListener('click', (e) => {
+                if (e.target === searchModal) searchModal.classList.remove('is-active');
+            });
+
+            // Cerca de links dinàmica
+            const links = Array.from(document.querySelectorAll('a[href]')).map(a => ({
+                title: a.innerText.trim(),
+                url: a.href
+            }));
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                searchResults.innerHTML = '';
+                
+                if (!query) return;
+
+                const filtered = links.filter(l => l.title.toLowerCase().includes(query));
+                filtered.forEach(item => {
+                    const resAnchor = document.createElement('a');
+                    resAnchor.className = 'link-button';
+                    resAnchor.href = item.url;
+                    resAnchor.target = '_blank';
+                    resAnchor.innerHTML = `<i data-lucide="external-link"></i> ${item.title}`;
+                    searchResults.appendChild(resAnchor);
+                });
+
+                if (window.lucide) lucide.createIcons();
+            });
         });
-
     </script>
-
 </body>
 </html>
