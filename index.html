@@ -8,10 +8,12 @@
     <meta name="keywords" content="música, educació musical, teoria musical, EMMCA, recursos educatius, dictats auditius, lectura musical">
     <meta name="author" content="Eugeni Corchero">
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
@@ -19,7 +21,7 @@
         :root {
             --bg-main: #f8fafc;
             --bg-card: #ffffff;
-            --bg-card-hover: #ffffff;
+            --bg-card-hover: #f1f5f9;
             --border-color: #e2e8f0;
             --text-main: #0f172a;
             --text-muted: #64748b;
@@ -80,7 +82,7 @@
             }
         }
 
-        /* Skip Link */
+        /* Accessibilitat */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -115,7 +117,7 @@
             z-index: 50;
             display: flex;
             gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             padding: 0.35rem;
             border-radius: 9999px;
@@ -124,7 +126,7 @@
         }
 
         .dark-mode .header-controls {
-            background: rgba(19, 28, 46, 0.8);
+            background: rgba(19, 28, 46, 0.85);
         }
 
         .header-btn {
@@ -225,7 +227,6 @@
             display: flex;
             align-items: flex-start;
             gap: 1rem;
-            margin-bottom: 0.75rem;
         }
 
         .icon-box {
@@ -246,6 +247,7 @@
             font-size: 1.1rem;
             font-weight: 700;
             line-height: 1.3;
+            margin-bottom: 0.25rem;
         }
 
         .hero-card p {
@@ -293,7 +295,6 @@
         .tab-btn.is-active {
             color: var(--primary);
             background: var(--primary-light);
-            position: relative;
         }
 
         /* Directory Links Grid */
@@ -307,17 +308,28 @@
             .directory-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
+        .link-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+        }
+
         .link-group-title {
             font-size: 1rem;
             font-weight: 700;
-            color: var(--text-muted);
+            color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .link-button {
-            background: var(--bg-card);
+            background: var(--bg-main);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
             padding: 0.875rem 1rem;
@@ -332,9 +344,13 @@
             font-size: 0.95rem;
         }
 
+        .link-button:last-child {
+            margin-bottom: 0;
+        }
+
         .link-button:hover {
             border-color: var(--primary);
-            background: var(--bg-card-hover);
+            background: var(--primary-light);
             transform: translateX(4px);
             color: var(--primary);
         }
@@ -373,7 +389,6 @@
             max-width: 600px;
             padding: 1.5rem;
             box-shadow: var(--shadow-lg);
-
         }
 
         .search-input {
@@ -416,6 +431,7 @@
 
     <a href="#main-content" class="sr-only">Salta al contingut principal</a>
 
+    <!-- Fixed Controls Header -->
     <div class="header-controls" role="toolbar" aria-label="Controls de la pàgina">
         <button type="button" class="header-btn" id="openSearchModal" title="Obrir cerca" aria-label="Obrir cerca">
             <i data-lucide="search"></i>
@@ -429,12 +445,14 @@
     </div>
 
     <div class="container">
+        <!-- App Title Header -->
         <header>
             <h1 class="brand-title">EMMCA LINKS</h1>
             <p class="brand-subtitle">Recursos Musicals Essencials per a l'Estudiant de Música</p>
         </header>
 
         <main id="main-content">
+            <!-- Hero Essential Tools Section -->
             <section aria-labelledby="hero-heading">
                 <h2 id="hero-heading" class="section-title">
                     <i data-lucide="zap" style="color: #f59e0b;"></i> Eines d'Entrenament Essencials
@@ -503,9 +521,10 @@
                 </div>
             </section>
 
+            <!-- Directory Categories Navigation -->
             <section aria-labelledby="directory-heading">
                 <h2 id="directory-heading" class="section-title">
-                    <i data-lucide="folder-git-2" style="color: var(--primary);"></i> Directori Temàtic
+                    <i data-lucide="folder-git-2" style="color: var(--primary);"></i> Directori Completa de Recursos
                 </h2>
 
                 <div class="tabs-wrapper">
@@ -522,24 +541,26 @@
                     </div>
                 </div>
 
+                <!-- Tab Panels -->
                 <div id="tab-content">
+                    <!-- Tab Teoria -->
                     <div class="tab-panel" id="panel-teoria">
                         <div class="directory-grid">
-                            <div>
-                                <h3 class="link-group-title">Plataformes de Teoria i Dictats</h3>
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="globe"></i> Plataformes de Teoria i Dictats</h3>
                                 <a class="link-button" href="https://teoria.com/index.php" target="_blank" rel="noopener">
-                                    <i data-lucide="globe"></i> Teoria.com (Exercicis i Teoria)
+                                    <i data-lucide="external-link"></i> Teoria.com (Exercicis i Teoria)
                                 </a>
                                 <a class="link-button" href="https://www.musictheory.net" target="_blank" rel="noopener">
-                                    <i data-lucide="award"></i> MusicTheory.net (Tenuto)
+                                    <i data-lucide="external-link"></i> MusicTheory.net (Tenuto)
                                 </a>
                                 <a class="link-button" href="https://earmaster.com" target="_blank" rel="noopener">
-                                    <i data-lucide="headphones"></i> EarMaster Entrenament Auditiu
+                                    <i data-lucide="external-link"></i> EarMaster Entrenament Auditiu
                                 </a>
                             </div>
 
-                            <div>
-                                <h3 class="link-group-title">Canals de YouTube Recomendats</h3>
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="youtube"></i> Canals de YouTube Recomanats</h3>
                                 <a class="link-button" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener">
                                     <i data-lucide="youtube"></i> Adam Neely (Teoria & Jazz)
                                 </a>
@@ -553,23 +574,24 @@
                         </div>
                     </div>
 
+                    <!-- Tab Produccio -->
                     <div class="tab-panel" id="panel-produccio" style="display: none;">
                         <div class="directory-grid">
-                            <div>
-                                <h3 class="link-group-title">Eines de Creativitat Web</h3>
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="cpu"></i> Eines de Creativitat Web</h3>
                                 <a class="link-button" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener">
-                                    <i data-lucide="cpu"></i> Chrome Music Lab
+                                    <i data-lucide="external-link"></i> Chrome Music Lab
                                 </a>
                                 <a class="link-button" href="https://muted.io" target="_blank" rel="noopener">
-                                    <i data-lucide="layers"></i> Muted.io (Eines ràpides de música)
+                                    <i data-lucide="external-link"></i> Muted.io (Eines ràpides de música)
                                 </a>
                                 <a class="link-button" href="https://www.bandlab.com" target="_blank" rel="noopener">
-                                    <i data-lucide="mic-2"></i> BandLab Studio Online
+                                    <i data-lucide="external-link"></i> BandLab Studio Online
                                 </a>
                             </div>
 
-                            <div>
-                                <h3 class="link-group-title">Producció & Sound Design</h3>
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="sliders"></i> Producció & Sound Design</h3>
                                 <a class="link-button" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener">
                                     <i data-lucide="youtube"></i> Andrew Huang
                                 </a>
@@ -580,22 +602,23 @@
                         </div>
                     </div>
 
+                    <!-- Tab Utilitats -->
                     <div class="tab-panel" id="panel-utilitats" style="display: none;">
                         <div class="directory-grid">
-                            <div>
-                                <h3 class="link-group-title">Partitures i Arxiu</h3>
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="file-text"></i> Partitures i Arxius</h3>
                                 <a class="link-button" href="https://imslp.org" target="_blank" rel="noopener">
-                                    <i data-lucide="file-text"></i> IMSLP / Petrucci Music Library
+                                    <i data-lucide="external-link"></i> IMSLP / Petrucci Music Library
                                 </a>
                                 <a class="link-button" href="https://musescore.com" target="_blank" rel="noopener">
-                                    <i data-lucide="music"></i> MuseScore Sheet Music
+                                    <i data-lucide="external-link"></i> MuseScore Sheet Music
                                 </a>
                             </div>
 
-                            <div>
-                                <h3 class="link-group-title">Utilitats de Pràctica</h3>
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="clock"></i> Utilitats de Pràctica</h3>
                                 <a class="link-button" href="https://eugenicorchero.github.io/musicstudy/" target="_blank" rel="noopener">
-                                    <i data-lucide="clock"></i> Temporitzador d'Estudi Pomodoro
+                                    <i data-lucide="external-link"></i> Temporitzador d'Estudi Pomodoro
                                 </a>
                             </div>
                         </div>
@@ -609,19 +632,21 @@
         </footer>
     </div>
 
+    <!-- Modal Cerca -->
     <div class="modal-overlay" id="searchModal">
         <div class="modal-card">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-                <h3 style="font-size: 1.1rem; font-weight: 700;">Cerca ràpida</h3>
+                <h3 style="font-size: 1.1rem; font-weight: 700;">Cerca ràpida de recursos</h3>
                 <button type="button" id="closeSearchModal" style="background: none; border: none; cursor: pointer; color: var(--text-muted);">
                     <i data-lucide="x"></i>
                 </button>
             </div>
-            <input type="text" class="search-input" id="searchInput" placeholder="Escriu per cercar recurs..." autofocus>
+            <input type="text" class="search-input" id="searchInput" placeholder="Escriu per cercar qualsevol recurs..." autofocus>
             <div class="search-results" id="searchResults"></div>
         </div>
     </div>
 
+    <!-- Scripts de Control -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Iniciar Iconos Lucide
@@ -687,7 +712,7 @@
                 if (e.target === searchModal) searchModal.classList.remove('is-active');
             });
 
-            // Cerca de links dinàmica
+            // Indexar de forma automàtica tots els links
             const links = Array.from(document.querySelectorAll('a[href]')).map(a => ({
                 title: a.innerText.trim(),
                 url: a.href
