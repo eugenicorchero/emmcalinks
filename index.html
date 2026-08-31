@@ -3,341 +3,776 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recursos de Música i Producció</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>EMMCA LINKS | Recursos Musicals Interactius</title>
+    <meta name="description" content="Recursos essencials per a l'estudiant de música: eines d'entrenament, teoria musical, producció i materials didàctics de l'EMMCA.">
+    <meta name="keywords" content="música, educació musical, teoria musical, EMMCA, recursos educatius, dictats auditius, lectura musical">
+    <meta name="author" content="Eugeni Corchero">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* CSS Variables */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --border-color: #e2e8f0;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eeefff;
+            --accent-glow: rgba(79, 70, 229, 0.15);
+            --radius-lg: 1rem;
+            --radius-md: 0.75rem;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.05);
+            --shadow-lg: 0 12px 24px -4px rgba(0,0,0,0.08);
+            --transition-all: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dark-mode {
+            --bg-main: #090d16;
+            --bg-card: #131c2e;
+            --bg-card-hover: #1a263e;
+            --border-color: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-hover: #818cf8;
+            --primary-light: rgba(99, 102, 241, 0.15);
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.3);
+            --shadow-lg: 0 12px 24px -4px rgba(0,0,0,0.4);
+        }
+
+        /* Base resets */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.5;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 1rem 4rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 2.5rem 2rem 5rem;
+            }
+        }
+
+        /* Accessibilitat */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+        .sr-only:focus {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            width: auto;
+            height: auto;
+            clip: auto;
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Header controls */
+        .header-controls {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 50;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 0.35rem;
+            border-radius: 9999px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dark-mode .header-controls {
+            background: rgba(19, 28, 46, 0.85);
+        }
+
+        .header-btn {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-all);
+        }
+
+        .header-btn:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* Main Header */
+        header {
+            text-align: center;
+            padding: 2.5rem 0 2rem;
+        }
+
+        .brand-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .brand-title { font-size: 3.5rem; }
+        }
+
+        .brand-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-main);
+        }
+
+        /* Hero Grid */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+            .hero-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Hero Card */
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition-all);
+            position: relative;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 20px -5px var(--accent-glow), var(--shadow-md);
+        }
+
+        .hero-card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .icon-box {
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: var(--radius-md);
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .hero-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-card p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Tabs Navigation */
+        .tabs-wrapper {
+            overflow-x: auto;
+            margin-bottom: 2rem;
+            scrollbar-width: none;
+        }
+        .tabs-wrapper::-webkit-scrollbar { display: none; }
+
+        .tabs-list {
+            display: flex;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.25rem;
+            min-width: max-content;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: var(--transition-all);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        .tab-btn.is-active {
+            color: var(--primary);
+            background: var(--primary-light);
+        }
+
+        /* Directory Links Grid */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .directory-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        .link-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .link-group-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .link-button {
+            background: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 0.875rem 1rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.6rem;
+            transition: var(--transition-all);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .link-button:last-child {
+            margin-bottom: 0;
+        }
+
+        .link-button:hover {
+            border-color: var(--primary);
+            background: var(--primary-light);
+            transform: translateX(4px);
+            color: var(--primary);
+        }
+
+        .link-button i {
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* Modal Cerca */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            z-index: 200;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 4rem 1rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-all);
+        }
+
+        .modal-overlay.is-active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 600px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .search-results {
+            max-height: 350px;
+            overflow-y: auto;
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .no-results {
+            color: var(--text-muted);
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            margin-top: 4rem;
+        }
+
+        /* Compact View Modifier */
+        .compact-view .hero-card p { display: none; }
+        .compact-view .hero-card { padding: 0.75rem 1rem; }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans p-4 md:p-8">
+<body>
 
-    <div class="max-w-6xl mx-auto">
-        
-        <!-- Contenidor Principal de Tabs -->
-        <div class="tabs-container">
-            
-            <!-- Columna 1: Teoria i Anàlisi -->
-            <div id="tab-teoria" role="tabpanel" aria-labelledby="tab-teoria-button">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links">
-                    
-                    <!-- Columna 1.1: Eines de Teoria -->
-                    <div class="link-col" data-category="eines teoria harmonia">
-                        <p class="link-item-title font-bold text-lg mb-4">Eines de Teoria i Harmonia</p>
-                        <div class="link-group flex flex-col gap-3">
-                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.musictheory.net" target="_blank" rel="noopener noreferrer" data-category="eines teoria exercicis">
-                                <span class="icon"><i data-lucide="book-open"></i></span>
-                                <span>MusicTheory.net (Exercicis i Teoria)</span>
-                            </a>
-                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.teoria.com" target="_blank" rel="noopener noreferrer" data-category="eines teoria entrenament">
-                                <span class="icon"><i data-lucide="brain"></i></span>
-                                <span>Teoria.com (Entrenament auditiu)</span>
-                            </a>
+    <a href="#main-content" class="sr-only">Salta al contingut principal</a>
+
+    <!-- Fixed Controls Header -->
+    <div class="header-controls" role="toolbar" aria-label="Controls de la pàgina">
+        <button type="button" class="header-btn" id="openSearchModal" title="Obrir cerca (Esc per tancar)" aria-label="Obrir cerca">
+            <i data-lucide="search"></i>
+        </button>
+        <button type="button" class="header-btn" id="darkModeToggle" title="Canviar Mode Fosc/Clar" aria-label="Modo fosc/clar">
+            <i data-lucide="moon" id="darkIcon"></i>
+        </button>
+        <button type="button" class="header-btn" id="compactViewToggle" title="Vista compacta" aria-label="Vista compacta">
+            <i data-lucide="layout-grid"></i>
+        </button>
+    </div>
+
+    <div class="container">
+        <!-- App Title Header -->
+        <header>
+            <h1 class="brand-title">EMMCA LINKS</h1>
+            <p class="brand-subtitle">Recursos Musicals Essencials per a l'Estudiant de Música</p>
+        </header>
+
+        <main id="main-content">
+            <!-- Hero Essential Tools Section -->
+            <section aria-labelledby="hero-heading">
+                <h2 id="hero-heading" class="section-title">
+                    <i data-lucide="zap" style="color: #f59e0b;"></i> Eines d'Entrenament Essencials
+                </h2>
+
+                <div class="hero-grid">
+                    <a href="https://emmcaro.github.io/lecturabasic1/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box">𝄞</div>
+                            <div>
+                                <h3>Lectura Clau de Sol</h3>
+                                <p>Practica la identificació ràpida de notes al pentagrama en clau de sol.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://emmcaro.github.io/Lectura-clau-de-fa/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box">𝄢</div>
+                            <div>
+                                <h3>Lectura Clau de Fa</h3>
+                                <p>Domina la lectura de les notes greus utilitzant la clau de fa.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://emmcaro.github.io/Lectura-sol-i-fa/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box">𝄞𝄢</div>
+                            <div>
+                                <h3>Lectura Gran Pentagrama</h3>
+                                <p>Domina la lectura combinada en clau de Sol i Fa simultàniament.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://eugenicorchero.github.io/intervally/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box"><i data-lucide="music-2"></i></div>
+                            <div>
+                                <h3>Lectura d'Intervals</h3>
+                                <p>Exercicis visuals per reconèixer intervals melòdics i harmònics.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://eugenicorchero.github.io/auditorium/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box"><i data-lucide="ear"></i></div>
+                            <div>
+                                <h3>Dictats d'Intervals</h3>
+                                <p>Entrena la teva oïda per identificar intervals musicals ràpidament.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://eugenicorchero.github.io/chordiceps/" target="_blank" rel="noopener noreferrer" class="hero-card">
+                        <div class="hero-card-header">
+                            <div class="icon-box"><i data-lucide="disc"></i></div>
+                            <div>
+                                <h3>Dictats d'Acords</h3>
+                                <p>Reconeix la qualitat dels acords (majors, menors, setena) a l'oïda.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Directory Categories Navigation -->
+            <section aria-labelledby="directory-heading">
+                <h2 id="directory-heading" class="section-title">
+                    <i data-lucide="folder-git-2" style="color: var(--primary);"></i> Directori Completa de Recursos
+                </h2>
+
+                <div class="tabs-wrapper">
+                    <div class="tabs-list" role="tablist">
+                        <button class="tab-btn is-active" data-tab="teoria" role="tab" aria-selected="true">
+                            <i data-lucide="book-open"></i> Teoria i Educació
+                        </button>
+                        <button class="tab-btn" data-tab="produccio" role="tab" aria-selected="false">
+                            <i data-lucide="sliders"></i> Producció i Creativitat
+                        </button>
+                        <button class="tab-btn" data-tab="utilitats" role="tab" aria-selected="false">
+                            <i data-lucide="wrench"></i> Partitures i Utilitats
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Panels -->
+                <div id="tab-content">
+                    <!-- Tab Teoria -->
+                    <div class="tab-panel" id="panel-teoria">
+                        <div class="directory-grid">
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="globe"></i> Plataformes de Teoria i Dictats</h3>
+                                <a class="link-button" href="https://teoria.com/index.php" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> Teoria.com (Exercicis i Teoria)
+                                </a>
+                                <a class="link-button" href="https://www.musictheory.net" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> MusicTheory.net (Tenuto)
+                                </a>
+                                <a class="link-button" href="https://earmaster.com" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> EarMaster Entrenament Auditiu
+                                </a>
+                            </div>
+
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="youtube"></i> Canals de YouTube Recomanats</h3>
+                                <a class="link-button" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Adam Neely (Teoria & Jazz)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Rick Beato (Anàlisi Musical)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Jaime Altozano (Divulgació)
+                                </a>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Columna 1.2: Canals de YouTube - Teoria i Anàlisi -->
-                    <div class="link-col" data-category="youtube teoria">
-                        <div class="mt-0">
-                            <div class="collapsible-header flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="youtube-teoria-links" style="margin-top: 0;">
-                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Teoria i Anàlisi 📺</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span>
+                    <!-- Tab Produccio -->
+                    <div class="tab-panel" id="panel-produccio" style="display: none;">
+                        <div class="directory-grid">
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="cpu"></i> Eines de Creativitat Web</h3>
+                                <a class="link-button" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> Chrome Music Lab
+                                </a>
+                                <a class="link-button" href="https://muted.io" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> Muted.io (Eines ràpides de música)
+                                </a>
+                                <a class="link-button" href="https://www.bandlab.com" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> BandLab Studio Online
+                                </a>
                             </div>
-                            <div id="youtube-teoria-links" class="collapsible-content link-group flex flex-col gap-2 mt-2" data-category="youtube teoria">
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Adam Neely</span>
+
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="sliders"></i> Producció & Sound Design</h3>
+                                <a class="link-button" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Andrew Huang
                                 </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener noreferrer" data-category="youtube teoria rock">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Rick Beato</span>
+                                <a class="link-button" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Venus Theory
                                 </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener noreferrer" data-category="youtube analisis pop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Jaime Altozano</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Utilitats -->
+                    <div class="tab-panel" id="panel-utilitats" style="display: none;">
+                        <div class="directory-grid">
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="file-text"></i> Partitures i Arxius</h3>
+                                <a class="link-button" href="https://imslp.org" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> IMSLP / Petrucci Music Library
                                 </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/AimeeNolte" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz piano">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Aimee Nolte</span>
+                                <a class="link-button" href="https://musescore.com" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> MuseScore Sheet Music
                                 </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/NahreSol" target="_blank" rel="noopener noreferrer" data-category="youtube teoria piano clasica">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Nahre Sol</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/channel/UCTUtqcDkzw7bisadh6AOx5w" target="_blank" rel="noopener noreferrer" data-category="youtube teoria analisi">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>12Tone</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/8bitMusicTheory" target="_blank" rel="noopener noreferrer" data-category="youtube teoria games">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>8bit Music Theory</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/CharlesCornellStudios" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Charles Cornell</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/DeadWaxShow" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Dead Wax</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/bobreynolds" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz saxo">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Bob Reynolds</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@MusicRadarTech" target="_blank" rel="noopener noreferrer" data-category="youtube teoria tecnologia">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Music Radar Tech</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@DavidBruceComposer" target="_blank" rel="noopener noreferrer" data-category="youtube teoria composicio clasica">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>David Bruce Composer</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@SignalsMusicStudio" target="_blank" rel="noopener noreferrer" data-category="youtube teoria composicio">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Signals Music Studio</span>
+                            </div>
+
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="clock"></i> Utilitats de Pràctica</h3>
+                                <a class="link-button" href="https://eugenicorchero.github.io/musicstudy/" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> Temporitzador d'Estudi Pomodoro
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; EMMCA LINKS - Dissenyat per a estudiants de música.</p>
+        </footer>
+    </div>
+
+    <!-- Modal Cerca -->
+    <div class="modal-overlay" id="searchModal" role="dialog" aria-modal="true">
+        <div class="modal-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <h3 style="font-size: 1.1rem; font-weight: 700;">Cerca ràpida de recursos</h3>
+                <button type="button" id="closeSearchModal" style="background: none; border: none; cursor: pointer; color: var(--text-muted);" aria-label="Tancar cerca">
+                    <i data-lucide="x"></i>
+                </button>
             </div>
-
-            <!-- Columna 2: Producció i Creativitat -->
-            <div id="tab-produccio" role="tabpanel" aria-labelledby="tab-produccio-button" class="mt-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="eines produccio youtube podcast">
-                    
-                    <!-- Columna 2.1: Eines de Creativitat -->
-                    <div class="link-col" data-category="eines creativitat produccio">
-                        <p class="link-item-title font-bold text-lg mb-4">Eines Web de Creativitat i Producció</p>
-                        
-                        <div class="link-group flex flex-col gap-3">
-                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener noreferrer" data-category="eines creativitat experimentacio">
-                                <span class="icon"><i data-lucide="palette"></i></span>
-                                <span>Chrome Music Lab (Experimentació)</span>
-                            </a>
-                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://muted.io" target="_blank" rel="noopener noreferrer" data-category="eines produccio utilitats">
-                                <span class="icon"><i data-lucide="tool"></i></span>
-                                <span>Muted io (Eines vàries de producció)</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Columna 2.2: Canals de YouTube i Podcasts -->
-                    <div class="link-col" data-category="youtube produccio podcast">
-                        
-                        <!-- Grup Plegable: Podcasts -->
-                        <div class="mt-0">
-                            <div class="collapsible-header flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="podcast-links" style="margin-top: 0;">
-                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Podcasts d'Interès 🎧</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span>
-                            </div>
-                            <div id="podcast-links" class="collapsible-content link-group flex flex-col gap-2 mt-2" data-category="podcast entrevista analisi">
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/5Br33snnJU90k2NcYskuM9?si=9a82970a42c34733" target="_blank" rel="noopener noreferrer" data-category="podcast entrevista produccio">
-                                    <span class="icon"><i data-lucide="podcast"></i></span>
-                                    <span>Tape Notes</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/1sgWaKtQxwfjUpZnnK8r7J?si=d7dede0f96eb41ec" target="_blank" rel="noopener noreferrer" data-category="podcast analisis pop">
-                                    <span class="icon"><i data-lucide="podcast"></i></span>
-                                    <span>Switched On Pop</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/10lMwCjvzLCLwth2AW6cLG?si=039962dd03494b8f" target="_blank" rel="noopener noreferrer" data-category="podcast analisis produccio">
-                                    <span class="icon"><i data-lucide="podcast"></i></span>
-                                    <span>Song Exploder</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/01O51q9b3kQkUqG6mEwM5s" target="_blank" rel="noopener noreferrer" data-category="podcast mescla produccio">
-                                    <span class="icon"><i data-lucide="podcast"></i></span>
-                                    <span>Pensado's Place</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/2I3mYhFjHjS3Z1tM" target="_blank" rel="noopener noreferrer" data-category="podcast mescla produccio">
-                                    <span class="icon"><i data-lucide="podcast"></i></span>
-                                    <span>Mix With The Masters Podcast</span>
-                                </a>
-                            </div>
-                        </div>
-                        
-                        <!-- Grup Plegable: YouTube Producció -->
-                        <div class="mt-5">
-                            <div class="collapsible-header flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="youtube-produccio-links">
-                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Producció Musical 🎛️</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span>
-                            </div>
-                            <div id="youtube-produccio-links" class="collapsible-content link-group flex flex-col gap-2 mt-2" data-category="youtube produccio">
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener noreferrer" data-category="youtube produccio creativitat">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Andrew Huang</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/Producelikeapro" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Produce Like A Pro</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/Z3NWorld" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Zen World</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@HelpMeDevvon" target="_blank" rel="noopener noreferrer" data-category="youtube produccio r&b">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Help Me Devvon</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Venus Theory</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@ReidStefanMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Reid Stefan</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/WVmusicOrg" target="_blank" rel="noopener noreferrer" data-category="youtube produccio entrevista">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Weathervane Music</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/imamusicmogul" target="_blank" rel="noopener noreferrer" data-category="youtube produccio marketing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Music Mogul</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@MakePopMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Make Pop Music</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/theproaudiofiles" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Pro Audio Files</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/rachelkcollieroff" target="_blank" rel="noopener noreferrer" data-category="youtube produccio live loop">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Rachel K Collier</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/SeanDivine" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Sean Divine</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/channel/UCJpVRw_1bcGrQvUxeXz8Uhw" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Mars Citizen</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/cosmcosm" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Tom Cosm</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@WeissAdvice" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Weiss Advice</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@TheVelvetYear" target="_blank" rel="noopener noreferrer" data-category="youtube produccio synth">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Velvet Year</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@InTheMix" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mescla daw">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>In The Mix</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@YouSuckAtProducing" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>You Suck at Producing</span>
-                                </a>
-                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@NicoAstegiano" target="_blank" rel="noopener noreferrer" data-category="youtube produccio castellano studio">
-                                    <span class="icon"><i data-lucide="youtube"></i></span>
-                                    <span>Nico Astegiano</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Columna 3: Utilitats i Materials -->
-            <div id="tab-utilitats" role="tabpanel" aria-labelledby="tab-utilitats-button" class="mt-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="app pdf">
-
-                    <!-- Columna 3.1: Aplicacions -->
-                    <div class="link-col" data-category="app metronom stemps entrenament">
-                        <div>
-                            <div class="collapsible-header is-expanded flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="recommended-apps-links" style="margin-top: 0;">
-                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Utilitats Essencials per a la Pràctica 📱</p>
-                                <span class="icon"><i data-lucide="chevron-down"></i></span>
-                            </div>
-                            <div id="recommended-apps-links" class="collapsible-content is-expanded link-group flex flex-col gap-4 mt-3" data-category="app metronom stemps">
-                                
-                                <!-- App 1: SBL Groove Trainer -->
-                                <div class="w-full link-button link-item flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm" data-category="app metronom groove bateria">
-                                    <span class="icon text-xl"><i data-lucide="drum"></i></span>
-                                    <div class="flex-grow">
-                                        <p class="text-base font-bold">SBL Groove Trainer (Metrònom)</p>
-                                        <p class="text-xs text-gray-500">El metrònom avançat per a l'entrenament rítmic.</p>
-                                        <div class="app-links flex space-x-4 mt-3">
-                                            <a href="https://apps.apple.com/us/app/sbl-groove-trainer/id1571452765" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a App Store (iOS/Mac)">
-                                                <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
-                                            </a>
-                                            <a href="https://play.google.com/store/apps/details?id=com.scottsbasslessons.groovetrainer&hl=es_419&pli=1" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a Google Play (Android)">
-                                                <span class="text-2xl" role="img" aria-label="android">🤖</span> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- App 2: Moises -->
-                                <div class="w-full link-button link-item flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm" data-category="app stemps produccio karaoke">
-                                    <span class="icon text-xl"><i data-lucide="music-4"></i></span>
-                                    <div class="flex-grow">
-                                        <p class="text-base font-bold">Moises (Separador de Stems)</p>
-                                        <p class="text-xs text-gray-500">Separa veus, bateria i altres instruments d'una cançó qualsevol.</p>
-                                        <div class="app-links flex space-x-4 mt-3">
-                                            <a href="https://apps.apple.com/es/app/moises-la-app-para-m%C3%BAsics/id1515796612" target="_blank" rel="noopener noreferrer" title="Moises a App Store (iOS/Mac)">
-                                                <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
-                                            </a>
-                                            <a href="https://play.google.com/store/apps/details?id=ai.moises&hl=es_419" target="_blank" rel="noopener noreferrer" title="Moises a Google Play (Android)">
-                                                <span class="text-2xl" role="img" aria-label="android">🤖</span> 
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Columna 3.2: Documents PDF -->
-                    <div class="link-col" data-category="document pdf curs material">
-                        <p class="link-item-title font-bold text-lg mb-4">Materials de Curs (PDFs)</p>
-                        <div class="link-group flex flex-col gap-3" data-category="pdf material harmonia teoria">
-                            <a class="w-full link-button link-item is-download flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.amazon.es/Harmonia-Eugeni-Corchero-Mestres/dp/B0G3671CNB" target="_blank" rel="noopener noreferrer" data-category="pdf teoria harmonia llibre">
-                                <span class="icon"><i data-lucide="file-text"></i></span>
-                                <div style="text-align: left;">
-                                    <p class="text-base font-bold">Llibre d'Harmonia Bàsica (Amazon)</p>
-                                </div>
-                            </a>
-                            
-                            <div class="w-full p-4 rounded-lg border-2 border-dashed border-gray-300 text-gray-500">
-                                <div class="flex items-center gap-3">
-                                    <span class="icon">
-                                        <i data-lucide="file-plus" aria-hidden="true"></i>
-                                    </span>
-                                    <div>
-                                        <p class="font-medium">Materials addicionals</p>
-                                        <p class="text-sm">Més recursos estaran disponibles aviat</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
+            <input type="text" class="search-input" id="searchInput" placeholder="Escriu per cercar qualsevol recurs...">
+            <div class="search-results" id="searchResults"></div>
         </div>
     </div>
 
-    <!-- Script per inicialitzar les icones i opcionalment els desplegables -->
+    <!-- Scripts de Control -->
     <script>
-        // Inicialitza les icones Lucide
-        lucide.createIcons();
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Iniciar Icones Lucide
+            if (window.lucide) {
+                lucide.createIcons();
+            }
 
-        // Control bàsic dels desplegables
-        document.querySelectorAll('.collapsible-header').forEach(header => {
-            header.addEventListener('click', () => {
-                const targetId = header.getAttribute('data-target');
-                const targetEl = document.getElementById(targetId);
-                if (targetEl) {
-                    targetEl.classList.toggle('hidden');
+            // 2. Control Mode Fosc
+            const darkToggle = document.getElementById('darkModeToggle');
+            const isDarkSaved = localStorage.getItem('theme') === 'dark';
+            
+            if (isDarkSaved) {
+                document.body.classList.add('dark-mode');
+            }
+
+            darkToggle.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+
+            // 3. Control Vista Compacta
+            const compactToggle = document.getElementById('compactViewToggle');
+            compactToggle.addEventListener('click', () => {
+                document.body.classList.toggle('compact-view');
+            });
+
+            // 4. Control de Tabs
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => {
+                        b.classList.remove('is-active');
+                        b.setAttribute('aria-selected', 'false');
+                    });
+                    tabPanels.forEach(p => p.style.display = 'none');
+
+                    btn.classList.add('is-active');
+                    btn.setAttribute('aria-selected', 'true');
+                    
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(`panel-${tabId}`).style.display = 'block';
+                });
+            });
+
+            // 5. Modal de Cerca
+            const searchModal = document.getElementById('searchModal');
+            const openSearch = document.getElementById('openSearchModal');
+            const closeSearch = document.getElementById('closeSearchModal');
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+
+            const openModal = () => {
+                searchModal.classList.add('is-active');
+                setTimeout(() => searchInput.focus(), 100);
+            };
+
+            const closeModal = () => {
+                searchModal.classList.remove('is-active');
+                searchInput.value = '';
+                searchResults.innerHTML = '';
+            };
+
+            openSearch.addEventListener('click', openModal);
+            closeSearch.addEventListener('click', closeModal);
+
+            searchModal.addEventListener('click', (e) => {
+                if (e.target === searchModal) closeModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && searchModal.classList.contains('is-active')) {
+                    closeModal();
                 }
+            });
+
+            // Indexar tots els links (metadades per la cerca)
+            const links = Array.from(document.querySelectorAll('a[href]')).map(a => {
+                const titleEl = a.querySelector('h3') || a;
+                const descEl = a.querySelector('p');
+                return {
+                    title: titleEl.innerText.trim(),
+                    description: descEl ? descEl.innerText.trim() : '',
+                    url: a.href
+                };
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                searchResults.innerHTML = '';
+                
+                if (!query) return;
+
+                const filtered = links.filter(l => 
+                    l.title.toLowerCase().includes(query) || 
+                    l.description.toLowerCase().includes(query)
+                );
+
+                if (filtered.length === 0) {
+                    searchResults.innerHTML = '<div class="no-results">No s\'ha trobat cap recurs matching.</div>';
+                    return;
+                }
+
+                filtered.forEach(item => {
+                    const resAnchor = document.createElement('a');
+                    resAnchor.className = 'link-button';
+                    resAnchor.href = item.url;
+                    resAnchor.target = '_blank';
+                    resAnchor.rel = 'noopener';
+                    resAnchor.innerHTML = `<i data-lucide="external-link"></i> <span><strong>${item.title}</strong>${item.description ? ' - ' + item.description : ''}</span>`;
+                    searchResults.appendChild(resAnchor);
+                });
+
+                if (window.lucide) lucide.createIcons();
             });
         });
     </script>
