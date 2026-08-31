@@ -17,7 +17,6 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
-        /* CSS Variables */
         :root {
             --bg-main: #f8fafc;
             --bg-card: #ffffff;
@@ -53,7 +52,6 @@
             --shadow-lg: 0 12px 24px -4px rgba(0,0,0,0.4);
         }
 
-        /* Base resets */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -77,12 +75,9 @@
         }
 
         @media (min-width: 768px) {
-            .container {
-                padding: 2.5rem 2rem 5rem;
-            }
+            .container { padding: 2.5rem 2rem 5rem; }
         }
 
-        /* Accessibilitat */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -93,23 +88,8 @@
             clip: rect(0,0,0,0);
             border: 0;
         }
-        .sr-only:focus {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            z-index: 100;
-            width: auto;
-            height: auto;
-            clip: auto;
-            background: var(--primary);
-            color: white;
-            padding: 0.75rem 1.25rem;
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            font-weight: 600;
-        }
 
-        /* Header controls */
+        /* Controls */
         .header-controls {
             position: fixed;
             top: 1rem;
@@ -149,7 +129,7 @@
             transform: scale(1.05);
         }
 
-        /* Main Header */
+        /* Header */
         header {
             text-align: center;
             padding: 2.5rem 0 2rem;
@@ -201,7 +181,6 @@
             .hero-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* Hero Card */
         .hero-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -213,7 +192,6 @@
             flex-direction: column;
             justify-content: space-between;
             transition: var(--transition-all);
-            position: relative;
             box-shadow: var(--shadow-sm);
         }
 
@@ -287,12 +265,7 @@
             gap: 0.5rem;
         }
 
-        .tab-btn:hover {
-            color: var(--primary);
-            background: var(--primary-light);
-        }
-
-        .tab-btn.is-active {
+        .tab-btn:hover, .tab-btn.is-active {
             color: var(--primary);
             background: var(--primary-light);
         }
@@ -344,9 +317,7 @@
             font-size: 0.95rem;
         }
 
-        .link-button:last-child {
-            margin-bottom: 0;
-        }
+        .link-button:last-child { margin-bottom: 0; }
 
         .link-button:hover {
             border-color: var(--primary);
@@ -402,9 +373,7 @@
             outline: none;
         }
 
-        .search-input:focus {
-            border-color: var(--primary);
-        }
+        .search-input:focus { border-color: var(--primary); }
 
         .search-results {
             max-height: 350px;
@@ -422,7 +391,6 @@
             font-size: 0.9rem;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding-top: 3rem;
@@ -432,7 +400,6 @@
             margin-top: 4rem;
         }
 
-        /* Compact View Modifier */
         .compact-view .hero-card p { display: none; }
         .compact-view .hero-card { padding: 0.75rem 1rem; }
     </style>
@@ -441,9 +408,9 @@
 
     <a href="#main-content" class="sr-only">Salta al contingut principal</a>
 
-    <!-- Fixed Controls Header -->
+    <!-- Header Controls -->
     <div class="header-controls" role="toolbar" aria-label="Controls de la pàgina">
-        <button type="button" class="header-btn" id="openSearchModal" title="Obrir cerca (Esc per tancar)" aria-label="Obrir cerca">
+        <button type="button" class="header-btn" id="openSearchModal" title="Obrir cerca" aria-label="Obrir cerca">
             <i data-lucide="search"></i>
         </button>
         <button type="button" class="header-btn" id="darkModeToggle" title="Canviar Mode Fosc/Clar" aria-label="Modo fosc/clar">
@@ -455,14 +422,13 @@
     </div>
 
     <div class="container">
-        <!-- App Title Header -->
         <header>
             <h1 class="brand-title">EMMCA LINKS</h1>
             <p class="brand-subtitle">Recursos Musicals Essencials per a l'Estudiant de Música</p>
         </header>
 
         <main id="main-content">
-            <!-- Hero Essential Tools Section -->
+            <!-- Hero Essential Tools -->
             <section aria-labelledby="hero-heading">
                 <h2 id="hero-heading" class="section-title">
                     <i data-lucide="zap" style="color: #f59e0b;"></i> Eines d'Entrenament Essencials
@@ -531,19 +497,22 @@
                 </div>
             </section>
 
-            <!-- Directory Categories Navigation -->
+            <!-- Directory Tabs -->
             <section aria-labelledby="directory-heading">
                 <h2 id="directory-heading" class="section-title">
-                    <i data-lucide="folder-git-2" style="color: var(--primary);"></i> Directori Completa de Recursos
+                    <i data-lucide="folder-git-2" style="color: var(--primary);"></i> Directori de Recursos
                 </h2>
 
                 <div class="tabs-wrapper">
                     <div class="tabs-list" role="tablist">
                         <button class="tab-btn is-active" data-tab="teoria" role="tab" aria-selected="true">
-                            <i data-lucide="book-open"></i> Teoria i Educació
+                            <i data-lucide="book-open"></i> Teoria i Anàlisi
                         </button>
                         <button class="tab-btn" data-tab="produccio" role="tab" aria-selected="false">
-                            <i data-lucide="sliders"></i> Producció i Creativitat
+                            <i data-lucide="sliders"></i> Producció i So
+                        </button>
+                        <button class="tab-btn" data-tab="podcasts" role="tab" aria-selected="false">
+                            <i data-lucide="headphones"></i> Podcasts i Mitjans
                         </button>
                         <button class="tab-btn" data-tab="utilitats" role="tab" aria-selected="false">
                             <i data-lucide="wrench"></i> Partitures i Utilitats
@@ -551,44 +520,116 @@
                     </div>
                 </div>
 
-                <!-- Tab Panels -->
                 <div id="tab-content">
-                    <!-- Tab Teoria -->
+                    <!-- Tab Teoria i Anàlisi -->
                     <div class="tab-panel" id="panel-teoria">
                         <div class="directory-grid">
                             <div class="link-group">
-                                <h3 class="link-group-title"><i data-lucide="globe"></i> Plataformes de Teoria i Dictats</h3>
+                                <h3 class="link-group-title"><i data-lucide="globe"></i> Plataformes Educatives</h3>
                                 <a class="link-button" href="https://teoria.com/index.php" target="_blank" rel="noopener">
-                                    <i data-lucide="external-link"></i> Teoria.com (Exercicis i Teoria)
+                                    <i data-lucide="external-link"></i> Teoria.com (Exercicis i Teoria)[cite: 1, 2]
                                 </a>
                                 <a class="link-button" href="https://www.musictheory.net" target="_blank" rel="noopener">
-                                    <i data-lucide="external-link"></i> MusicTheory.net (Tenuto)
+                                    <i data-lucide="external-link"></i> MusicTheory.net (Tenuto)[cite: 1, 2]
                                 </a>
                                 <a class="link-button" href="https://earmaster.com" target="_blank" rel="noopener">
-                                    <i data-lucide="external-link"></i> EarMaster Entrenament Auditiu
+                                    <i data-lucide="external-link"></i> EarMaster Entrenament Auditiu[cite: 1, 2]
                                 </a>
                             </div>
 
                             <div class="link-group">
-                                <h3 class="link-group-title"><i data-lucide="youtube"></i> Canals de YouTube Recomanats</h3>
+                                <h3 class="link-group-title"><i data-lucide="youtube"></i> YouTube - Teoria i Anàlisi</h3>
                                 <a class="link-button" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener">
-                                    <i data-lucide="youtube"></i> Adam Neely (Teoria & Jazz)
+                                    <i data-lucide="youtube"></i> Adam Neely (Teoria / Jazz / Assaigs)
                                 </a>
                                 <a class="link-button" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener">
-                                    <i data-lucide="youtube"></i> Rick Beato (Anàlisi Musical)
+                                    <i data-lucide="youtube"></i> Rick Beato (Anàlisi / Rock / Teoria)
                                 </a>
                                 <a class="link-button" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener">
-                                    <i data-lucide="youtube"></i> Jaime Altozano (Divulgació)
+                                    <i data-lucide="youtube"></i> Jaime Altozano (Anàlisi / Divulgació / Pop i BSO)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@AimeeNolte" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Aimee Nolte (Jazz / Piano)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@NahreSol" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Nahre Sol (Piano clàssic / Composició)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@12tone" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> 12Tone (Anàlisi teòrica i harmonia)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@8bitMusicTheory" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> 8bit Music Theory (Teoria aplicada a videojocs)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@CharlesCornell" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Charles Cornell (Jazz / Anàlisi de pop i BSO)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@DeadWaxDoc" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Dead Wax (Història i anàlisi de producció)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@BobReynolds" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Bob Reynolds (Jazz / Saxofó / Pràctica)
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Tab Produccio -->
+                    <!-- Tab Producció i So -->
                     <div class="tab-panel" id="panel-produccio" style="display: none;">
                         <div class="directory-grid">
                             <div class="link-group">
-                                <h3 class="link-group-title"><i data-lucide="cpu"></i> Eines de Creativitat Web</h3>
+                                <h3 class="link-group-title"><i data-lucide="youtube"></i> YouTube - Producció Musical</h3>
+                                <a class="link-button" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Andrew Huang (Creativitat / Sintetitzadors)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@ProduceLikeAPRO" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Produce Like A Pro (Mescla / Gravació)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@ZenWorld" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Zen World (Ableton / Sound Design)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@HelpMeDevvon" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Help Me Devvon (Mescla / R&B / Veus)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Venus Theory (Sound design / Sintetitzadors)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@reidstefan" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Reid Stefan (Producció / Mescla pop)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@WeathervaneMusic" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Weathervane Music (Producció en directe)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@MusicMogul" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Music Mogul (Producció de beats)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@MakePopMusic" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Make Pop Music (Producció pop / Composició)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@TheProAudioFiles" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Pro Audio Files (Mescla i masterització)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@RachelKCollier" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Rachel K Collier (Live looping / Ableton)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@SeanDivine" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Sean Divine (Mescla / Hip-Hop)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@MarsCitizen" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Mars Citizen (Sound design / Producció)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@tomcosm" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Tom Cosm (Ableton avançat)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@WeissAdvice" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Weiss Advice (Masterització / Mescla)
+                                </a>
+                                <a class="link-button" href="https://www.youtube.com/@VelvetYear" target="_blank" rel="noopener">
+                                    <i data-lucide="youtube"></i> Velvet Year (Sintetitzadors / Sound Design)
+                                </a>
+                            </div>
+
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="cpu"></i> Creativitat i Tecnologies Web</h3>
                                 <a class="link-button" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener">
                                     <i data-lucide="external-link"></i> Chrome Music Lab
                                 </a>
@@ -598,15 +639,26 @@
                                 <a class="link-button" href="https://www.bandlab.com" target="_blank" rel="noopener">
                                     <i data-lucide="external-link"></i> BandLab Studio Online
                                 </a>
-                            </div>
-
-                            <div class="link-group">
-                                <h3 class="link-group-title"><i data-lucide="sliders"></i> Producció & Sound Design</h3>
-                                <a class="link-button" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener">
-                                    <i data-lucide="youtube"></i> Andrew Huang
+                                <a class="link-button" href="https://www.musicradar.com/" target="_blank" rel="noopener">
+                                    <i data-lucide="external-link"></i> Music Radar Tech (Tecnologia musical)
                                 </a>
-                                <a class="link-button" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener">
-                                    <i data-lucide="youtube"></i> Venus Theory
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab Podcasts -->
+                    <div class="tab-panel" id="panel-podcasts" style="display: none;">
+                        <div class="directory-grid">
+                            <div class="link-group">
+                                <h3 class="link-group-title"><i data-lucide="podcast"></i> Podcasts Recomanats</h3>
+                                <a class="link-button" href="https://tapenotes.ft.com/" target="_blank" rel="noopener">
+                                    <i data-lucide="headphones"></i> Tape Notes (Entrevistes a productors i anàlisi)
+                                </a>
+                                <a class="link-button" href="https://switchedonpop.com/" target="_blank" rel="noopener">
+                                    <i data-lucide="headphones"></i> Switched On Pop (Anàlisi de música pop)
+                                </a>
+                                <a class="link-button" href="https://songexploder.net/" target="_blank" rel="noopener">
+                                    <i data-lucide="headphones"></i> Song Exploder (Desglossament de cançons)
                                 </a>
                             </div>
                         </div>
@@ -656,35 +708,27 @@
         </div>
     </div>
 
-    <!-- Scripts de Control -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. Iniciar Icones Lucide
-            if (window.lucide) {
-                lucide.createIcons();
-            }
+            if (window.lucide) { lucide.createIcons(); }
 
-            // 2. Control Mode Fosc
+            // Dark Mode
             const darkToggle = document.getElementById('darkModeToggle');
-            const isDarkSaved = localStorage.getItem('theme') === 'dark';
-            
-            if (isDarkSaved) {
+            if (localStorage.getItem('theme') === 'dark') {
                 document.body.classList.add('dark-mode');
             }
-
             darkToggle.addEventListener('click', () => {
                 document.body.classList.toggle('dark-mode');
-                const isDark = document.body.classList.contains('dark-mode');
-                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+                localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
             });
 
-            // 3. Control Vista Compacta
+            // Compact View
             const compactToggle = document.getElementById('compactViewToggle');
             compactToggle.addEventListener('click', () => {
                 document.body.classList.toggle('compact-view');
             });
 
-            // 4. Control de Tabs
+            // Tabs Logic
             const tabBtns = document.querySelectorAll('.tab-btn');
             const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -704,7 +748,7 @@
                 });
             });
 
-            // 5. Modal de Cerca
+            // Modal Search Logic
             const searchModal = document.getElementById('searchModal');
             const openSearch = document.getElementById('openSearchModal');
             const closeSearch = document.getElementById('closeSearchModal');
@@ -730,12 +774,10 @@
             });
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && searchModal.classList.contains('is-active')) {
-                    closeModal();
-                }
+                if (e.key === 'Escape' && searchModal.classList.contains('is-active')) closeModal();
             });
 
-            // Indexar tots els links (metadades per la cerca)
+            // Index Link Data for Search
             const links = Array.from(document.querySelectorAll('a[href]')).map(a => {
                 const titleEl = a.querySelector('h3') || a;
                 const descEl = a.querySelector('p');
