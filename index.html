@@ -1,310 +1,345 @@
-<!-- TAB 1: TEORIA I ANÀLISI -->
-<div id="tab-teoria" role="tabpanel" aria-labelledby="tab-teoria-button">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links">
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursos de Música i Producció</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto">
         
-        <!-- Columna 1.1: Eines de Teoria (Mantingudes per funcionalitat) -->
-        <div class="link-col" data-category="eines teoria harmonia">
-            <p class="link-item-title">Eines de Teoria i Harmonia</p>
-            <div class="link-group">
-                <a class="w-full link-button link-item" href="https://www.musictheory.net" target="_blank" rel="noopener noreferrer" data-category="eines teoria exercicis">
-                    <span class="icon"><i data-lucide="book-open"></i></span>
-                    <span>MusicTheory.net (Exercicis i Teoria)</span>
-                </a>
-                <a class="w-full link-button link-item" href="https://www.teoria.com" target="_blank" rel="noopener noreferrer" data-category="eines teoria entrenament">
-                    <span class="icon"><i data-lucide="brain"></i></span>
-                    <span>Teoria.com (Entrenament auditiu)</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Columna 1.2: Canals de YouTube - Teoria i Anàlisi -->
-        <div class="link-col" data-category="youtube teoria">
-            <div class="mt-0">
-                <div class="collapsible-header" data-target="youtube-teoria-links" style="margin-top: 0;">
-                    <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Teoria i Anàlisi 📺</p>
-                    <span class="icon"><i data-lucide="chevron-down"></i></span>
-                </div>
-                <div id="youtube-teoria-links" class="collapsible-content link-group" data-category="youtube teoria">
-                    <!-- Canals del teu HTML -->
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Adam Neely</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener noreferrer" data-category="youtube teoria rock">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Rick Beato</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener noreferrer" data-category="youtube analisis pop">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Jaime Altozano</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/AimeeNolte" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz piano">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Aimee Nolte</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/NahreSol" target="_blank" rel="noopener noreferrer" data-category="youtube teoria piano clasica">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Nahre Sol</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCTUtqcDkzw7bisadh6AOx5w" target="_blank" rel="noopener noreferrer" data-category="youtube teoria analisi">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>12Tone</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/8bitMusicTheory" target="_blank" rel="noopener noreferrer" data-category="youtube teoria games">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>8bit Music Theory</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/CharlesCornellStudios" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Charles Cornell</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/DeadWaxShow" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Dead Wax</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/bobreynolds" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz saxo">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Bob Reynolds</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@MusicRadarTech" target="_blank" rel="noopener noreferrer" data-category="youtube teoria tecnologia">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Music Radar Tech</span>
-                    </a>
-                    <!-- Afegits recomanats complementaris -->
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@DavidBruceComposer" target="_blank" rel="noopener noreferrer" data-category="youtube teoria composicio clasica">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>David Bruce Composer</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@SignalsMusicStudio" target="_blank" rel="noopener noreferrer" data-category="youtube teoria composicio">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Signals Music Studio</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- TAB 2: PRODUCCIÓ I CREATIVITAT -->
-<div id="tab-produccio" role="tabpanel" aria-labelledby="tab-produccio-button">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="eines produccio youtube podcast">
-        
-        <!-- Columna 2.1: Eines Web de Creativitat -->
-        <div class="link-col" data-category="eines creativitat produccio">
-            <p class="link-item-title">Eines Web de Creativitat i Producció</p>
-            <div class="link-group">
-                <a class="w-full link-button link-item" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener noreferrer" data-category="eines creativitat experimentacio">
-                    <span class="icon"><i data-lucide="palette"></i></span>
-                    <span>Chrome Music Lab (Experimentació)</span>
-                </a>
-                <a class="w-full link-button link-item" href="https://muted.io" target="_blank" rel="noopener noreferrer" data-category="eines produccio utilitats">
-                    <span class="icon"><i data-lucide="tool"></i></span>
-                    <span>Muted io (Eines vàries de producció)</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Columna 2.2: Canals de YouTube i Podcasts -->
-        <div class="link-col" data-category="youtube produccio podcast">
+        <!-- Contenidor Principal de Tabs -->
+        <div class="tabs-container">
             
-            <!-- Grup Plegable: Podcasts -->
-            <div class="mt-0">
-                <div class="collapsible-header" data-target="podcast-links" style="margin-top: 0;">
-                    <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Podcasts d'Interès 🎧</p>
-                    <span class="icon"><i data-lucide="chevron-down"></i></span>
-                </div>
-                <div id="podcast-links" class="collapsible-content link-group" data-category="podcast entrevista analisi">
-                    <!-- Podcasts del teu HTML -->
-                    <a class="w-full link-button link-item" href="https://open.spotify.com/show/5Br33snnJU90k2NcYskuM9?si=9a82970a42c34733" target="_blank" rel="noopener noreferrer" data-category="podcast entrevista produccio">
-                        <span class="icon"><i data-lucide="podcast"></i></span>
-                        <span>Tape Notes</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://open.spotify.com/show/1sgWaKtQxwfjUpZnnK8r7J?si=d7dede0f96eb41ec" target="_blank" rel="noopener noreferrer" data-category="podcast analisis pop">
-                        <span class="icon"><i data-lucide="podcast"></i></span>
-                        <span>Switched On Pop</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://open.spotify.com/show/10lMwCjvzLCLwth2AW6cLG?si=039962dd03494b8f" target="_blank" rel="noopener noreferrer" data-category="podcast analisis produccio">
-                        <span class="icon"><i data-lucide="podcast"></i></span>
-                        <span>Song Exploder</span>
-                    </a>
-                    <!-- Afegits recomanats complementaris -->
-                    <a class="w-full link-button link-item" href="https://open.spotify.com/show/01O51q9b3kQkUqG6mEwM5s" target="_blank" rel="noopener noreferrer" data-category="podcast mescla produccio">
-                        <span class="icon"><i data-lucide="podcast"></i></span>
-                        <span>Pensado's Place</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://open.spotify.com/show/2I3mYhFjHjS3Z1tM" target="_blank" rel="noopener noreferrer" data-category="podcast mescla produccio">
-                        <span class="icon"><i data-lucide="podcast"></i></span>
-                        <span>Mix With The Masters Podcast</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Grup Plegable: YouTube Producció -->
-            <div class="mt-5">
-                <div class="collapsible-header" data-target="youtube-produccio-links">
-                    <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Producció Musical 🎛️</p>
-                    <span class="icon"><i data-lucide="chevron-down"></i></span>
-                </div>
-                <div id="youtube-produccio-links" class="collapsible-content link-group" data-category="youtube produccio">
-                    <!-- Canals del teu HTML -->
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener noreferrer" data-category="youtube produccio creativitat">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Andrew Huang</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/c/Producelikeapro" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Produce Like A Pro</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/Z3NWorld" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Zen World</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@HelpMeDevvon" target="_blank" rel="noopener noreferrer" data-category="youtube produccio r&b">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Help Me Devvon</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Venus Theory</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@ReidStefanMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Reid Stefan</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/WVmusicOrg" target="_blank" rel="noopener noreferrer" data-category="youtube produccio entrevista">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Weathervane Music</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/imamusicmogul" target="_blank" rel="noopener noreferrer" data-category="youtube produccio marketing">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Music Mogul</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@MakePopMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Make Pop Music</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/theproaudiofiles" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Pro Audio Files</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/rachelkcollieroff" target="_blank" rel="noopener noreferrer" data-category="youtube produccio live loop">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Rachel K Collier</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/SeanDivine" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Sean Divine</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/channel/UCJpVRw_1bcGrQvUxeXz8Uhw" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Mars Citizen</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/user/cosmcosm" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Tom Cosm</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@WeissAdvice" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Weiss Advice</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@TheVelvetYear" target="_blank" rel="noopener noreferrer" data-category="youtube produccio synth">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Velvet Year</span>
-                    </a>
-                    <!-- Afegits recomanats complementaris -->
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@InTheMix" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mescla daw">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>In The Mix</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@YouSuckAtProducing" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>You Suck at Producing</span>
-                    </a>
-                    <a class="w-full link-button link-item" href="https://www.youtube.com/@NicoAstegiano" target="_blank" rel="noopener noreferrer" data-category="youtube produccio castellano studio">
-                        <span class="icon"><i data-lucide="youtube"></i></span>
-                        <span>Nico Astegiano</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- TAB 3: UTILITATS I MATERIALS -->
-<div id="tab-utilitats" role="tabpanel" aria-labelledby="tab-utilitats-button">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="app pdf">
-
-        <!-- Columna 3.1: Aplicacions -->
-        <div class="link-col" data-category="app metronom stemps entrenament">
-            <div>
-                <div class="collapsible-header is-expanded" data-target="recommended-apps-links" style="margin-top: 0;">
-                    <p class="link-item-title" style="border-bottom: none; margin-bottom: 0;">Utilitats Essencials per a la Pràctica 📱</p>
-                    <span class="icon"><i data-lucide="chevron-down"></i></span>
-                </div>
-                <div id="recommended-apps-links" class="collapsible-content is-expanded link-group" data-category="app metronom stemps">
+            <!-- Columna 1: Teoria i Anàlisi -->
+            <div id="tab-teoria" role="tabpanel" aria-labelledby="tab-teoria-button">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links">
                     
-                    <!-- App 1: SBL Groove Trainer -->
-                    <div class="w-full link-button link-item" data-category="app metronom groove bateria" style="margin-bottom: 1.2rem;">
-                        <span class="icon"><i data-lucide="drum"></i></span>
-                        <div class="flex-grow">
-                            <p class="text-base font-bold">SBL Groove Trainer (Metrònom)</p>
-                            <p class="is-size-7 text-gray-500">El metrònom avançat per a l'entrenament rítmic.</p>
-                            <div class="app-links flex space-x-4 mt-4">
-                                <a href="https://apps.apple.com/us/app/sbl-groove-trainer/id1571452765" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a App Store (iOS/Mac)">
-                                    <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
+                    <!-- Columna 1.1: Eines de Teoria -->
+                    <div class="link-col" data-category="eines teoria harmonia">
+                        <p class="link-item-title font-bold text-lg mb-4">Eines de Teoria i Harmonia</p>
+                        <div class="link-group flex flex-col gap-3">
+                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.musictheory.net" target="_blank" rel="noopener noreferrer" data-category="eines teoria exercicis">
+                                <span class="icon"><i data-lucide="book-open"></i></span>
+                                <span>MusicTheory.net (Exercicis i Teoria)</span>
+                            </a>
+                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.teoria.com" target="_blank" rel="noopener noreferrer" data-category="eines teoria entrenament">
+                                <span class="icon"><i data-lucide="brain"></i></span>
+                                <span>Teoria.com (Entrenament auditiu)</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Columna 1.2: Canals de YouTube - Teoria i Anàlisi -->
+                    <div class="link-col" data-category="youtube teoria">
+                        <div class="mt-0">
+                            <div class="collapsible-header flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="youtube-teoria-links" style="margin-top: 0;">
+                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Teoria i Anàlisi 📺</p>
+                                <span class="icon"><i data-lucide="chevron-down"></i></span>
+                            </div>
+                            <div id="youtube-teoria-links" class="collapsible-content link-group flex flex-col gap-2 mt-2" data-category="youtube teoria">
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/AdamNeely" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Adam Neely</span>
                                 </a>
-                                <a href="https://play.google.com/store/apps/details?id=com.scottsbasslessons.groovetrainer&hl=es_419&pli=1" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a Google Play (Android)">
-                                    <span class="text-2xl" role="img" aria-label="android">🤖</span> 
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/RickBeato" target="_blank" rel="noopener noreferrer" data-category="youtube teoria rock">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Rick Beato</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/JaimeAltozano" target="_blank" rel="noopener noreferrer" data-category="youtube analisis pop">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Jaime Altozano</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/AimeeNolte" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz piano">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Aimee Nolte</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/NahreSol" target="_blank" rel="noopener noreferrer" data-category="youtube teoria piano clasica">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Nahre Sol</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/channel/UCTUtqcDkzw7bisadh6AOx5w" target="_blank" rel="noopener noreferrer" data-category="youtube teoria analisi">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>12Tone</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/8bitMusicTheory" target="_blank" rel="noopener noreferrer" data-category="youtube teoria games">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>8bit Music Theory</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/CharlesCornellStudios" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Charles Cornell</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/DeadWaxShow" target="_blank" rel="noopener noreferrer" data-category="youtube teoria produccio">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Dead Wax</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/bobreynolds" target="_blank" rel="noopener noreferrer" data-category="youtube teoria jazz saxo">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Bob Reynolds</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@MusicRadarTech" target="_blank" rel="noopener noreferrer" data-category="youtube teoria tecnologia">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Music Radar Tech</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@DavidBruceComposer" target="_blank" rel="noopener noreferrer" data-category="youtube teoria composicio clasica">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>David Bruce Composer</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@SignalsMusicStudio" target="_blank" rel="noopener noreferrer" data-category="youtube teoria composicio">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Signals Music Studio</span>
                                 </a>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- Columna 2: Producció i Creativitat -->
+            <div id="tab-produccio" role="tabpanel" aria-labelledby="tab-produccio-button" class="mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="eines produccio youtube podcast">
                     
-                    <!-- App 2: Moises -->
-                    <div class="w-full link-button link-item" data-category="app stemps produccio karaoke">
-                        <span class="icon"><i data-lucide="music-4"></i></span>
-                        <div class="flex-grow">
-                            <p class="text-base font-bold">Moises (Separador de Stems)</p>
-                            <p class="is-size-7 text-gray-500">Separa veus, bateria i altres instruments d'una cançó qualsevol.</p>
-                            <div class="app-links flex space-x-4 mt-4">
-                                <a href="https://apps.apple.com/es/app/moises-la-app-para-m%C3%BAsics/id1515796612" target="_blank" rel="noopener noreferrer" title="Moises a App Store (iOS/Mac)">
-                                    <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
+                    <!-- Columna 2.1: Eines de Creativitat -->
+                    <div class="link-col" data-category="eines creativitat produccio">
+                        <p class="link-item-title font-bold text-lg mb-4">Eines Web de Creativitat i Producció</p>
+                        
+                        <div class="link-group flex flex-col gap-3">
+                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://musiclab.chromeexperiments.com/" target="_blank" rel="noopener noreferrer" data-category="eines creativitat experimentacio">
+                                <span class="icon"><i data-lucide="palette"></i></span>
+                                <span>Chrome Music Lab (Experimentació)</span>
+                            </a>
+                            <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://muted.io" target="_blank" rel="noopener noreferrer" data-category="eines produccio utilitats">
+                                <span class="icon"><i data-lucide="tool"></i></span>
+                                <span>Muted io (Eines vàries de producció)</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Columna 2.2: Canals de YouTube i Podcasts -->
+                    <div class="link-col" data-category="youtube produccio podcast">
+                        
+                        <!-- Grup Plegable: Podcasts -->
+                        <div class="mt-0">
+                            <div class="collapsible-header flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="podcast-links" style="margin-top: 0;">
+                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Podcasts d'Interès 🎧</p>
+                                <span class="icon"><i data-lucide="chevron-down"></i></span>
+                            </div>
+                            <div id="podcast-links" class="collapsible-content link-group flex flex-col gap-2 mt-2" data-category="podcast entrevista analisi">
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/5Br33snnJU90k2NcYskuM9?si=9a82970a42c34733" target="_blank" rel="noopener noreferrer" data-category="podcast entrevista produccio">
+                                    <span class="icon"><i data-lucide="podcast"></i></span>
+                                    <span>Tape Notes</span>
                                 </a>
-                                <a href="https://play.google.com/store/apps/details?id=ai.moises&hl=es_419" target="_blank" rel="noopener noreferrer" title="Moises a Google Play (Android)">
-                                    <span class="text-2xl" role="img" aria-label="android">🤖</span> 
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/1sgWaKtQxwfjUpZnnK8r7J?si=d7dede0f96eb41ec" target="_blank" rel="noopener noreferrer" data-category="podcast analisis pop">
+                                    <span class="icon"><i data-lucide="podcast"></i></span>
+                                    <span>Switched On Pop</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/10lMwCjvzLCLwth2AW6cLG?si=039962dd03494b8f" target="_blank" rel="noopener noreferrer" data-category="podcast analisis produccio">
+                                    <span class="icon"><i data-lucide="podcast"></i></span>
+                                    <span>Song Exploder</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/01O51q9b3kQkUqG6mEwM5s" target="_blank" rel="noopener noreferrer" data-category="podcast mescla produccio">
+                                    <span class="icon"><i data-lucide="podcast"></i></span>
+                                    <span>Pensado's Place</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://open.spotify.com/show/2I3mYhFjHjS3Z1tM" target="_blank" rel="noopener noreferrer" data-category="podcast mescla produccio">
+                                    <span class="icon"><i data-lucide="podcast"></i></span>
+                                    <span>Mix With The Masters Podcast</span>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Grup Plegable: YouTube Producció -->
+                        <div class="mt-5">
+                            <div class="collapsible-header flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="youtube-produccio-links">
+                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Canals de YouTube - Producció Musical 🎛️</p>
+                                <span class="icon"><i data-lucide="chevron-down"></i></span>
+                            </div>
+                            <div id="youtube-produccio-links" class="collapsible-content link-group flex flex-col gap-2 mt-2" data-category="youtube produccio">
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/andrewhuang" target="_blank" rel="noopener noreferrer" data-category="youtube produccio creativitat">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Andrew Huang</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/c/Producelikeapro" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Produce Like A Pro</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/Z3NWorld" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Zen World</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@HelpMeDevvon" target="_blank" rel="noopener noreferrer" data-category="youtube produccio r&b">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Help Me Devvon</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@VenusTheory" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Venus Theory</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@ReidStefanMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Reid Stefan</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/WVmusicOrg" target="_blank" rel="noopener noreferrer" data-category="youtube produccio entrevista">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Weathervane Music</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/imamusicmogul" target="_blank" rel="noopener noreferrer" data-category="youtube produccio marketing">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Music Mogul</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@MakePopMusic" target="_blank" rel="noopener noreferrer" data-category="youtube produccio pop">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Make Pop Music</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/theproaudiofiles" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Pro Audio Files</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/rachelkcollieroff" target="_blank" rel="noopener noreferrer" data-category="youtube produccio live loop">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Rachel K Collier</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/SeanDivine" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mixing">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Sean Divine</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/channel/UCJpVRw_1bcGrQvUxeXz8Uhw" target="_blank" rel="noopener noreferrer" data-category="youtube produccio sound design">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Mars Citizen</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/user/cosmcosm" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Tom Cosm</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@WeissAdvice" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mastering">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Weiss Advice</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@TheVelvetYear" target="_blank" rel="noopener noreferrer" data-category="youtube produccio synth">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Velvet Year</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@InTheMix" target="_blank" rel="noopener noreferrer" data-category="youtube produccio mescla daw">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>In The Mix</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@YouSuckAtProducing" target="_blank" rel="noopener noreferrer" data-category="youtube produccio ableton">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>You Suck at Producing</span>
+                                </a>
+                                <a class="w-full link-button link-item flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.youtube.com/@NicoAstegiano" target="_blank" rel="noopener noreferrer" data-category="youtube produccio castellano studio">
+                                    <span class="icon"><i data-lucide="youtube"></i></span>
+                                    <span>Nico Astegiano</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-        
-        <!-- Columna 3.2: Documents PDF -->
-        <div class="link-col" data-category="document pdf curs material">
-            <p class="link-item-title">Materials de Curs (PDFs)</p>
-            <div class="link-group" data-category="pdf material harmonia teoria">
-                <a class="w-full link-button link-item is-download" href="https://www.amazon.es/Harmonia-Eugeni-Corchero-Mestres/dp/B0G3671CNB" target="_blank" rel="noopener noreferrer" data-category="pdf teoria harmonia llibre">
-                    <span class="icon"><i data-lucide="file-text"></i></span>
-                    <div style="text-align: left;">
-                        <p class="text-base font-bold">Llibre d'Harmonia Bàsica (Amazon)</p>
-                    </div>
-                </a>
-                
-                <div class="w-full p-4 rounded-lg border-2 border-dashed" style="border-color: var(--color-border); color: var(--color-muted);">
-                    <div class="flex items-center gap-3">
-                        <span class="icon">
-                            <i data-lucide="file-plus" aria-hidden="true"></i>
-                        </span>
+
+            <!-- Columna 3: Utilitats i Materials -->
+            <div id="tab-utilitats" role="tabpanel" aria-labelledby="tab-utilitats-button" class="mt-12">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 standard-links" data-category="app pdf">
+
+                    <!-- Columna 3.1: Aplicacions -->
+                    <div class="link-col" data-category="app metronom stemps entrenament">
                         <div>
-                            <p class="font-medium">Materials addicionals</p>
-                            <p class="text-sm">Més recursos estaran disponibles aviat</p>
+                            <div class="collapsible-header is-expanded flex items-center justify-between cursor-pointer p-3 bg-white rounded-lg shadow-sm" data-target="recommended-apps-links" style="margin-top: 0;">
+                                <p class="link-item-title font-bold" style="border-bottom: none; margin-bottom: 0;">Utilitats Essencials per a la Pràctica 📱</p>
+                                <span class="icon"><i data-lucide="chevron-down"></i></span>
+                            </div>
+                            <div id="recommended-apps-links" class="collapsible-content is-expanded link-group flex flex-col gap-4 mt-3" data-category="app metronom stemps">
+                                
+                                <!-- App 1: SBL Groove Trainer -->
+                                <div class="w-full link-button link-item flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm" data-category="app metronom groove bateria">
+                                    <span class="icon text-xl"><i data-lucide="drum"></i></span>
+                                    <div class="flex-grow">
+                                        <p class="text-base font-bold">SBL Groove Trainer (Metrònom)</p>
+                                        <p class="text-xs text-gray-500">El metrònom avançat per a l'entrenament rítmic.</p>
+                                        <div class="app-links flex space-x-4 mt-3">
+                                            <a href="https://apps.apple.com/us/app/sbl-groove-trainer/id1571452765" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a App Store (iOS/Mac)">
+                                                <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
+                                            </a>
+                                            <a href="https://play.google.com/store/apps/details?id=com.scottsbasslessons.groovetrainer&hl=es_419&pli=1" target="_blank" rel="noopener noreferrer" title="SBL Groove Trainer a Google Play (Android)">
+                                                <span class="text-2xl" role="img" aria-label="android">🤖</span> 
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- App 2: Moises -->
+                                <div class="w-full link-button link-item flex items-start gap-3 p-4 bg-white rounded-lg shadow-sm" data-category="app stemps produccio karaoke">
+                                    <span class="icon text-xl"><i data-lucide="music-4"></i></span>
+                                    <div class="flex-grow">
+                                        <p class="text-base font-bold">Moises (Separador de Stems)</p>
+                                        <p class="text-xs text-gray-500">Separa veus, bateria i altres instruments d'una cançó qualsevol.</p>
+                                        <div class="app-links flex space-x-4 mt-3">
+                                            <a href="https://apps.apple.com/es/app/moises-la-app-para-m%C3%BAsics/id1515796612" target="_blank" rel="noopener noreferrer" title="Moises a App Store (iOS/Mac)">
+                                                <span class="text-2xl" role="img" aria-label="Poma Emoji">🍎</span> 
+                                            </a>
+                                            <a href="https://play.google.com/store/apps/details?id=ai.moises&hl=es_419" target="_blank" rel="noopener noreferrer" title="Moises a Google Play (Android)">
+                                                <span class="text-2xl" role="img" aria-label="android">🤖</span> 
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- Columna 3.2: Documents PDF -->
+                    <div class="link-col" data-category="document pdf curs material">
+                        <p class="link-item-title font-bold text-lg mb-4">Materials de Curs (PDFs)</p>
+                        <div class="link-group flex flex-col gap-3" data-category="pdf material harmonia teoria">
+                            <a class="w-full link-button link-item is-download flex items-center gap-3 p-3 bg-white rounded-lg shadow-sm hover:shadow-md transition" href="https://www.amazon.es/Harmonia-Eugeni-Corchero-Mestres/dp/B0G3671CNB" target="_blank" rel="noopener noreferrer" data-category="pdf teoria harmonia llibre">
+                                <span class="icon"><i data-lucide="file-text"></i></span>
+                                <div style="text-align: left;">
+                                    <p class="text-base font-bold">Llibre d'Harmonia Bàsica (Amazon)</p>
+                                </div>
+                            </a>
+                            
+                            <div class="w-full p-4 rounded-lg border-2 border-dashed border-gray-300 text-gray-500">
+                                <div class="flex items-center gap-3">
+                                    <span class="icon">
+                                        <i data-lucide="file-plus" aria-hidden="true"></i>
+                                    </span>
+                                    <div>
+                                        <p class="font-medium">Materials addicionals</p>
+                                        <p class="text-sm">Més recursos estaran disponibles aviat</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </div>
 
+        </div>
     </div>
-</div>
+
+    <!-- Script per inicialitzar les icones i opcionalment els desplegables -->
+    <script>
+        // Inicialitza les icones Lucide
+        lucide.createIcons();
+
+        // Control bàsic dels desplegables
+        document.querySelectorAll('.collapsible-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const targetId = header.getAttribute('data-target');
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    targetEl.classList.toggle('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
